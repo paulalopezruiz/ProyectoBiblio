@@ -3,6 +3,8 @@ using System.Windows.Forms;
 using Biblioteca.VISTA;
 using Biblioteca.CONTROLADOR;
 
+//PRUEBA CAMBIOS GITHUB 
+
 namespace Biblioteca
 {
     public partial class Gestor : Form
@@ -78,6 +80,11 @@ namespace Biblioteca
         private void tbMenu_Paint(object sender, PaintEventArgs e)
         {
             // opcional
+        }
+
+        private void lPrestamos_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

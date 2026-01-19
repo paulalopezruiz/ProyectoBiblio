@@ -50,12 +50,13 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(655, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 703);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -71,86 +72,94 @@
             this.tableLayoutPanel2.Controls.Add(this.tbDNI, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(166, 115);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(249, 180);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 219);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(483, 341);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(3, 0);
+            this.lblNombre.Location = new System.Drawing.Point(4, 0);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(56, 16);
+            this.lblNombre.Size = new System.Drawing.Size(87, 25);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
             // lblTelefono
             // 
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(3, 54);
+            this.lblTelefono.Location = new System.Drawing.Point(4, 85);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(61, 16);
+            this.lblTelefono.Size = new System.Drawing.Size(96, 25);
             this.lblTelefono.TabIndex = 1;
             this.lblTelefono.Text = "Telefono";
             // 
             // lblDNI
             // 
             this.lblDNI.AutoSize = true;
-            this.lblDNI.Location = new System.Drawing.Point(3, 108);
+            this.lblDNI.Location = new System.Drawing.Point(4, 170);
+            this.lblDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(30, 16);
+            this.lblDNI.Size = new System.Drawing.Size(47, 25);
             this.lblDNI.TabIndex = 2;
             this.lblDNI.Text = "DNI";
             // 
             // tbNombre
             // 
             this.tbNombre.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbNombre.Location = new System.Drawing.Point(70, 3);
+            this.tbNombre.Location = new System.Drawing.Point(108, 5);
+            this.tbNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbNombre.Name = "tbNombre";
-            this.tbNombre.Size = new System.Drawing.Size(248, 22);
+            this.tbNombre.Size = new System.Drawing.Size(371, 31);
             this.tbNombre.TabIndex = 3;
             // 
             // tbTelefono
             // 
             this.tbTelefono.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTelefono.Location = new System.Drawing.Point(70, 57);
+            this.tbTelefono.Location = new System.Drawing.Point(108, 90);
+            this.tbTelefono.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbTelefono.Name = "tbTelefono";
-            this.tbTelefono.Size = new System.Drawing.Size(248, 22);
+            this.tbTelefono.Size = new System.Drawing.Size(371, 31);
             this.tbTelefono.TabIndex = 4;
             // 
             // tbDNI
             // 
             this.tbDNI.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbDNI.Location = new System.Drawing.Point(70, 111);
+            this.tbDNI.Location = new System.Drawing.Point(108, 175);
+            this.tbDNI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbDNI.Name = "tbDNI";
-            this.tbDNI.Size = new System.Drawing.Size(248, 22);
+            this.tbDNI.Size = new System.Drawing.Size(371, 31);
             this.tbDNI.TabIndex = 5;
             // 
             // btnGuardar
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardar.Location = new System.Drawing.Point(100, 165);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(100, 3, 100, 3);
+            this.btnGuardar.Location = new System.Drawing.Point(150, 260);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(121, 51);
+            this.btnGuardar.Size = new System.Drawing.Size(183, 76);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // NuevoUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 450);
+            this.ClientSize = new System.Drawing.Size(982, 703);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MinimumSize = new System.Drawing.Size(650, 364);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(962, 529);
             this.Name = "NuevoUsuario";
             this.Text = "NuevoUsuario";
             this.tableLayoutPanel1.ResumeLayout(false);
