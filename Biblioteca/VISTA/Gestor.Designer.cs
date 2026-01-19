@@ -52,21 +52,19 @@
             this.NavBar.Controls.Add(this.tbMenu, 1, 0);
             this.NavBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.NavBar.Location = new System.Drawing.Point(0, 0);
-            this.NavBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.NavBar.Name = "NavBar";
             this.NavBar.RowCount = 1;
             this.NavBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.NavBar.Size = new System.Drawing.Size(650, 64);
+            this.NavBar.Size = new System.Drawing.Size(975, 100);
             this.NavBar.TabIndex = 0;
             // 
             // logo
             // 
             this.logo.Dock = System.Windows.Forms.DockStyle.Left;
             this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.Location = new System.Drawing.Point(2, 2);
-            this.logo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.logo.Location = new System.Drawing.Point(3, 3);
             this.logo.Name = "logo";
-            this.logo.Size = new System.Drawing.Size(173, 60);
+            this.logo.Size = new System.Drawing.Size(260, 94);
             this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo.TabIndex = 0;
             this.logo.TabStop = false;
@@ -74,10 +72,10 @@
             // bCerrarSesion
             // 
             this.bCerrarSesion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.bCerrarSesion.Location = new System.Drawing.Point(512, 13);
-            this.bCerrarSesion.Margin = new System.Windows.Forms.Padding(13, 13, 13, 13);
+            this.bCerrarSesion.Location = new System.Drawing.Point(767, 20);
+            this.bCerrarSesion.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
             this.bCerrarSesion.Name = "bCerrarSesion";
-            this.bCerrarSesion.Size = new System.Drawing.Size(125, 38);
+            this.bCerrarSesion.Size = new System.Drawing.Size(188, 60);
             this.bCerrarSesion.TabIndex = 1;
             this.bCerrarSesion.Text = "Cerrar sesion";
             this.bCerrarSesion.UseVisualStyleBackColor = true;
@@ -95,12 +93,11 @@
             this.tbMenu.Controls.Add(this.lLibros, 2, 0);
             this.tbMenu.Controls.Add(this.lPrestamos, 3, 0);
             this.tbMenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbMenu.Location = new System.Drawing.Point(179, 2);
-            this.tbMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbMenu.Location = new System.Drawing.Point(269, 3);
             this.tbMenu.Name = "tbMenu";
             this.tbMenu.RowCount = 1;
             this.tbMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbMenu.Size = new System.Drawing.Size(318, 60);
+            this.tbMenu.Size = new System.Drawing.Size(475, 94);
             this.tbMenu.TabIndex = 2;
             this.tbMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.tbMenu_Paint);
             // 
@@ -109,10 +106,9 @@
             this.lUsuario.AutoSize = true;
             this.lUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lUsuario.Location = new System.Drawing.Point(21, 0);
-            this.lUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lUsuario.Location = new System.Drawing.Point(32, 0);
             this.lUsuario.Name = "lUsuario";
-            this.lUsuario.Size = new System.Drawing.Size(88, 60);
+            this.lUsuario.Size = new System.Drawing.Size(131, 94);
             this.lUsuario.TabIndex = 0;
             this.lUsuario.Text = "Usuarios";
             this.lUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -123,10 +119,9 @@
             this.lLibros.AutoSize = true;
             this.lLibros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lLibros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lLibros.Location = new System.Drawing.Point(113, 0);
-            this.lLibros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lLibros.Location = new System.Drawing.Point(169, 0);
             this.lLibros.Name = "lLibros";
-            this.lLibros.Size = new System.Drawing.Size(90, 60);
+            this.lLibros.Size = new System.Drawing.Size(135, 94);
             this.lLibros.TabIndex = 1;
             this.lLibros.Text = "Libros";
             this.lLibros.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -136,23 +131,22 @@
             this.lPrestamos.AutoSize = true;
             this.lPrestamos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lPrestamos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lPrestamos.Location = new System.Drawing.Point(207, 0);
-            this.lPrestamos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lPrestamos.Location = new System.Drawing.Point(310, 0);
             this.lPrestamos.Name = "lPrestamos";
-            this.lPrestamos.Size = new System.Drawing.Size(88, 60);
+            this.lPrestamos.Size = new System.Drawing.Size(131, 94);
             this.lPrestamos.TabIndex = 2;
             this.lPrestamos.Text = "Prestamos";
             this.lPrestamos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lPrestamos.Click += new System.EventHandler(this.lPrestamos_Click_1);
             // 
             // Gestor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(650, 364);
+            this.ClientSize = new System.Drawing.Size(975, 569);
             this.Controls.Add(this.NavBar);
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MinimumSize = new System.Drawing.Size(668, 411);
+            this.MinimumSize = new System.Drawing.Size(989, 602);
             this.Name = "Gestor";
             this.Text = "Gestor";
             this.Load += new System.EventHandler(this.Gestor_Load);
