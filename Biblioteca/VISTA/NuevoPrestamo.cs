@@ -35,14 +35,14 @@ namespace Biblioteca.VISTA
                 new Usuario("Iker",  "600333444", "87654321B"),
             };
 
-            // Libros: mostrar título, guardar IdLibro
+            o
             cmbLibro.DataSource = libros;
             cmbLibro.DisplayMember = "Titulo";
             cmbLibro.ValueMember = "IdLibro";
 
             // Usuarios: mostrar "Nombre - DNI" usando ToString()
             cmbUsuario.DataSource = usuarios;
-            // No hace falta DisplayMember; usará ToString()
+            
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -58,7 +58,7 @@ namespace Biblioteca.VISTA
             Usuario u = (Usuario)cmbUsuario.SelectedItem;
             string dniUsuario = u.DNI;
 
-            // Fecha: si NO la quieres editable, la pones fija aquí
+            // Fecha: no editable
             DateTime fechaInicio = DateTime.Today;
 
 

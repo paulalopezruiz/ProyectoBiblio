@@ -50,6 +50,7 @@
     <Compile Include="MODELO\Libro.cs" />
     <Compile Include="MODELO\modelo.cs" />
     <Compile Include="MODELO\Prestamo.cs" />
+    <Compile Include="MODELO\SQLiteHelper.cs" />
     <Compile Include="MODELO\Usuario.cs" />
     <Compile Include="VISTA\BorrarUsuario.cs">
       <SubType>Form</SubType>
@@ -123,6 +124,7 @@
     <EmbeddedResource Include="VISTA\NuevoUsuario.resx">
       <DependentUpon>NuevoUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Biblioteca.db" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

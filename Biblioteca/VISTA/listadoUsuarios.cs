@@ -29,5 +29,10 @@ namespace Biblioteca.VISTA
             nuevo.CargarDatos();
             nuevo.Show();
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
