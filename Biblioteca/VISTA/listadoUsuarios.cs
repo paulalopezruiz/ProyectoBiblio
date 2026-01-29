@@ -1,12 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
-using Biblioteca.CONTROLADOR;
+using Biblioteca.MODELO;
 
 namespace Biblioteca.VISTA
 {
     public partial class listadoUsuarios : Form
     {
-        public Controlador Controlador { get; set; }   
+        public List<Usuario> listaUsuarios = new List<Usuario>
+        {
+            new Usuario("Juan Pérez", "123456789", "11111111A"),
+            new Usuario("María García", "987654321", "22222222B"),
+            new Usuario("Carlos López", "654987321", "33333333C"),
+            new Usuario("Ana Martínez", "789456123", "44444444D"),
+            new Usuario("Lucía Sánchez", "321654987", "55555555E"),
+            new Usuario("Pedro Fernández", "147258369", "66666666F"),
+            new Usuario("Laura Gómez", "963852741", "77777777G"),
+            new Usuario("Diego Ruiz", "852741963", "88888888H"),
+            new Usuario("Sara Torres", "741963852", "99999999J"),
+            new Usuario("Javier Navarro", "159357258", "00000000K")
+        };
 
         public listadoUsuarios()
         {
@@ -14,20 +28,56 @@ namespace Biblioteca.VISTA
             this.AutoScroll = true;
         }
 
+        private void listadoUsuarios_Load(object sender, EventArgs e)
+        {
+            CargarTarjetas(listaUsuarios);
+        }
+
+        private void CargarTarjetas(List<Usuario> usuarios)
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            foreach (var u in usuarios)
+            {
+                TarjetaUsuario tarjeta = new TarjetaUsuario();
+
+                tarjeta.Usuario = u; // ← AHORA SE PASA EL USUARIO COMPLETO
+
+                tarjeta.Width = flowLayoutPanel1.ClientSize.Width - 20;
+
+                flowLayoutPanel1.Controls.Add(tarjeta);
+            }
+        }
+
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            NuevoUsuario nuevo = NuevoUsuario.GetInstance();
-            nuevo.Controlador = this.Controlador;
+            NuevoUsuario frm = new NuevoUsuario();
 
-           
-            nuevo.MdiParent = this.MdiParent;
-            nuevo.Dock = DockStyle.Fill;
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                // Añadir el usuario creado
+                listaUsuarios.Add(frm.UsuarioCreado);
 
-            
-            this.Hide();
+                // Recargar tarjetas
+                CargarTarjetas(listaUsuarios);
+            }
+        }
 
-            nuevo.CargarDatos();
-            nuevo.Show();
+        private void tbNombre_TextChanged(object sender, EventArgs e)
+        {
+            string texto = tbNombre.Text.Trim().ToLower();
+
+            if (string.IsNullOrEmpty(texto))
+            {
+                CargarTarjetas(listaUsuarios);
+                return;
+            }
+
+            var filtrados = listaUsuarios
+                .Where(u => u.Nombre.ToLower().StartsWith(texto))
+                .ToList();
+
+            CargarTarjetas(filtrados);
         }
     }
 }

@@ -54,7 +54,6 @@ namespace Biblioteca
             var listado = new listadoUsuarios();
 
             
-            listado.Controlador = this.Controlador;
 
             InsertarFormulario(listado);
         }

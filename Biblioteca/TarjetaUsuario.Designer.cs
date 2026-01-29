@@ -76,6 +76,7 @@
             this.lName.TabIndex = 1;
             this.lName.Text = "Nombre y Apellidos";
             this.lName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lName.Click += new System.EventHandler(this.lName_Click);
             // 
             // bDelete
             // 

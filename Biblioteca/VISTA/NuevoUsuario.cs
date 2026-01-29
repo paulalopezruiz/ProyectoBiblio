@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using Biblioteca.CONTROLADOR;
+using Biblioteca.MODELO;
 
 namespace Biblioteca.VISTA
 {
     public partial class NuevoUsuario : Form
     {
-        public Controlador Controlador { get; set; }
-
-        private static NuevoUsuario formulario;
-
-        public static NuevoUsuario GetInstance()
-        {
-            if (formulario == null || formulario.IsDisposed)
-                formulario = new NuevoUsuario();
-            return formulario;
-        }
+        public Usuario UsuarioCreado { get; private set; }
 
         public NuevoUsuario()
         {
@@ -25,16 +16,13 @@ namespace Biblioteca.VISTA
 
         public void CargarDatos()
         {
-    
             tbNombre.Text = "";
             tbTelefono.Text = "";
             tbDNI.Text = "";
-
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Hay q conectarlo al controlador
             string nombre = tbNombre.Text.Trim();
             string telefono = tbTelefono.Text.Trim();
             string dni = tbDNI.Text.Trim();
@@ -45,7 +33,10 @@ namespace Biblioteca.VISTA
                 return;
             }
 
-            MessageBox.Show("Listo para guardar (aún falta conectar el controlador).");
+            UsuarioCreado = new Usuario(nombre, telefono, dni);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

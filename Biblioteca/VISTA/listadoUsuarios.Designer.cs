@@ -29,34 +29,12 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblNombre5 = new System.Windows.Forms.Label();
-            this.lblNombre4 = new System.Windows.Forms.Label();
-            this.lblNombre3 = new System.Windows.Forms.Label();
-            this.lblNombre2 = new System.Windows.Forms.Label();
-            this.lblNombre1 = new System.Windows.Forms.Label();
-            this.btnBorrar1 = new System.Windows.Forms.Button();
-            this.btnBorrar2 = new System.Windows.Forms.Button();
-            this.btnBorrar3 = new System.Windows.Forms.Button();
-            this.btnBorrar4 = new System.Windows.Forms.Button();
-            this.btnBorrar5 = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.tbNombre = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,9 +44,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 99.99999F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNuevo, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -80,213 +58,12 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(975, 569);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 3);
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox5, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox4, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblNombre5, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.lblNombre4, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.lblNombre3, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.lblNombre2, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblNombre1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnBorrar1, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnBorrar2, 2, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnBorrar3, 2, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnBorrar4, 2, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnBorrar5, 2, 4);
-            this.tableLayoutPanel2.Controls.Add(this.pictureBox3, 0, 2);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(4, 182);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(967, 382);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox5.Image = global::Biblioteca.Properties.Resources.usuario;
-            this.pictureBox5.Location = new System.Drawing.Point(4, 309);
-            this.pictureBox5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(196, 68);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox5.TabIndex = 25;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox4.Image = global::Biblioteca.Properties.Resources.usuario;
-            this.pictureBox4.Location = new System.Drawing.Point(4, 233);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(196, 66);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 24;
-            this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = global::Biblioteca.Properties.Resources.usuario;
-            this.pictureBox2.Location = new System.Drawing.Point(4, 81);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(196, 66);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 23;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::Biblioteca.Properties.Resources.usuario;
-            this.pictureBox1.Location = new System.Drawing.Point(4, 5);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(196, 66);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 22;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblNombre5
-            // 
-            this.lblNombre5.AutoSize = true;
-            this.lblNombre5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNombre5.Location = new System.Drawing.Point(208, 304);
-            this.lblNombre5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNombre5.Name = "lblNombre5";
-            this.lblNombre5.Size = new System.Drawing.Size(181, 78);
-            this.lblNombre5.TabIndex = 13;
-            this.lblNombre5.Text = "Nombre Apellidos";
-            // 
-            // lblNombre4
-            // 
-            this.lblNombre4.AutoSize = true;
-            this.lblNombre4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNombre4.Location = new System.Drawing.Point(208, 228);
-            this.lblNombre4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNombre4.Name = "lblNombre4";
-            this.lblNombre4.Size = new System.Drawing.Size(181, 76);
-            this.lblNombre4.TabIndex = 10;
-            this.lblNombre4.Text = "Nombre Apellidos";
-            // 
-            // lblNombre3
-            // 
-            this.lblNombre3.AutoSize = true;
-            this.lblNombre3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNombre3.Location = new System.Drawing.Point(208, 152);
-            this.lblNombre3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNombre3.Name = "lblNombre3";
-            this.lblNombre3.Size = new System.Drawing.Size(181, 76);
-            this.lblNombre3.TabIndex = 7;
-            this.lblNombre3.Text = "Nombre Apellidos";
-            // 
-            // lblNombre2
-            // 
-            this.lblNombre2.AutoSize = true;
-            this.lblNombre2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNombre2.Location = new System.Drawing.Point(208, 76);
-            this.lblNombre2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNombre2.Name = "lblNombre2";
-            this.lblNombre2.Size = new System.Drawing.Size(181, 76);
-            this.lblNombre2.TabIndex = 4;
-            this.lblNombre2.Text = "Nombre Apellidos";
-            // 
-            // lblNombre1
-            // 
-            this.lblNombre1.AutoSize = true;
-            this.lblNombre1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNombre1.Location = new System.Drawing.Point(208, 0);
-            this.lblNombre1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNombre1.Name = "lblNombre1";
-            this.lblNombre1.Size = new System.Drawing.Size(181, 76);
-            this.lblNombre1.TabIndex = 0;
-            this.lblNombre1.Text = "Nombre Apellidos";
-            // 
-            // btnBorrar1
-            // 
-            this.btnBorrar1.Location = new System.Drawing.Point(397, 5);
-            this.btnBorrar1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnBorrar1.Name = "btnBorrar1";
-            this.btnBorrar1.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrar1.TabIndex = 14;
-            this.btnBorrar1.Text = "Borrar";
-            this.btnBorrar1.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrar2
-            // 
-            this.btnBorrar2.Location = new System.Drawing.Point(397, 81);
-            this.btnBorrar2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnBorrar2.Name = "btnBorrar2";
-            this.btnBorrar2.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrar2.TabIndex = 15;
-            this.btnBorrar2.Text = "Borrar";
-            this.btnBorrar2.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrar3
-            // 
-            this.btnBorrar3.Location = new System.Drawing.Point(397, 157);
-            this.btnBorrar3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnBorrar3.Name = "btnBorrar3";
-            this.btnBorrar3.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrar3.TabIndex = 16;
-            this.btnBorrar3.Text = "Borrar";
-            this.btnBorrar3.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrar4
-            // 
-            this.btnBorrar4.Location = new System.Drawing.Point(397, 233);
-            this.btnBorrar4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnBorrar4.Name = "btnBorrar4";
-            this.btnBorrar4.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrar4.TabIndex = 17;
-            this.btnBorrar4.Text = "Borrar";
-            this.btnBorrar4.UseVisualStyleBackColor = true;
-            // 
-            // btnBorrar5
-            // 
-            this.btnBorrar5.Location = new System.Drawing.Point(397, 309);
-            this.btnBorrar5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnBorrar5.Name = "btnBorrar5";
-            this.btnBorrar5.Size = new System.Drawing.Size(112, 36);
-            this.btnBorrar5.TabIndex = 18;
-            this.btnBorrar5.Text = "Borrar";
-            this.btnBorrar5.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Image = global::Biblioteca.Properties.Resources.usuario;
-            this.pictureBox3.Location = new System.Drawing.Point(4, 157);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(196, 66);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 21;
-            this.pictureBox3.TabStop = false;
-            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tbNombre, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.btnBuscar, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(4, 5);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -317,30 +94,32 @@
             this.tbNombre.Name = "tbNombre";
             this.tbNombre.Size = new System.Drawing.Size(235, 31);
             this.tbNombre.TabIndex = 1;
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.AutoSize = true;
-            this.btnBuscar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBuscar.Location = new System.Drawing.Point(22, 81);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(22, 31, 22, 31);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(199, 55);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.tbNombre.TextChanged += new System.EventHandler(this.tbNombre_TextChanged);
             // 
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnNuevo.Location = new System.Drawing.Point(676, 47);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(45, 47, 45, 47);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(254, 83);
             this.btnNuevo.TabIndex = 3;
             this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 180);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(969, 386);
+            this.flowLayoutPanel1.TabIndex = 4;
+            this.flowLayoutPanel1.WrapContents = false;
             // 
             // listadoUsuarios
             // 
@@ -351,14 +130,8 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "listadoUsuarios";
             this.Text = "listadoUsuarios";
+            this.Load += new System.EventHandler(this.listadoUsuarios_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
@@ -368,26 +141,10 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbNombre;
-        private System.Windows.Forms.Label lblNombre5;
-        private System.Windows.Forms.Label lblNombre4;
-        private System.Windows.Forms.Label lblNombre3;
-        private System.Windows.Forms.Label lblNombre2;
-        private System.Windows.Forms.Label lblNombre1;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.Button btnBorrar1;
-        private System.Windows.Forms.Button btnBorrar2;
-        private System.Windows.Forms.Button btnBorrar3;
-        private System.Windows.Forms.Button btnBorrar4;
-        private System.Windows.Forms.Button btnBorrar5;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
