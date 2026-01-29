@@ -51,6 +51,12 @@
     <Compile Include="MODELO\modelo.cs" />
     <Compile Include="MODELO\Prestamo.cs" />
     <Compile Include="MODELO\Usuario.cs" />
+    <Compile Include="TarjetaUsuario.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TarjetaUsuario.Designer.cs">
+      <DependentUpon>TarjetaUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\BorrarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     <Compile Include="VISTA\NuevoUsuario.Designer.cs">
       <DependentUpon>NuevoUsuario.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TarjetaUsuario.resx">
+      <DependentUpon>TarjetaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VISTA\Gestor.resx">
       <DependentUpon>Gestor.cs</DependentUpon>
     </EmbeddedResource>
