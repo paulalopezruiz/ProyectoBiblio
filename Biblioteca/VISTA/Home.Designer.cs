@@ -30,28 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             this.tlpHome = new System.Windows.Forms.TableLayoutPanel();
-            this.pUser = new System.Windows.Forms.Panel();
-            this.tlpUser = new System.Windows.Forms.TableLayoutPanel();
-            this.lUSer = new System.Windows.Forms.Label();
-            this.userIcon = new System.Windows.Forms.PictureBox();
-            this.pLibros = new System.Windows.Forms.Panel();
-            this.tlpLibros = new System.Windows.Forms.TableLayoutPanel();
-            this.lLibros = new System.Windows.Forms.Label();
-            this.bookIcon = new System.Windows.Forms.PictureBox();
             this.pPrest = new System.Windows.Forms.Panel();
             this.tlpPrest = new System.Windows.Forms.TableLayoutPanel();
             this.lPrestamos = new System.Windows.Forms.Label();
             this.PrestIcon = new System.Windows.Forms.PictureBox();
+            this.pLibros = new System.Windows.Forms.Panel();
+            this.tlpLibros = new System.Windows.Forms.TableLayoutPanel();
+            this.lLibros = new System.Windows.Forms.Label();
+            this.bookIcon = new System.Windows.Forms.PictureBox();
+            this.pUser = new System.Windows.Forms.Panel();
+            this.tlpUser = new System.Windows.Forms.TableLayoutPanel();
+            this.lUSer = new System.Windows.Forms.Label();
+            this.userIcon = new System.Windows.Forms.PictureBox();
             this.tlpHome.SuspendLayout();
-            this.pUser.SuspendLayout();
-            this.tlpUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userIcon)).BeginInit();
-            this.pLibros.SuspendLayout();
-            this.tlpLibros.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bookIcon)).BeginInit();
             this.pPrest.SuspendLayout();
             this.tlpPrest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PrestIcon)).BeginInit();
+            this.pLibros.SuspendLayout();
+            this.tlpLibros.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bookIcon)).BeginInit();
+            this.pUser.SuspendLayout();
+            this.tlpUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpHome
@@ -76,117 +76,6 @@
             this.tlpHome.Size = new System.Drawing.Size(800, 450);
             this.tlpHome.TabIndex = 0;
             // 
-            // pUser
-            // 
-            this.pUser.BackColor = System.Drawing.Color.White;
-            this.pUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pUser.Controls.Add(this.tlpUser);
-            this.pUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pUser.Location = new System.Drawing.Point(30, 135);
-            this.pUser.Margin = new System.Windows.Forms.Padding(30, 0, 30, 0);
-            this.pUser.Name = "pUser";
-            this.pUser.Padding = new System.Windows.Forms.Padding(10);
-            this.pUser.Size = new System.Drawing.Size(206, 180);
-            this.pUser.TabIndex = 0;
-            // 
-            // tlpUser
-            // 
-            this.tlpUser.ColumnCount = 1;
-            this.tlpUser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpUser.Controls.Add(this.lUSer, 0, 2);
-            this.tlpUser.Controls.Add(this.userIcon, 0, 1);
-            this.tlpUser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpUser.Location = new System.Drawing.Point(10, 10);
-            this.tlpUser.Name = "tlpUser";
-            this.tlpUser.RowCount = 4;
-            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpUser.Size = new System.Drawing.Size(184, 158);
-            this.tlpUser.TabIndex = 0;
-            this.tlpUser.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            // 
-            // lUSer
-            // 
-            this.lUSer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lUSer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lUSer.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lUSer.Location = new System.Drawing.Point(3, 111);
-            this.lUSer.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.lUSer.Name = "lUSer";
-            this.lUSer.Size = new System.Drawing.Size(178, 23);
-            this.lUSer.TabIndex = 0;
-            this.lUSer.Text = "USUARIOS";
-            this.lUSer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // userIcon
-            // 
-            this.userIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.userIcon.Image = ((System.Drawing.Image)(resources.GetObject("userIcon.Image")));
-            this.userIcon.Location = new System.Drawing.Point(42, 27);
-            this.userIcon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.userIcon.Name = "userIcon";
-            this.userIcon.Size = new System.Drawing.Size(100, 64);
-            this.userIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.userIcon.TabIndex = 1;
-            this.userIcon.TabStop = false;
-            // 
-            // pLibros
-            // 
-            this.pLibros.BackColor = System.Drawing.Color.White;
-            this.pLibros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pLibros.Controls.Add(this.tlpLibros);
-            this.pLibros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pLibros.Location = new System.Drawing.Point(296, 135);
-            this.pLibros.Margin = new System.Windows.Forms.Padding(30, 0, 30, 0);
-            this.pLibros.Name = "pLibros";
-            this.pLibros.Padding = new System.Windows.Forms.Padding(10);
-            this.pLibros.Size = new System.Drawing.Size(206, 180);
-            this.pLibros.TabIndex = 1;
-            // 
-            // tlpLibros
-            // 
-            this.tlpLibros.ColumnCount = 1;
-            this.tlpLibros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpLibros.Controls.Add(this.lLibros, 0, 2);
-            this.tlpLibros.Controls.Add(this.bookIcon, 0, 1);
-            this.tlpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpLibros.Location = new System.Drawing.Point(10, 10);
-            this.tlpLibros.Name = "tlpLibros";
-            this.tlpLibros.RowCount = 4;
-            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpLibros.Size = new System.Drawing.Size(184, 158);
-            this.tlpLibros.TabIndex = 0;
-            // 
-            // lLibros
-            // 
-            this.lLibros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lLibros.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lLibros.ForeColor = System.Drawing.Color.DarkGreen;
-            this.lLibros.Location = new System.Drawing.Point(3, 111);
-            this.lLibros.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
-            this.lLibros.Name = "lLibros";
-            this.lLibros.Size = new System.Drawing.Size(178, 23);
-            this.lLibros.TabIndex = 0;
-            this.lLibros.Text = "LIBROS";
-            this.lLibros.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // bookIcon
-            // 
-            this.bookIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.bookIcon.Image = ((System.Drawing.Image)(resources.GetObject("bookIcon.Image")));
-            this.bookIcon.Location = new System.Drawing.Point(42, 27);
-            this.bookIcon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
-            this.bookIcon.Name = "bookIcon";
-            this.bookIcon.Size = new System.Drawing.Size(100, 64);
-            this.bookIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.bookIcon.TabIndex = 1;
-            this.bookIcon.TabStop = false;
-            // 
             // pPrest
             // 
             this.pPrest.BackColor = System.Drawing.Color.White;
@@ -199,6 +88,7 @@
             this.pPrest.Padding = new System.Windows.Forms.Padding(10);
             this.pPrest.Size = new System.Drawing.Size(208, 180);
             this.pPrest.TabIndex = 2;
+            this.pPrest.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTarjeta_Paint);
             // 
             // tlpPrest
             // 
@@ -242,6 +132,123 @@
             this.PrestIcon.TabIndex = 1;
             this.PrestIcon.TabStop = false;
             // 
+            // pLibros
+            // 
+            this.pLibros.BackColor = System.Drawing.Color.White;
+            this.pLibros.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pLibros.Controls.Add(this.tlpLibros);
+            this.pLibros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pLibros.Location = new System.Drawing.Point(296, 135);
+            this.pLibros.Margin = new System.Windows.Forms.Padding(30, 0, 30, 0);
+            this.pLibros.Name = "pLibros";
+            this.pLibros.Padding = new System.Windows.Forms.Padding(10);
+            this.pLibros.Size = new System.Drawing.Size(206, 180);
+            this.pLibros.TabIndex = 1;
+            this.pLibros.Click += new System.EventHandler(this.pLibros_Click);
+            this.pLibros.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTarjeta_Paint);
+            // 
+            // tlpLibros
+            // 
+            this.tlpLibros.ColumnCount = 1;
+            this.tlpLibros.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpLibros.Controls.Add(this.lLibros, 0, 2);
+            this.tlpLibros.Controls.Add(this.bookIcon, 0, 1);
+            this.tlpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpLibros.Location = new System.Drawing.Point(10, 10);
+            this.tlpLibros.Name = "tlpLibros";
+            this.tlpLibros.RowCount = 4;
+            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpLibros.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpLibros.Size = new System.Drawing.Size(184, 158);
+            this.tlpLibros.TabIndex = 0;
+            // 
+            // lLibros
+            // 
+            this.lLibros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lLibros.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lLibros.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lLibros.Location = new System.Drawing.Point(3, 111);
+            this.lLibros.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.lLibros.Name = "lLibros";
+            this.lLibros.Size = new System.Drawing.Size(178, 23);
+            this.lLibros.TabIndex = 0;
+            this.lLibros.Text = "LIBROS";
+            this.lLibros.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bookIcon
+            // 
+            this.bookIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.bookIcon.Image = ((System.Drawing.Image)(resources.GetObject("bookIcon.Image")));
+            this.bookIcon.Location = new System.Drawing.Point(42, 27);
+            this.bookIcon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.bookIcon.Name = "bookIcon";
+            this.bookIcon.Size = new System.Drawing.Size(100, 64);
+            this.bookIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.bookIcon.TabIndex = 1;
+            this.bookIcon.TabStop = false;
+            // 
+            // pUser
+            // 
+            this.pUser.BackColor = System.Drawing.Color.White;
+            this.pUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pUser.Controls.Add(this.tlpUser);
+            this.pUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pUser.Location = new System.Drawing.Point(30, 135);
+            this.pUser.Margin = new System.Windows.Forms.Padding(30, 0, 30, 0);
+            this.pUser.Name = "pUser";
+            this.pUser.Padding = new System.Windows.Forms.Padding(10);
+            this.pUser.Size = new System.Drawing.Size(206, 180);
+            this.pUser.TabIndex = 0;
+            this.pUser.Click += new System.EventHandler(this.pUser_Click);
+            this.pUser.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTarjeta_Paint);
+            // 
+            // tlpUser
+            // 
+            this.tlpUser.ColumnCount = 1;
+            this.tlpUser.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpUser.Controls.Add(this.lUSer, 0, 2);
+            this.tlpUser.Controls.Add(this.userIcon, 0, 1);
+            this.tlpUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpUser.Location = new System.Drawing.Point(10, 10);
+            this.tlpUser.Name = "tlpUser";
+            this.tlpUser.RowCount = 4;
+            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tlpUser.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpUser.Size = new System.Drawing.Size(184, 158);
+            this.tlpUser.TabIndex = 0;
+            this.tlpUser.Click += new System.EventHandler(this.pUser_Click);
+            // 
+            // lUSer
+            // 
+            this.lUSer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lUSer.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lUSer.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lUSer.Location = new System.Drawing.Point(3, 111);
+            this.lUSer.Margin = new System.Windows.Forms.Padding(3, 10, 3, 0);
+            this.lUSer.Name = "lUSer";
+            this.lUSer.Size = new System.Drawing.Size(178, 23);
+            this.lUSer.TabIndex = 0;
+            this.lUSer.Text = "USUARIOS";
+            this.lUSer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lUSer.Click += new System.EventHandler(this.pUser_Click);
+            // 
+            // userIcon
+            // 
+            this.userIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.userIcon.Image = ((System.Drawing.Image)(resources.GetObject("userIcon.Image")));
+            this.userIcon.Location = new System.Drawing.Point(42, 27);
+            this.userIcon.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.userIcon.Name = "userIcon";
+            this.userIcon.Size = new System.Drawing.Size(100, 64);
+            this.userIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.userIcon.TabIndex = 1;
+            this.userIcon.TabStop = false;
+            this.userIcon.Click += new System.EventHandler(this.pUser_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -254,15 +261,15 @@
             this.Name = "Home";
             this.Text = "Home";
             this.tlpHome.ResumeLayout(false);
-            this.pUser.ResumeLayout(false);
-            this.tlpUser.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.userIcon)).EndInit();
-            this.pLibros.ResumeLayout(false);
-            this.tlpLibros.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bookIcon)).EndInit();
             this.pPrest.ResumeLayout(false);
             this.tlpPrest.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PrestIcon)).EndInit();
+            this.pLibros.ResumeLayout(false);
+            this.tlpLibros.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bookIcon)).EndInit();
+            this.pUser.ResumeLayout(false);
+            this.tlpUser.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.userIcon)).EndInit();
             this.ResumeLayout(false);
 
         }

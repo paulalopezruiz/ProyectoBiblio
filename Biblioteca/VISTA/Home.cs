@@ -17,7 +17,28 @@ namespace Biblioteca.VISTA
             InitializeComponent();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+
+        private void panelTarjeta_Paint(object sender, PaintEventArgs e)
+        {
+            int grosor = 3; // grosor del borde
+            Color colorBorde = Color.Black;
+
+            Control c = (Control)sender;
+            using (Pen pen = new Pen(colorBorde, grosor))
+            {
+                pen.Alignment = System.Drawing.Drawing2D.PenAlignment.Inset;
+                e.Graphics.DrawRectangle(pen, 0, 0, c.Width - 1, c.Height - 1);
+            }
+        }
+
+        private void pUser_Click(object sender, EventArgs e)
+        {
+            new listadoUsuarios().Show();
+
+
+        }
+
+        private void pLibros_Click(object sender, EventArgs e)
         {
 
         }
