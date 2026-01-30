@@ -57,12 +57,6 @@
     <Compile Include="TarjetaUsuario.Designer.cs">
       <DependentUpon>TarjetaUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="VISTA\BorrarUsuario.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VISTA\BorrarUsuario.Designer.cs">
-      <DependentUpon>BorrarUsuario.cs</DependentUpon>
-    </Compile>
     <Compile Include="VISTA\Gestor.cs">
       <SubType>Form</SubType>
     </Compile>
