@@ -41,13 +41,21 @@ namespace Biblioteca.VISTA
             {
                 TarjetaUsuario tarjeta = new TarjetaUsuario();
 
-                tarjeta.Usuario = u; // ← AHORA SE PASA EL USUARIO COMPLETO
-
+                tarjeta.Usuario = u;
                 tarjeta.Width = flowLayoutPanel1.ClientSize.Width - 20;
+
+                //ESCUCHAMOS EL EVENTO DE BORRAR
+                tarjeta.UsuarioBorrado += Tarjeta_UsuarioBorrado;
 
                 flowLayoutPanel1.Controls.Add(tarjeta);
             }
         }
+        private void Tarjeta_UsuarioBorrado(object sender, Usuario usuario)
+        {
+            listaUsuarios.Remove(usuario);
+            CargarTarjetas(listaUsuarios);
+        }
+
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
@@ -78,6 +86,11 @@ namespace Biblioteca.VISTA
                 .ToList();
 
             CargarTarjetas(filtrados);
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

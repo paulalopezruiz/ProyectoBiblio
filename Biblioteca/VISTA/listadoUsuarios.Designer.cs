@@ -120,6 +120,7 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(969, 386);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.WrapContents = false;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // listadoUsuarios
             // 

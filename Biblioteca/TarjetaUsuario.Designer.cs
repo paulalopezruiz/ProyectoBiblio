@@ -88,6 +88,7 @@
             this.bDelete.TabIndex = 2;
             this.bDelete.Text = "Borrar";
             this.bDelete.UseVisualStyleBackColor = true;
+            this.bDelete.Click += new System.EventHandler(this.btnBorrar_Click);
             // 
             // TarjetaUsuario
             // 
