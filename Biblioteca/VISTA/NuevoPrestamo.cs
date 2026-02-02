@@ -65,8 +65,8 @@ namespace Biblioteca.VISTA
 
             Prestamo p = new Prestamo(idLibro, dniUsuario, fechaInicio);
 
-            MessageBox.Show($"Préstamo creado:\nLibro={p.IdLibro}\nUsuario={p.DNIUsuario}\nFecha={p.FechaInicio:dd/MM/yyyy}");
-            Close();
+            //  MessageBox.Show($"Préstamo creado:\nLibro={p.IdLibro}\nUsuario={p.DNIUsuario}\nFecha={p.FechaInicio:dd/MM/yyyy}");
+            //  Close();
         }
     }
 }

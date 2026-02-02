@@ -3,15 +3,32 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 
-
 namespace Biblioteca.CONTROLADOR
 {
-    internal class BibliotecaBBDD
+    public class BibliotecaBBDD
     {
         public static SQLiteConnection Conectar(string bbdd)
         {
-            string cadena = ConfigurationManager.ConnectionStrings[bbdd].ConnectionString;
-            SQLiteConnection conexion = new SQLiteConnection(cadena);
+            var cs = ConfigurationManager.ConnectionStrings[bbdd];
+
+            if (cs == null || string.IsNullOrWhiteSpace(cs.ConnectionString))
+            {
+                throw new Exception(
+                    $"No existe la cadena de conexión '{bbdd}' en App.config (connectionStrings)."
+                );
+            }
+
+            // Validación rápida: debe contener "Data Source="
+            // (evita el error de pasar solo una ruta)
+            if (!cs.ConnectionString.ToLower().Contains("data source="))
+            {
+                throw new Exception(
+                    $"La cadena '{bbdd}' no es válida. Debe tener formato: " +
+                    $"Data Source=RUTA\\archivo.db;Version=3;"
+                );
+            }
+
+            SQLiteConnection conexion = new SQLiteConnection(cs.ConnectionString);
             conexion.Open();
             return conexion;
         }
@@ -22,6 +39,8 @@ namespace Biblioteca.CONTROLADOR
             {
                 SQLiteConnection conexion = Conectar(bbdd);
                 cmd.Connection = conexion;
+
+                // Se cerrará la conexión cuando se cierre el reader
                 return cmd.ExecuteReader(CommandBehavior.CloseConnection);
             }
             catch (Exception ex)

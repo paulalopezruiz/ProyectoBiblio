@@ -8,19 +8,19 @@ namespace Biblioteca.MODELO
 {
         public class Prestamo
         {
-            public int IdLibro { get; set; }
-            public string DNIUsuario { get; set; }
-            public DateTime FechaInicio { get; set; }
+            public int ID_Libro { get; set; }
+            public string ID_Usuario { get; set; }
+            public DateTime Fecha_Inicio { get; set; }
 
             // opcional si luego haces devolución
-            public DateTime? FechaFin { get; set; }
+            public DateTime? Fecha_Fin { get; set; }
 
             public Prestamo(int idLibro, string dniUsuario, DateTime fechaInicio)
             {
-                IdLibro = idLibro;
-                DNIUsuario = dniUsuario;
-                FechaInicio = fechaInicio;
-                FechaFin = null;
+                ID_Libro = idLibro;
+                ID_Usuario = dniUsuario;
+                Fecha_Inicio = fechaInicio;
+                Fecha_Fin = null;
             }
         }
     }

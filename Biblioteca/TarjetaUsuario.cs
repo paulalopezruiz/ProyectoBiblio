@@ -8,7 +8,7 @@ namespace Biblioteca
     {
         private Usuario _usuario;
 
-        //EVENTO para avisar al formulario
+        // Evento para avisar al formulario
         public event EventHandler<Usuario> UsuarioBorrado;
 
         public TarjetaUsuario()
@@ -16,18 +16,16 @@ namespace Biblioteca
             InitializeComponent();
         }
 
-        // Propiedad que guarda el usuario completo
         public Usuario Usuario
         {
             get => _usuario;
             set
             {
                 _usuario = value;
-                lName.Text = value.Nombre;   // Solo mostramos el nombre
+                lName.Text = value.Nombre;
             }
         }
 
-        //BOTÓN BORRAR
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             var confirmar = MessageBox.Show(
@@ -39,14 +37,10 @@ namespace Biblioteca
 
             if (confirmar == DialogResult.Yes)
             {
-                // Avisamos al formulario
                 UsuarioBorrado?.Invoke(this, _usuario);
             }
         }
 
-        private void lName_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void lName_Click(object sender, EventArgs e) { }
     }
 }

@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Data.SQLite;
 using Biblioteca.MODELO;
+using Biblioteca.CONTROLADOR;
 
 namespace Biblioteca.VISTA
 {
     public partial class NuevoUsuario : Form
     {
+        private const string BBDD = "BibliotecaBD";   // <-- mismo nombre que en listadoUsuarios
+
         public Usuario UsuarioCreado { get; private set; }
 
         public NuevoUsuario()
@@ -33,10 +37,28 @@ namespace Biblioteca.VISTA
                 return;
             }
 
-            UsuarioCreado = new Usuario(nombre, telefono, dni);
+            try
+            {
+                // INSERT (si DNI es PK, evita duplicados)
+                SQLiteCommand cmd = new SQLiteCommand(
+                    "INSERT INTO Usuarios (Nombre, Telefono, DNI) VALUES (@nombre, @telefono, @dni);"
+                );
+                cmd.Parameters.AddWithValue("@nombre", nombre);
+                cmd.Parameters.AddWithValue("@telefono", telefono);
+                cmd.Parameters.AddWithValue("@dni", dni);
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+                BibliotecaBBDD.Ejecuta(BBDD, cmd);
+
+                UsuarioCreado = new Usuario(nombre, telefono, dni);
+
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                // Si el DNI ya existe, SQLite suele lanzar error de constraint
+                MessageBox.Show(ex.Message, "Error guardando", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
