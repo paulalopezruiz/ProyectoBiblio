@@ -1,6 +1,6 @@
 ﻿namespace Biblioteca.VISTA
 {
-    partial class NuevoPrestamo
+    partial class DetalleUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbLibro = new System.Windows.Forms.ComboBox();
-            this.cmbUsuario = new System.Windows.Forms.ComboBox();
-            this.tbFecha = new System.Windows.Forms.TextBox();
-            this.lblLibro = new System.Windows.Forms.Label();
-            this.lblUsuario = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblNombre = new System.Windows.Forms.Label();
+            this.lblTelefono = new System.Windows.Forms.Label();
+            this.lblDNI = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.lNombre = new System.Windows.Forms.Label();
+            this.lTlf = new System.Windows.Forms.Label();
+            this.lDni = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -57,20 +57,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(963, 531);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45.48387F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.51613F));
-            this.tableLayoutPanel2.Controls.Add(this.cmbLibro, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.cmbUsuario, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.tbFecha, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.lblLibro, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblUsuario, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblFecha, 0, 2);
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.lblNombre, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lblTelefono, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblDNI, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.lNombre, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.lTlf, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lDni, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(244, 137);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -83,67 +83,42 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(473, 255);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // cmbLibro
+            // lblNombre
             // 
-            this.cmbLibro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbLibro.FormattingEnabled = true;
-            this.cmbLibro.Location = new System.Drawing.Point(219, 5);
-            this.cmbLibro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbLibro.Name = "cmbLibro";
-            this.cmbLibro.Size = new System.Drawing.Size(250, 33);
-            this.cmbLibro.TabIndex = 0;
+            this.lblNombre.AutoSize = true;
+            this.lblNombre.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblNombre.Location = new System.Drawing.Point(4, 0);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNombre.Name = "lblNombre";
+            this.lblNombre.Size = new System.Drawing.Size(96, 25);
+            this.lblNombre.TabIndex = 0;
+            this.lblNombre.Text = "Nombre";
             // 
-            // cmbUsuario
+            // lblTelefono
             // 
-            this.cmbUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbUsuario.FormattingEnabled = true;
-            this.cmbUsuario.Location = new System.Drawing.Point(219, 68);
-            this.cmbUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.cmbUsuario.Name = "cmbUsuario";
-            this.cmbUsuario.Size = new System.Drawing.Size(250, 33);
-            this.cmbUsuario.TabIndex = 1;
+            this.lblTelefono.AutoSize = true;
+            this.lblTelefono.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTelefono.Location = new System.Drawing.Point(4, 63);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTelefono.Name = "lblTelefono";
+            this.lblTelefono.Size = new System.Drawing.Size(96, 25);
+            this.lblTelefono.TabIndex = 1;
+            this.lblTelefono.Text = "Telefono";
             // 
-            // tbFecha
+            // lblDNI
             // 
-            this.tbFecha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbFecha.Location = new System.Drawing.Point(219, 131);
-            this.tbFecha.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbFecha.Name = "tbFecha";
-            this.tbFecha.Size = new System.Drawing.Size(250, 31);
-            this.tbFecha.TabIndex = 2;
-            // 
-            // lblLibro
-            // 
-            this.lblLibro.AutoSize = true;
-            this.lblLibro.Location = new System.Drawing.Point(4, 0);
-            this.lblLibro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblLibro.Name = "lblLibro";
-            this.lblLibro.Size = new System.Drawing.Size(60, 25);
-            this.lblLibro.TabIndex = 3;
-            this.lblLibro.Text = "Libro";
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(4, 63);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(86, 25);
-            this.lblUsuario.TabIndex = 4;
-            this.lblUsuario.Text = "Usuario";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(4, 126);
-            this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(128, 25);
-            this.lblFecha.TabIndex = 5;
-            this.lblFecha.Text = "Fecha Inicio";
+            this.lblDNI.AutoSize = true;
+            this.lblDNI.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblDNI.Location = new System.Drawing.Point(4, 126);
+            this.lblDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDNI.Name = "lblDNI";
+            this.lblDNI.Size = new System.Drawing.Size(96, 25);
+            this.lblDNI.TabIndex = 2;
+            this.lblDNI.Text = "DNI";
             // 
             // btnGuardar
             // 
+            this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGuardar.Location = new System.Drawing.Point(150, 194);
@@ -151,20 +126,50 @@
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(173, 56);
             this.btnGuardar.TabIndex = 6;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Text = "Ver Prestamos";
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // NuevoPrestamo
+            // lNombre
+            // 
+            this.lNombre.AutoSize = true;
+            this.lNombre.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lNombre.Location = new System.Drawing.Point(107, 0);
+            this.lNombre.Name = "lNombre";
+            this.lNombre.Size = new System.Drawing.Size(363, 25);
+            this.lNombre.TabIndex = 7;
+            this.lNombre.Text = "label1";
+            // 
+            // lTlf
+            // 
+            this.lTlf.AutoSize = true;
+            this.lTlf.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lTlf.Location = new System.Drawing.Point(107, 63);
+            this.lTlf.Name = "lTlf";
+            this.lTlf.Size = new System.Drawing.Size(363, 25);
+            this.lTlf.TabIndex = 8;
+            this.lTlf.Text = "label2";
+            // 
+            // lDni
+            // 
+            this.lDni.AutoSize = true;
+            this.lDni.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lDni.Location = new System.Drawing.Point(107, 126);
+            this.lDni.Name = "lDni";
+            this.lDni.Size = new System.Drawing.Size(363, 25);
+            this.lDni.TabIndex = 9;
+            this.lDni.Text = "label3";
+            // 
+            // DetalleUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(963, 531);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(989, 602);
-            this.Name = "NuevoPrestamo";
-            this.Text = "NuevoPrestamo";
+            this.Name = "DetalleUsuario";
+            this.Text = "DetalleUsuario";
+            this.Load += new System.EventHandler(this.DetalleUsuario_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -176,12 +181,12 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.ComboBox cmbLibro;
-        private System.Windows.Forms.ComboBox cmbUsuario;
-        private System.Windows.Forms.TextBox tbFecha;
-        private System.Windows.Forms.Label lblLibro;
-        private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblNombre;
+        private System.Windows.Forms.Label lblTelefono;
+        private System.Windows.Forms.Label lblDNI;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label lNombre;
+        private System.Windows.Forms.Label lTlf;
+        private System.Windows.Forms.Label lDni;
     }
 }

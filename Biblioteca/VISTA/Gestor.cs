@@ -1,89 +1,133 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Biblioteca.VISTA;
 using Biblioteca.CONTROLADOR;
-
-//PRUEBA CAMBIOS GITHUB 
 
 namespace Biblioteca
 {
     public partial class Gestor : Form
     {
-        // Un único controlador para toda la app (se comparte a todas las vistas)
         public Controlador Controlador { get; set; } = new Controlador();
+
+        private Label[] menuItems;
+        private Form formularioActual; // el formulario actualmente cargado
 
         public Gestor()
         {
             InitializeComponent();
 
-            // Hacemos que Gestor sea un MDI Container
             this.IsMdiContainer = true;
 
             // Enlazamos clicks del menú
-            lUsuario.Click += lUsuario_Click;
-            lLibros.Click += lLibros_Click;
-            lPrestamos.Click += lPrestamos_Click;
+            lUsuario.Click += Menu_Click;
+            lLibros.Click += Menu_Click;
+            lPrestamos.Click += Menu_Click;
+
+            // Array para manejar estilos de menú
+            menuItems = new Label[] { lUsuario, lLibros, lPrestamos };
+
+            // Eventos del logo y cerrar sesión
+            logo.Click += Logo_Click;
+            bCerrarSesion.Click += BtnCerrarSesion_Click;
         }
 
-        // Método para insertar un formulario dentro del Gestor
-        private void InsertarFormulario(Form formulario)
-        {
-            // Oculta cualquier formulario MDI activo
-            if (this.ActiveMdiChild != null)
-            {
-                this.ActiveMdiChild.Hide();
-            }
-
-            formulario.MdiParent = this;       // hijo MDI
-            formulario.Dock = DockStyle.Fill;  // ocupa todo
-            formulario.Show();
-        }
-
-        // Evento Load del Gestor
         private void Gestor_Load(object sender, EventArgs e)
         {
-            // Si tienes Home y quieres que sea la primera pantalla:
+            // Cargar Home al inicio
             var home = new Home();
-            InsertarFormulario(home);
+            // Suscribirse al evento de cambio de formulario desde Home
+            home.CambiarFormulario += (form) => CambiarFormulario(form, DetectarMenuActivo(form));
+            CambiarFormulario(home); // carga inicial
         }
 
-        
-        private void lUsuario_Click(object sender, EventArgs e)
+        // Método centralizado para cambiar formularios
+        private void CambiarFormulario(Form formulario, Label menuActivo = null)
         {
-           
-            var listado = new listadoUsuarios();
+            // Ocultar el formulario anterior
+            if (formularioActual != null)
+            {
+                formularioActual.Hide();
+            }
 
-            
+            // Configurar nuevo formulario
+            formularioActual = formulario;
+            formulario.MdiParent = this;
+            formulario.Dock = DockStyle.Fill;
+            formulario.Show();
 
-            InsertarFormulario(listado);
+            // Actualizar menú
+            ActualizarMenuVisual(menuActivo);
         }
 
-        // --------- CLICK LIBROS (por ahora vacío) ---------
-        private void lLibros_Click(object sender, EventArgs e)
+        // Manejador genérico para clicks del menú
+        private void Menu_Click(object sender, EventArgs e)
         {
-            // Aquí luego cargarás tu formulario de libros
-            // var libros = new listadoLibros();
-            // libros.Controlador = this.Controlador;
-            // InsertarFormulario(libros);
+            if (sender is Label clicked)
+            {
+                Form formulario = null;
+
+                if (clicked == lUsuario)
+                    formulario = new listadoUsuarios();
+                else if (clicked == lLibros)
+                    ; // formulario = new listadoLibros();
+                else if (clicked == lPrestamos)
+                    ; // formulario = new listadoPrestamos();
+
+                if (formulario != null)
+                {
+                    // Si el formulario tiene algún evento interno que llame al MDI
+                    if (formulario is Home homeForm)
+                    {
+                        homeForm.CambiarFormulario += (f) => CambiarFormulario(f, DetectarMenuActivo(f));
+                    }
+
+                    CambiarFormulario(formulario, clicked);
+                }
+            }
         }
 
-        // --------- CLICK PRESTAMOS (por ahora vacío) ---------
-        private void lPrestamos_Click(object sender, EventArgs e)
+        // Método para actualizar el estilo del menú
+        private void ActualizarMenuVisual(Label activo)
         {
-            // Aquí luego cargarás tu formulario de préstamos
-            // var prestamos = new listadoPrestamos();
-            // prestamos.Controlador = this.Controlador;
-            // InsertarFormulario(prestamos);
+            foreach (var item in menuItems)
+            {
+                if (item == activo)
+                {
+                    item.ForeColor = Color.Green; // color activo
+                    item.Font = new Font(item.Font, FontStyle.Underline);
+                }
+                else
+                {
+                    item.ForeColor = Color.Black;
+                    item.Font = new Font(item.Font, FontStyle.Regular);
+                }
+            }
         }
 
-        private void tbMenu_Paint(object sender, PaintEventArgs e)
+        // Detecta qué label del menú corresponde a un formulario
+        private Label DetectarMenuActivo(Form form)
         {
-            // opcional
+            if (form is listadoUsuarios) return lUsuario;
+            // else if (form is listadoLibros) return lLibros;
+            // else if (form is listadoPrestamos) return lPrestamos;
+            return null; // ningún menú asociado
         }
 
-        private void lPrestamos_Click_1(object sender, EventArgs e)
+        // Click en logo -> volver a Home
+        private void Logo_Click(object sender, EventArgs e)
         {
+            var home = new Home();
+            home.CambiarFormulario += (f) => CambiarFormulario(f, DetectarMenuActivo(f));
+            CambiarFormulario(home);
+        }
 
+        // Click cerrar sesión -> volver a Home
+        private void BtnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            var home = new Home();
+            home.CambiarFormulario += (f) => CambiarFormulario(f, DetectarMenuActivo(f));
+            CambiarFormulario(home);
         }
     }
 }

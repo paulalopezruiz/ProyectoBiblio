@@ -55,7 +55,7 @@
             this.NavBar.Name = "NavBar";
             this.NavBar.RowCount = 1;
             this.NavBar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.NavBar.Size = new System.Drawing.Size(975, 100);
+            this.NavBar.Size = new System.Drawing.Size(963, 100);
             this.NavBar.TabIndex = 0;
             // 
             // logo
@@ -72,8 +72,8 @@
             // bCerrarSesion
             // 
             this.bCerrarSesion.Dock = System.Windows.Forms.DockStyle.Right;
-            this.bCerrarSesion.Location = new System.Drawing.Point(767, 20);
-            this.bCerrarSesion.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.bCerrarSesion.Location = new System.Drawing.Point(755, 20);
+            this.bCerrarSesion.Margin = new System.Windows.Forms.Padding(20);
             this.bCerrarSesion.Name = "bCerrarSesion";
             this.bCerrarSesion.Size = new System.Drawing.Size(188, 60);
             this.bCerrarSesion.TabIndex = 1;
@@ -97,31 +97,29 @@
             this.tbMenu.Name = "tbMenu";
             this.tbMenu.RowCount = 1;
             this.tbMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tbMenu.Size = new System.Drawing.Size(475, 94);
+            this.tbMenu.Size = new System.Drawing.Size(463, 94);
             this.tbMenu.TabIndex = 2;
-            this.tbMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.tbMenu_Paint);
             // 
             // lUsuario
             // 
             this.lUsuario.AutoSize = true;
             this.lUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lUsuario.Location = new System.Drawing.Point(32, 0);
+            this.lUsuario.Location = new System.Drawing.Point(31, 0);
             this.lUsuario.Name = "lUsuario";
-            this.lUsuario.Size = new System.Drawing.Size(131, 94);
+            this.lUsuario.Size = new System.Drawing.Size(128, 94);
             this.lUsuario.TabIndex = 0;
             this.lUsuario.Text = "Usuarios";
             this.lUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lUsuario.Click += new System.EventHandler(this.lUsuario_Click);
             // 
             // lLibros
             // 
             this.lLibros.AutoSize = true;
             this.lLibros.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lLibros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lLibros.Location = new System.Drawing.Point(169, 0);
+            this.lLibros.Location = new System.Drawing.Point(165, 0);
             this.lLibros.Name = "lLibros";
-            this.lLibros.Size = new System.Drawing.Size(135, 94);
+            this.lLibros.Size = new System.Drawing.Size(132, 94);
             this.lLibros.TabIndex = 1;
             this.lLibros.Text = "Libros";
             this.lLibros.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -131,19 +129,18 @@
             this.lPrestamos.AutoSize = true;
             this.lPrestamos.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lPrestamos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lPrestamos.Location = new System.Drawing.Point(310, 0);
+            this.lPrestamos.Location = new System.Drawing.Point(303, 0);
             this.lPrestamos.Name = "lPrestamos";
-            this.lPrestamos.Size = new System.Drawing.Size(131, 94);
+            this.lPrestamos.Size = new System.Drawing.Size(128, 94);
             this.lPrestamos.TabIndex = 2;
             this.lPrestamos.Text = "Prestamos";
             this.lPrestamos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lPrestamos.Click += new System.EventHandler(this.lPrestamos_Click_1);
             // 
             // Gestor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 569);
+            this.ClientSize = new System.Drawing.Size(963, 531);
             this.Controls.Add(this.NavBar);
             this.IsMdiContainer = true;
             this.MinimumSize = new System.Drawing.Size(989, 602);

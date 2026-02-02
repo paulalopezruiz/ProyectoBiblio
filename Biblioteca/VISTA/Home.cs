@@ -1,22 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Biblioteca.VISTA
 {
     public partial class Home : Form
     {
+        // Evento que notificará al Gestor que queremos cambiar el formulario
+        public event Action<Form> CambiarFormulario;
+
         public Home()
         {
             InitializeComponent();
         }
-
 
         private void panelTarjeta_Paint(object sender, PaintEventArgs e)
         {
@@ -33,14 +29,19 @@ namespace Biblioteca.VISTA
 
         private void pUser_Click(object sender, EventArgs e)
         {
-            new listadoUsuarios().Show();
-
-
+            // En vez de abrir directamente el formulario, lanzamos un evento
+            CambiarFormulario?.Invoke(new listadoUsuarios());
         }
 
         private void pLibros_Click(object sender, EventArgs e)
         {
+            // Aquí puedes hacer lo mismo para libros si quieres
+            // CambiarFormulario?.Invoke(new listadoLibros());
+        }
 
+        private void tlpHome_Paint(object sender, PaintEventArgs e)
+        {
+            // opcional
         }
     }
 }

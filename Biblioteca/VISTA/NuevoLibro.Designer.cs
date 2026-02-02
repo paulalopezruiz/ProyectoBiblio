@@ -40,12 +40,13 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(989, 602);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(982, 703);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(989, 703);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -61,7 +62,7 @@
             this.tableLayoutPanel2.Controls.Add(this.tbEditorial, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(249, 180);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(251, 180);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
@@ -69,7 +70,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(483, 341);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(486, 341);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblTitulo
@@ -108,7 +109,7 @@
             this.tbTitulo.Location = new System.Drawing.Point(102, 5);
             this.tbTitulo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbTitulo.Name = "tbTitulo";
-            this.tbTitulo.Size = new System.Drawing.Size(377, 31);
+            this.tbTitulo.Size = new System.Drawing.Size(380, 31);
             this.tbTitulo.TabIndex = 3;
             // 
             // tbAutor
@@ -117,7 +118,7 @@
             this.tbAutor.Location = new System.Drawing.Point(102, 90);
             this.tbAutor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbAutor.Name = "tbAutor";
-            this.tbAutor.Size = new System.Drawing.Size(377, 31);
+            this.tbAutor.Size = new System.Drawing.Size(380, 31);
             this.tbAutor.TabIndex = 4;
             // 
             // tbEditorial
@@ -126,7 +127,7 @@
             this.tbEditorial.Location = new System.Drawing.Point(102, 175);
             this.tbEditorial.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbEditorial.Name = "tbEditorial";
-            this.tbEditorial.Size = new System.Drawing.Size(377, 31);
+            this.tbEditorial.Size = new System.Drawing.Size(380, 31);
             this.tbEditorial.TabIndex = 5;
             // 
             // btnGuardar
@@ -136,7 +137,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(150, 260);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(183, 76);
+            this.btnGuardar.Size = new System.Drawing.Size(186, 76);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
