@@ -29,25 +29,21 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.bBorrar = new System.Windows.Forms.Button();
-            this.paint = new System.Windows.Forms.Panel();
-            this.lPrestamo = new System.Windows.Forms.Label();
             this.lFecha = new System.Windows.Forms.Label();
+            this.lPrestamo = new System.Windows.Forms.Label();
+            this.pEstado = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.52045F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.50929F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.97026F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.Controls.Add(this.lFecha, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lPrestamo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.paint, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.bBorrar, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pEstado, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
@@ -57,25 +53,17 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(436, 96);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // bBorrar
+            // lFecha
             // 
-            this.bBorrar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bBorrar.Location = new System.Drawing.Point(335, 32);
-            this.bBorrar.Margin = new System.Windows.Forms.Padding(20, 32, 20, 32);
-            this.bBorrar.Name = "bBorrar";
-            this.bBorrar.Size = new System.Drawing.Size(81, 32);
-            this.bBorrar.TabIndex = 6;
-            this.bBorrar.Text = "Borrar";
-            this.bBorrar.UseVisualStyleBackColor = true;
-            // 
-            // paint
-            // 
-            this.paint.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.paint.Location = new System.Drawing.Point(244, 30);
-            this.paint.Margin = new System.Windows.Forms.Padding(30);
-            this.paint.Name = "paint";
-            this.paint.Size = new System.Drawing.Size(41, 36);
-            this.paint.TabIndex = 9;
+            this.lFecha.AutoSize = true;
+            this.lFecha.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lFecha.Location = new System.Drawing.Point(176, 0);
+            this.lFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lFecha.Name = "lFecha";
+            this.lFecha.Size = new System.Drawing.Size(148, 96);
+            this.lFecha.TabIndex = 11;
+            this.lFecha.Text = "Fecha";
+            this.lFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lPrestamo
             // 
@@ -84,22 +72,19 @@
             this.lPrestamo.Location = new System.Drawing.Point(2, 0);
             this.lPrestamo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lPrestamo.Name = "lPrestamo";
-            this.lPrestamo.Size = new System.Drawing.Size(124, 96);
+            this.lPrestamo.Size = new System.Drawing.Size(170, 96);
             this.lPrestamo.TabIndex = 10;
             this.lPrestamo.Text = "Prestamo";
             this.lPrestamo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lFecha
+            // pEstado
             // 
-            this.lFecha.AutoSize = true;
-            this.lFecha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lFecha.Location = new System.Drawing.Point(130, 0);
-            this.lFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lFecha.Name = "lFecha";
-            this.lFecha.Size = new System.Drawing.Size(82, 96);
-            this.lFecha.TabIndex = 11;
-            this.lFecha.Text = "Fecha";
-            this.lFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pEstado.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pEstado.Location = new System.Drawing.Point(356, 30);
+            this.pEstado.Margin = new System.Windows.Forms.Padding(30);
+            this.pEstado.Name = "pEstado";
+            this.pEstado.Size = new System.Drawing.Size(50, 36);
+            this.pEstado.TabIndex = 9;
             // 
             // TarjetaPrestamo
             // 
@@ -117,8 +102,7 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button bBorrar;
-        private System.Windows.Forms.Panel paint;
+        private System.Windows.Forms.Panel pEstado;
         private System.Windows.Forms.Label lPrestamo;
         private System.Windows.Forms.Label lFecha;
     }

@@ -36,8 +36,10 @@ namespace Biblioteca
         {
             // Cargar Home al inicio
             var home = new Home();
+
             // Suscribirse al evento de cambio de formulario desde Home
             home.CambiarFormulario += (form) => CambiarFormulario(form, DetectarMenuActivo(form));
+
             CambiarFormulario(home); // carga inicial
         }
 
@@ -72,7 +74,7 @@ namespace Biblioteca
                 else if (clicked == lLibros)
                     ; // formulario = new listadoLibros();
                 else if (clicked == lPrestamos)
-                    ; // formulario = new listadoPrestamos();
+                    formulario = new listadoPrestamos();   // <-- AÑADIDO
 
                 if (formulario != null)
                 {
@@ -109,8 +111,9 @@ namespace Biblioteca
         private Label DetectarMenuActivo(Form form)
         {
             if (form is listadoUsuarios) return lUsuario;
+            else if (form is listadoPrestamos) return lPrestamos;  // <-- AÑADIDO
             // else if (form is listadoLibros) return lLibros;
-            // else if (form is listadoPrestamos) return lPrestamos;
+
             return null; // ningún menú asociado
         }
 
@@ -129,5 +132,12 @@ namespace Biblioteca
             home.CambiarFormulario += (f) => CambiarFormulario(f, DetectarMenuActivo(f));
             CambiarFormulario(home);
         }
+
+        public void NavegarA(Form formulario)
+        {
+            // Reutiliza tu lógica actual y marca el menú correcto
+            CambiarFormulario(formulario, DetectarMenuActivo(formulario));
+        }
+
     }
 }

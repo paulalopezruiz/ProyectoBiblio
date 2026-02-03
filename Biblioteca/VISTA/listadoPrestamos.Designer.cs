@@ -56,17 +56,17 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 31.11111F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 68.88889F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(515, 276);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(570, 276);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnNuevo.Location = new System.Drawing.Point(360, 30);
+            this.btnNuevo.Location = new System.Drawing.Point(414, 30);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(30);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(125, 25);
+            this.btnNuevo.Size = new System.Drawing.Size(126, 25);
             this.btnNuevo.TabIndex = 7;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
@@ -96,7 +96,6 @@
             this.label1.Size = new System.Drawing.Size(156, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbNombre
             // 
@@ -115,7 +114,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 87);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(511, 187);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(566, 187);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.WrapContents = false;
             // 
@@ -123,10 +122,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(515, 276);
+            this.ClientSize = new System.Drawing.Size(570, 276);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "listadoPrestamos";
+            this.Load += new System.EventHandler(this.listadoPrestamos_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
