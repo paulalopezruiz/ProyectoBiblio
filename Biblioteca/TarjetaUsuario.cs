@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Biblioteca.MODELO;
+using Biblioteca.VISTA;
 
 namespace Biblioteca
 {
@@ -8,17 +9,24 @@ namespace Biblioteca
     {
         private Usuario _usuario;
 
-        // Evento para avisar al formulario
         public event EventHandler<Usuario> UsuarioBorrado;
+
 
         public TarjetaUsuario()
         {
             InitializeComponent();
+
+            // Hacemos clicable el icono (PictureBox)
+            userPhoto.Click += userPhoto_Click;
+
+            // (Opcional) cursor de mano
+            lName.Cursor = Cursors.Hand;
+            userPhoto.Cursor = Cursors.Hand;
         }
 
         public Usuario Usuario
         {
-            get => _usuario;
+            get { return _usuario; }
             set
             {
                 _usuario = value;
@@ -26,21 +34,29 @@ namespace Biblioteca
             }
         }
 
-        private void btnBorrar_Click(object sender, EventArgs e)
+        // Click en el NOMBRE (asegúrate que está conectado en el diseñador)
+        private void lName_Click(object sender, EventArgs e)
         {
-            var confirmar = MessageBox.Show(
-                $"¿Seguro que quieres borrar a {_usuario.Nombre}?",
-                "Confirmar borrado",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (confirmar == DialogResult.Yes)
-            {
-                UsuarioBorrado?.Invoke(this, _usuario);
-            }
+            AbrirDetalle();
         }
 
-        private void lName_Click(object sender, EventArgs e) { }
+        // Click en el ICONO
+        private void userPhoto_Click(object sender, EventArgs e)
+        {
+            AbrirDetalle();
+        }
+
+        private void AbrirDetalle()
+        {
+            if (_usuario == null)
+            {
+                MessageBox.Show("No hay usuario en esta tarjeta.");
+                return;
+            }
+
+            DetalleUsuario frm = new DetalleUsuario(_usuario);
+            frm.ShowDialog();
+            frm.Dispose();
+        }
     }
 }

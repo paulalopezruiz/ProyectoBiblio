@@ -84,6 +84,12 @@
     <Compile Include="MODELO\modelo.cs" />
     <Compile Include="MODELO\Prestamo.cs" />
     <Compile Include="MODELO\Usuario.cs" />
+    <Compile Include="TarjetaPrestamo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TarjetaPrestamo.Designer.cs">
+      <DependentUpon>TarjetaPrestamo.cs</DependentUpon>
+    </Compile>
     <Compile Include="TarjetaUsuario.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +122,12 @@
     <Compile Include="VISTA\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\listadoPrestamos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\listadoPrestamos.Designer.cs">
+      <DependentUpon>listadoPrestamos.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\listadoUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +152,9 @@
     <Compile Include="VISTA\NuevoUsuario.Designer.cs">
       <DependentUpon>NuevoUsuario.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TarjetaPrestamo.resx">
+      <DependentUpon>TarjetaPrestamo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TarjetaUsuario.resx">
       <DependentUpon>TarjetaUsuario.cs</DependentUpon>
     </EmbeddedResource>
@@ -164,6 +179,9 @@
     </Compile>
     <EmbeddedResource Include="VISTA\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\listadoPrestamos.resx">
+      <DependentUpon>listadoPrestamos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\listadoUsuarios.resx">
       <DependentUpon>listadoUsuarios.cs</DependentUpon>
