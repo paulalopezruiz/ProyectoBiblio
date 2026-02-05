@@ -9,8 +9,10 @@ namespace Biblioteca.CONTROLADOR
     {
         private static string ObtenerRutaBBDD()
         {
-            string rutaProyecto = AppDomain.CurrentDomain.BaseDirectory;
-            return Path.Combine(rutaProyecto, "Biblioteca.db");
+            // Ruta de la raíz del proyecto (no bin)
+            string rutaBin = AppDomain.CurrentDomain.BaseDirectory;
+            string rutaRaiz = Path.Combine(rutaBin, @"..\..\Biblioteca.db");
+            return Path.GetFullPath(rutaRaiz);
         }
 
         public static SQLiteConnection Conectar()
@@ -57,5 +59,3 @@ namespace Biblioteca.CONTROLADOR
         }
     }
 }
-
-

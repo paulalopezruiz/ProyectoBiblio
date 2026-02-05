@@ -37,7 +37,6 @@ namespace Biblioteca.VISTA
 
             try
             {
-                // INSERT (si DNI es PK, evita duplicados)
                 SQLiteCommand cmd = new SQLiteCommand(
                     "INSERT INTO Usuarios (Nombre, Telefono, DNI) VALUES (@nombre, @telefono, @dni);"
                 );
@@ -45,7 +44,6 @@ namespace Biblioteca.VISTA
                 cmd.Parameters.AddWithValue("@telefono", telefono);
                 cmd.Parameters.AddWithValue("@dni", dni);
 
-                // --- Cambio importante: solo cmd, sin BBDD ---
                 BibliotecaBBDD.Ejecuta(cmd);
 
                 UsuarioCreado = new Usuario(nombre, telefono, dni);
@@ -55,12 +53,22 @@ namespace Biblioteca.VISTA
             }
             catch (Exception ex)
             {
-                // Si el DNI ya existe, SQLite suele lanzar error de constraint
                 MessageBox.Show(ex.Message, "Error guardando", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void NuevoUsuario_Load(object sender, EventArgs e)
         {
 
         }
