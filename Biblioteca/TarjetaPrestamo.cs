@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using Biblioteca.MODELO;
 
 namespace Biblioteca
 {
@@ -12,8 +13,6 @@ namespace Biblioteca
         public TarjetaPrestamo()
         {
             InitializeComponent();
-
-            // Esto ayuda a que se vea más fino
             pEstado.Paint += pEstado_Paint;
         }
 
@@ -21,38 +20,42 @@ namespace Biblioteca
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // Tamaño del círculo = el menor entre ancho y alto
             int size = Math.Min(pEstado.Width, pEstado.Height) - 1;
-
-            // Centrar el círculo dentro del panel
             int x = (pEstado.Width - size) / 2;
             int y = (pEstado.Height - size) / 2;
 
             Rectangle r = new Rectangle(x, y, size, size);
 
             using (SolidBrush b = new SolidBrush(_colorEstado))
-            {
                 e.Graphics.FillEllipse(b, r);
-            }
 
-            // Borde opcional
             using (Pen pen = new Pen(Color.DimGray, 1))
-            {
                 e.Graphics.DrawEllipse(pen, r);
-            }
         }
 
-        public void PonerDatos(string textoPrestamo, DateTime fechaFin)
+        public void PonerDatos(Prestamo prestamo)
         {
-            lPrestamo.Text = textoPrestamo;
-            lFecha.Text = fechaFin.ToString("dd/MM/yyyy");
+            // Mostramos el texto que combinamos en listadoPrestamos
+            lPrestamo.Text = prestamo.ID_Usuario;
+            lFecha.Text = prestamo.Fecha_Inicio.ToString("dd/MM/yyyy");
 
-            if (fechaFin.Date < DateTime.Today)
+            DateTime hoy = DateTime.Today;
+
+            if (prestamo.Devuelto)
                 _colorEstado = Color.Gray;
+            else if (prestamo.Fecha_Fin.HasValue && prestamo.Fecha_Fin.Value.Date < hoy)
+                _colorEstado = Color.Red;
             else
                 _colorEstado = Color.Green;
 
-            pEstado.Invalidate(); // repinta
+            pEstado.Invalidate();
+        }
+
+        private void lFecha_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
+
+

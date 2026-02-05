@@ -8,8 +8,6 @@ namespace Biblioteca.VISTA
 {
     public partial class NuevoUsuario : Form
     {
-        private const string BBDD = "BibliotecaBD";   // <-- mismo nombre que en listadoUsuarios
-
         public Usuario UsuarioCreado { get; private set; }
 
         public NuevoUsuario()
@@ -47,7 +45,8 @@ namespace Biblioteca.VISTA
                 cmd.Parameters.AddWithValue("@telefono", telefono);
                 cmd.Parameters.AddWithValue("@dni", dni);
 
-                BibliotecaBBDD.Ejecuta(BBDD, cmd);
+                // --- Cambio importante: solo cmd, sin BBDD ---
+                BibliotecaBBDD.Ejecuta(cmd);
 
                 UsuarioCreado = new Usuario(nombre, telefono, dni);
 
@@ -60,5 +59,12 @@ namespace Biblioteca.VISTA
                 MessageBox.Show(ex.Message, "Error guardando", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
+
+

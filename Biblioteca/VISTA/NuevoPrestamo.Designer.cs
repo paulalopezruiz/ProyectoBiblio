@@ -32,11 +32,11 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.cmbLibro = new System.Windows.Forms.ComboBox();
             this.cmbUsuario = new System.Windows.Forms.ComboBox();
-            this.tbFecha = new System.Windows.Forms.TextBox();
             this.lblLibro = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblFecha = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.dtpFechaInicio = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
@@ -65,11 +65,11 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.51613F));
             this.tableLayoutPanel2.Controls.Add(this.cmbLibro, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.cmbUsuario, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.tbFecha, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblLibro, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblUsuario, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblFecha, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.dtpFechaInicio, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(164, 91);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -98,14 +98,6 @@
             this.cmbUsuario.Name = "cmbUsuario";
             this.cmbUsuario.Size = new System.Drawing.Size(167, 24);
             this.cmbUsuario.TabIndex = 1;
-            // 
-            // tbFecha
-            // 
-            this.tbFecha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbFecha.Location = new System.Drawing.Point(147, 87);
-            this.tbFecha.Name = "tbFecha";
-            this.tbFecha.Size = new System.Drawing.Size(167, 22);
-            this.tbFecha.TabIndex = 2;
             // 
             // lblLibro
             // 
@@ -147,6 +139,13 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Location = new System.Drawing.Point(147, 87);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(167, 22);
+            this.dtpFechaInicio.TabIndex = 7;
+            // 
             // NuevoPrestamo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -169,10 +168,10 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.ComboBox cmbLibro;
         private System.Windows.Forms.ComboBox cmbUsuario;
-        private System.Windows.Forms.TextBox tbFecha;
         private System.Windows.Forms.Label lblLibro;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblFecha;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.DateTimePicker dtpFechaInicio;
     }
 }

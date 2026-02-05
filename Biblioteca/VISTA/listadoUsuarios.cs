@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SQLite;
-using System.IO; // <-- AÑADIR ESTO
+using System.IO;
 using Biblioteca.MODELO;
 using Biblioteca.CONTROLADOR;
 
@@ -12,8 +11,6 @@ namespace Biblioteca.VISTA
 {
     public partial class listadoUsuarios : Form
     {
-        private const string BBDD = "BibliotecaBD";   // nombre de tu connectionString
-
         public listadoUsuarios()
         {
             InitializeComponent();
@@ -23,20 +20,21 @@ namespace Biblioteca.VISTA
         private void listadoUsuarios_Load(object sender, EventArgs e)
         {
             // --- DIAGNÓSTICO (temporal) ---
-            DebugBaseDeDatos(); // <-- AÑADIR ESTO AQUÍ
+            DebugBaseDeDatos();
 
             // --- CARGA NORMAL ---
             CargarTarjetas(ObtenerUsuarios());
         }
 
-        // ========= DIAGNÓSTICO =========
+        // =========================================
+        // Diagnóstico: ver si la BD existe y tablas
+        // =========================================
         private void DebugBaseDeDatos()
         {
             try
             {
-                using (var con = BibliotecaBBDD.Conectar(BBDD))
+                using (var con = BibliotecaBBDD.Conectar())
                 {
-                    // 1) Ruta REAL del archivo que se está abriendo
                     using (var cmd = new SQLiteCommand("PRAGMA database_list;", con))
                     using (var rd = cmd.ExecuteReader())
                     {
@@ -48,7 +46,6 @@ namespace Biblioteca.VISTA
                         }
                     }
 
-                    // 2) Tablas existentes en ESA base
                     using (var cmd2 = new SQLiteCommand(
                         "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;", con))
                     using (var rd2 = cmd2.ExecuteReader())
@@ -68,9 +65,10 @@ namespace Biblioteca.VISTA
                 MessageBox.Show("ERROR DebugBaseDeDatos:\n" + ex.Message);
             }
         }
-        // ===============================
 
-        // ---------- BBDD: SELECT ----------
+        // =========================================
+        // Obtener usuarios
+        // =========================================
         private List<Usuario> ObtenerUsuarios()
         {
             List<Usuario> usuarios = new List<Usuario>();
@@ -79,7 +77,7 @@ namespace Biblioteca.VISTA
                 "SELECT Nombre, Telefono, DNI FROM Usuarios ORDER BY Nombre;"
             );
 
-            DataTable dt = BibliotecaBBDD.GetDataTable(BBDD, cmd);
+            DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
 
             foreach (DataRow row in dt.Rows)
             {
@@ -93,26 +91,30 @@ namespace Biblioteca.VISTA
             return usuarios;
         }
 
-        // ---------- UI: pintar tarjetas ----------
+        // =========================================
+        // Pintar tarjetas
+        // =========================================
         private void CargarTarjetas(List<Usuario> usuarios)
         {
             flowLayoutPanel1.Controls.Clear();
 
             foreach (var u in usuarios)
             {
-                TarjetaUsuario tarjeta = new TarjetaUsuario();
+                TarjetaUsuario tarjeta = new TarjetaUsuario
+                {
+                    Usuario = u,
+                    Width = flowLayoutPanel1.ClientSize.Width - 20
+                };
 
-                tarjeta.Usuario = u;
-                tarjeta.Width = flowLayoutPanel1.ClientSize.Width - 20;
-
-                // escuchar evento borrar
                 tarjeta.UsuarioBorrado += Tarjeta_UsuarioBorrado;
 
                 flowLayoutPanel1.Controls.Add(tarjeta);
             }
         }
 
-        // ---------- BBDD: DELETE ----------
+        // =========================================
+        // Borrar usuario
+        // =========================================
         private void Tarjeta_UsuarioBorrado(object sender, Usuario usuario)
         {
             try
@@ -122,9 +124,8 @@ namespace Biblioteca.VISTA
                 );
                 cmd.Parameters.AddWithValue("@dni", usuario.DNI);
 
-                BibliotecaBBDD.Ejecuta(BBDD, cmd);
+                BibliotecaBBDD.Ejecuta(cmd);
 
-                // recargar desde BBDD
                 CargarTarjetas(ObtenerUsuarios());
             }
             catch (Exception ex)
@@ -133,19 +134,22 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // ---------- Nuevo Usuario ----------
+        // =========================================
+        // Nuevo usuario
+        // =========================================
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             NuevoUsuario frm = new NuevoUsuario();
 
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                // ya se insertó en BBDD dentro de NuevoUsuario
                 CargarTarjetas(ObtenerUsuarios());
             }
         }
 
-        // ---------- Buscador por nombre ----------
+        // =========================================
+        // Buscador por nombre
+        // =========================================
         private void tbNombre_TextChanged(object sender, EventArgs e)
         {
             string texto = tbNombre.Text.Trim();
@@ -163,7 +167,7 @@ namespace Biblioteca.VISTA
                 );
                 cmd.Parameters.AddWithValue("@patron", texto + "%");
 
-                DataTable dt = BibliotecaBBDD.GetDataTable(BBDD, cmd);
+                DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
 
                 List<Usuario> filtrados = new List<Usuario>();
                 foreach (DataRow row in dt.Rows)
@@ -187,3 +191,5 @@ namespace Biblioteca.VISTA
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }
+
+
