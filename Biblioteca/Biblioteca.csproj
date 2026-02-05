@@ -102,6 +102,12 @@
     <Compile Include="VISTA\DetalleLibros.Designer.cs">
       <DependentUpon>DetalleLibros.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\DetallePrestamo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\DetallePrestamo.Designer.cs">
+      <DependentUpon>DetallePrestamo.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\DetalleUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\DetalleLibros.resx">
       <DependentUpon>DetalleLibros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\DetallePrestamo.resx">
+      <DependentUpon>DetallePrestamo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\DetalleUsuario.resx">
       <DependentUpon>DetalleUsuario.cs</DependentUpon>
