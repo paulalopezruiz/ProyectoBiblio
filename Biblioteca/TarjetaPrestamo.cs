@@ -1,21 +1,34 @@
-﻿using System;
+﻿using Biblioteca.CONTROLADOR;
+using Biblioteca.MODELO;
+using Biblioteca.VISTA;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using Biblioteca.MODELO;
 
 namespace Biblioteca
 {
     public partial class TarjetaPrestamo : UserControl
     {
         private Color _colorEstado = Color.Gray;
+        private Prestamo _prestamo; // Guardamos el préstamo actual
 
         public TarjetaPrestamo()
         {
             InitializeComponent();
+
+            // Pintado del círculo de estado
             pEstado.Paint += pEstado_Paint;
+
+            // Evento click para abrir detalle
+            this.Click += Tarjeta_Click;
+            foreach (Control c in this.Controls)
+                c.Click += Tarjeta_Click; // Para que cualquier parte de la tarjeta responda
         }
 
+        // =========================
+        // PINTAR ESTADO
+        // =========================
         private void pEstado_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -30,37 +43,52 @@ namespace Biblioteca
                 e.Graphics.DrawEllipse(pen, r);
         }
 
+        // =========================
+        // PONER DATOS
+        // =========================
         public void PonerDatos(Prestamo prestamo)
         {
-            lPrestamo.Text = prestamo.ID_Usuario;
+            _prestamo = prestamo;
+
+            string nombreUsuario = BibliotecaBBDD.GetNombreUsuario(prestamo.ID_Usuario); // Obtener nombre al vuelo
+            string nombreLibro = BibliotecaBBDD.GetTituloLibro(prestamo.ID_Libro);      // Obtener título al vuelo
+
+            lPrestamo.Text = $"{nombreUsuario} - {nombreLibro}";
             lFecha.Text = prestamo.Fecha_Inicio.ToString("dd/MM/yyyy");
 
             DateTime hoy = DateTime.Today;
 
             if (prestamo.Devuelto)
-            {
                 _colorEstado = Color.Gray; // Devuelto
-            }
             else if (prestamo.Fecha_Fin.HasValue && prestamo.Fecha_Fin.Value.Date < hoy)
-            {
                 _colorEstado = Color.Red;  // No devuelto y vencido
-            }
             else
-            {
-                _colorEstado = Color.Green; // No devuelto y aún vigente
-            }
+                _colorEstado = Color.Green; // No devuelto y vigente
 
             pEstado.Invalidate();
         }
 
-        private void lFecha_Click(object sender, EventArgs e)
+        // =========================
+        // CLICK EN LA TARJETA
+        // =========================
+        private void Tarjeta_Click(object sender, EventArgs e)
         {
+            if (_prestamo == null) return;
 
+            // Abrir formulario de detalle
+            DetallePrestamo detalle = new DetallePrestamo(_prestamo);
+            if (detalle.ShowDialog() == DialogResult.OK)
+            {
+                // Actualizar estado después de devolución
+                PonerDatos(_prestamo);
+            }
         }
 
-        private void lPrestamo_Click(object sender, EventArgs e)
-        {
-
-        }
+        // =========================
+        // EVENTOS VACÍOS GENERADOS POR EL DISEÑADOR
+        // =========================
+        private void lFecha_Click(object sender, EventArgs e) { }
+        private void lPrestamo_Click(object sender, EventArgs e) { }
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }

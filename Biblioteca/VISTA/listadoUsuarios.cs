@@ -20,7 +20,7 @@ namespace Biblioteca.VISTA
         private void listadoUsuarios_Load(object sender, EventArgs e)
         {
             // --- DIAGNÓSTICO (temporal) ---
-            DebugBaseDeDatos();
+            //DebugBaseDeDatos();
 
             // --- CARGA NORMAL ---
             CargarTarjetas(ObtenerUsuarios());
@@ -74,18 +74,19 @@ namespace Biblioteca.VISTA
             List<Usuario> usuarios = new List<Usuario>();
 
             SQLiteCommand cmd = new SQLiteCommand(
-                "SELECT Nombre, Telefono, DNI FROM Usuarios ORDER BY Nombre;"
+                "SELECT ID, Nombre, Telefono, DNI FROM Usuarios ORDER BY Nombre;"
             );
 
             DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
 
             foreach (DataRow row in dt.Rows)
             {
+                string id = row["ID"].ToString();
                 string nombre = row["Nombre"].ToString();
                 string telefono = row["Telefono"].ToString();
                 string dni = row["DNI"].ToString();
 
-                usuarios.Add(new Usuario(nombre, telefono, dni));
+                usuarios.Add(new Usuario(id, nombre, telefono, dni));
             }
 
             return usuarios;
@@ -96,8 +97,18 @@ namespace Biblioteca.VISTA
         // =========================================
         private void CargarTarjetas(List<Usuario> usuarios)
         {
+            // Desuscribir y liberar tarjetas viejas
+            foreach (Control c in flowLayoutPanel1.Controls)
+            {
+                if (c is TarjetaUsuario tu)
+                {
+                    tu.UsuarioBorrado -= Tarjeta_UsuarioBorrado;
+                    tu.Dispose();
+                }
+            }
             flowLayoutPanel1.Controls.Clear();
 
+            // Crear nuevas tarjetas y suscribir evento
             foreach (var u in usuarios)
             {
                 TarjetaUsuario tarjeta = new TarjetaUsuario
@@ -106,31 +117,43 @@ namespace Biblioteca.VISTA
                     Width = flowLayoutPanel1.ClientSize.Width - 20
                 };
 
-                tarjeta.UsuarioBorrado += Tarjeta_UsuarioBorrado;
-
+                tarjeta.UsuarioBorrado += Tarjeta_UsuarioBorrado; // SUSCRIBIMOS AQUÍ
                 flowLayoutPanel1.Controls.Add(tarjeta);
             }
         }
 
         // =========================================
-        // Borrar usuario
+        // Evento al pulsar BORRAR en la tarjeta
         // =========================================
         private void Tarjeta_UsuarioBorrado(object sender, Usuario usuario)
         {
+            if (usuario == null) return;
+
+            // Preguntar al usuario antes de borrar
+            var resp = MessageBox.Show(
+                $"¿Estás seguro de que quieres borrar a {usuario.Nombre} permanentemente?",
+                "Confirmar borrado",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (resp != DialogResult.Yes) return;
+
             try
             {
+                // Borra de la base de datos
                 SQLiteCommand cmd = new SQLiteCommand(
                     "DELETE FROM Usuarios WHERE DNI = @dni;"
                 );
                 cmd.Parameters.AddWithValue("@dni", usuario.DNI);
-
                 BibliotecaBBDD.Ejecuta(cmd);
 
+                // Recargar tarjetas
                 CargarTarjetas(ObtenerUsuarios());
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error borrando", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error borrando usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -163,7 +186,7 @@ namespace Biblioteca.VISTA
             try
             {
                 SQLiteCommand cmd = new SQLiteCommand(
-                    "SELECT Nombre, Telefono, DNI FROM Usuarios WHERE Nombre LIKE @patron ORDER BY Nombre;"
+                    "SELECT ID, Nombre, Telefono, DNI FROM Usuarios WHERE Nombre LIKE @patron ORDER BY Nombre;"
                 );
                 cmd.Parameters.AddWithValue("@patron", texto + "%");
 
@@ -173,6 +196,7 @@ namespace Biblioteca.VISTA
                 foreach (DataRow row in dt.Rows)
                 {
                     filtrados.Add(new Usuario(
+                        row["ID"].ToString(),
                         row["Nombre"].ToString(),
                         row["Telefono"].ToString(),
                         row["DNI"].ToString()
@@ -191,5 +215,3 @@ namespace Biblioteca.VISTA
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }
-
-

@@ -1,7 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using Biblioteca.CONTROLADOR;
 using Biblioteca.MODELO;
 using Biblioteca.VISTA;
+using System;
+using System.Data.SQLite;
+using System.Windows.Forms;
 
 namespace Biblioteca
 {
@@ -9,19 +11,23 @@ namespace Biblioteca
     {
         private Usuario _usuario;
 
+        // Evento que notifica al formulario padre que el usuario fue borrado
         public event EventHandler<Usuario> UsuarioBorrado;
-
 
         public TarjetaUsuario()
         {
             InitializeComponent();
 
-            // Hacemos clicable el icono (PictureBox)
+            // Click en nombre o foto abre detalle
+            lName.Click += lName_Click;
             userPhoto.Click += userPhoto_Click;
 
-            // (Opcional) cursor de mano
+            // Cursor de mano opcional
             lName.Cursor = Cursors.Hand;
             userPhoto.Cursor = Cursors.Hand;
+
+            // NOTA: No suscribimos el evento de borrar aquí, lo harás desde el formulario padre
+            btnBorrar.Click += btnBorrar_Click;
         }
 
         public Usuario Usuario
@@ -30,17 +36,16 @@ namespace Biblioteca
             set
             {
                 _usuario = value;
-                lName.Text = value.Nombre;
+                if (value != null)
+                    lName.Text = value.Nombre;
             }
         }
 
-        // Click en el NOMBRE (asegúrate que está conectado en el diseñador)
         private void lName_Click(object sender, EventArgs e)
         {
             AbrirDetalle();
         }
 
-        // Click en el ICONO
         private void userPhoto_Click(object sender, EventArgs e)
         {
             AbrirDetalle();
@@ -54,14 +59,24 @@ namespace Biblioteca
                 return;
             }
 
-            DetalleUsuario frm = new DetalleUsuario(_usuario);
-            frm.ShowDialog();
-            frm.Dispose();
+            using (DetalleUsuario frm = new DetalleUsuario(_usuario))
+            {
+                frm.ShowDialog();
+            }
         }
+
+        private void btnBorrar_Click(object sender, EventArgs e)
+        {
+            if (_usuario == null) return;
+
+            // Dispara el evento, la lógica de borrar se hará en el formulario padre
+            UsuarioBorrado?.Invoke(this, _usuario);
+        }
+
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
+            // opcional
         }
     }
 }
