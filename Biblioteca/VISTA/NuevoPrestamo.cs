@@ -81,31 +81,30 @@ namespace Biblioteca.VISTA
                 return;
             }
 
-            btnGuardar.Enabled = false; // 🛑 evita doble click
+            btnGuardar.Enabled = false; // evita doble click
 
             int idLibro = Convert.ToInt32(cmbLibro.SelectedValue);
             int idUsuario = Convert.ToInt32(cmbUsuario.SelectedValue);
-
             DateTime fechaInicio = dtpFechaInicio.Value.Date;
             DateTime fechaFin = fechaInicio.AddDays(15);
 
             SQLiteCommand cmd = new SQLiteCommand(@"
-                INSERT INTO Prestamos (ID_Libro, ID_Usuario, Fecha_Inicio, Fecha_Fin)
-                VALUES (@libro, @usuario, @inicio, @fin);
-            ");
+        INSERT INTO Prestamos (ID_Libro, ID_Usuario, Fecha_Inicio, Fecha_Fin, Devuelto)
+        VALUES (@libro, @usuario, @inicio, @fin, @devuelto);
+    ");
 
             cmd.Parameters.AddWithValue("@libro", idLibro);
             cmd.Parameters.AddWithValue("@usuario", idUsuario);
             cmd.Parameters.AddWithValue("@inicio", fechaInicio);
             cmd.Parameters.AddWithValue("@fin", fechaFin);
+            cmd.Parameters.AddWithValue("@devuelto", 0); // empieza como NO devuelto
 
             try
             {
                 BibliotecaBBDD.Ejecuta(cmd);
 
                 MessageBox.Show(
-                    "Préstamo registrado correctamente.\n\n" +
-                    "📅 Recuerda que tienes un plazo de 15 días para devolver el libro.",
+                    "Préstamo registrado correctamente.\n📅 Plazo de 15 días para devolver el libro.",
                     "Préstamo correcto",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information
@@ -127,6 +126,11 @@ namespace Biblioteca.VISTA
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

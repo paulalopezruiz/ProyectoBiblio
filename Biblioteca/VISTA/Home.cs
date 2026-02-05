@@ -39,6 +39,14 @@ namespace Biblioteca.VISTA
             // CambiarFormulario?.Invoke(new listadoLibros());
         }
 
+        // -------------------------
+        // Click en PRÉSTAMOS
+        // -------------------------
+        private void pPrestamos_Click(object sender, EventArgs e)
+        {
+            CambiarFormulario?.Invoke(new listadoPrestamos());
+
+        }
         private void tlpHome_Paint(object sender, PaintEventArgs e)
         {
             // opcional
