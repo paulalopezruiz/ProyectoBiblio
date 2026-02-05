@@ -53,5 +53,14 @@ namespace Biblioteca
             pEstado.Invalidate();
         }
 
+        private void lFecha_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lPrestamo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -38,9 +38,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.Controls.Add(this.lFecha, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lPrestamo, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.pEstado, 2, 0);
@@ -57,13 +57,14 @@
             // 
             this.lFecha.AutoSize = true;
             this.lFecha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lFecha.Location = new System.Drawing.Point(176, 0);
+            this.lFecha.Location = new System.Drawing.Point(202, 0);
             this.lFecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lFecha.Name = "lFecha";
-            this.lFecha.Size = new System.Drawing.Size(148, 96);
+            this.lFecha.Size = new System.Drawing.Size(116, 96);
             this.lFecha.TabIndex = 11;
             this.lFecha.Text = "Fecha";
             this.lFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lFecha.Click += new System.EventHandler(this.lFecha_Click);
             // 
             // lPrestamo
             // 
@@ -72,18 +73,19 @@
             this.lPrestamo.Location = new System.Drawing.Point(2, 0);
             this.lPrestamo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lPrestamo.Name = "lPrestamo";
-            this.lPrestamo.Size = new System.Drawing.Size(170, 96);
+            this.lPrestamo.Size = new System.Drawing.Size(196, 96);
             this.lPrestamo.TabIndex = 10;
             this.lPrestamo.Text = "Prestamo";
             this.lPrestamo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lPrestamo.Click += new System.EventHandler(this.lPrestamo_Click);
             // 
             // pEstado
             // 
             this.pEstado.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pEstado.Location = new System.Drawing.Point(356, 30);
+            this.pEstado.Location = new System.Drawing.Point(350, 30);
             this.pEstado.Margin = new System.Windows.Forms.Padding(30);
             this.pEstado.Name = "pEstado";
-            this.pEstado.Size = new System.Drawing.Size(50, 36);
+            this.pEstado.Size = new System.Drawing.Size(56, 36);
             this.pEstado.TabIndex = 9;
             // 
             // TarjetaPrestamo

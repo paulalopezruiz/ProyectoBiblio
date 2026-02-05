@@ -16,14 +16,47 @@ namespace Biblioteca.VISTA
         {
             InitializeComponent();
             _dniUsuario = null;
+
             btnNuevo.Click += btnNuevoPrestamo_Click;
+
+            // Eventos para filtrar automáticamente por combos
+            cbUsuario.SelectedIndexChanged += FiltroCambiado;
+            cbLibro.SelectedIndexChanged += FiltroCambiado;
+
+            // Cargar combos al iniciar
+            CargarUsuariosCombo();
+            CargarLibrosCombo();
         }
 
-        public listadoPrestamos(string dniUsuario)
+        // Constructor que recibe el DNI del usuario (desde detalle)
+        public listadoPrestamos(string dniUsuario) : this()
         {
-            InitializeComponent();
             _dniUsuario = dniUsuario;
-            btnNuevo.Click += btnNuevoPrestamo_Click;
+
+            if (!string.IsNullOrWhiteSpace(_dniUsuario))
+            {
+                // Obtenemos el nombre del usuario desde la BD
+                SQLiteCommand cmd = new SQLiteCommand(
+                    "SELECT Nombre FROM Usuarios WHERE DNI = @dni;"
+                );
+                cmd.Parameters.AddWithValue("@dni", _dniUsuario);
+
+                DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
+                if (dt.Rows.Count > 0)
+                {
+                    string nombreUsuario = dt.Rows[0]["Nombre"].ToString();
+
+                    // Recorremos los items del combo y seleccionamos el que coincide
+                    for (int i = 0; i < cbUsuario.Items.Count; i++)
+                    {
+                        if (cbUsuario.Items[i].ToString() == nombreUsuario)
+                        {
+                            cbUsuario.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void listadoPrestamos_Load(object sender, EventArgs e)
@@ -37,51 +70,69 @@ namespace Biblioteca.VISTA
         private void btnNuevoPrestamo_Click(object sender, EventArgs e)
         {
             NuevoPrestamo frm = new NuevoPrestamo();
-
             if (frm.ShowDialog() == DialogResult.OK)
                 CargarTarjetas(ObtenerPrestamos());
         }
 
         // =========================
+        // EVENTO CUANDO CAMBIA ALGÚN COMBO
+        // =========================
+        private void FiltroCambiado(object sender, EventArgs e)
+        {
+            string usuario = cbUsuario.SelectedItem?.ToString() ?? "";
+            if (usuario == "--Todos--") usuario = "";
+
+            string titulo = cbLibro.SelectedItem?.ToString() ?? "";
+            if (titulo == "--Todos--") titulo = "";
+
+            var filtrados = ObtenerPrestamos(usuario, titulo);
+            CargarTarjetas(filtrados);
+        }
+
+        // =========================
         // OBTENER PRÉSTAMOS DESDE LA BD
         // =========================
-        private List<Prestamo> ObtenerPrestamos()
+        private List<Prestamo> ObtenerPrestamos(string usuario = "", string titulo = "")
         {
             var prestamos = new List<Prestamo>();
-            SQLiteCommand cmd;
+            List<string> condiciones = new List<string>();
+            SQLiteCommand cmd = new SQLiteCommand();
 
-            if (string.IsNullOrWhiteSpace(_dniUsuario))
+            string sql = @"
+                SELECT 
+                    l.Titulo AS LibroTitulo,
+                    u.Nombre AS UsuarioNombre,
+                    p.Fecha_Inicio AS FechaInicio,
+                    p.Fecha_Fin AS FechaFin,
+                    p.Devuelto AS Devuelto
+                FROM Prestamos p
+                JOIN Libros l ON l.ID = p.ID_Libro
+                JOIN Usuarios u ON u.ID = p.ID_Usuario
+            ";
+
+            if (!string.IsNullOrWhiteSpace(_dniUsuario))
             {
-                cmd = new SQLiteCommand(@"
-                    SELECT 
-                        l.Titulo AS LibroTitulo,
-                        u.Nombre AS UsuarioNombre,
-                        p.Fecha_Inicio AS FechaInicio,
-                        p.Fecha_Fin AS FechaFin,
-                        p.Devuelto AS Devuelto
-                    FROM Prestamos p
-                    JOIN Libros l ON l.ID = p.ID_Libro
-                    JOIN Usuarios u ON u.ID = p.ID_Usuario
-                    ORDER BY p.Fecha_Inicio;
-                ");
+                condiciones.Add("u.DNI = @dniUsuario");
+                cmd.Parameters.AddWithValue("@dniUsuario", _dniUsuario);
             }
-            else
+
+            if (!string.IsNullOrWhiteSpace(usuario))
             {
-                cmd = new SQLiteCommand(@"
-                    SELECT 
-                        l.Titulo AS LibroTitulo,
-                        u.Nombre AS UsuarioNombre,
-                        p.Fecha_Inicio AS FechaInicio,
-                        p.Fecha_Fin AS FechaFin,
-                        p.Devuelto AS Devuelto
-                    FROM Prestamos p
-                    JOIN Libros l ON l.ID = p.ID_Libro
-                    JOIN Usuarios u ON u.ID = p.ID_Usuario
-                    WHERE u.DNI = @dni
-                    ORDER BY p.Fecha_Inicio;
-                ");
-                cmd.Parameters.AddWithValue("@dni", _dniUsuario);
+                condiciones.Add("u.Nombre = @usuario");
+                cmd.Parameters.AddWithValue("@usuario", usuario);
             }
+
+            if (!string.IsNullOrWhiteSpace(titulo))
+            {
+                condiciones.Add("l.Titulo = @titulo");
+                cmd.Parameters.AddWithValue("@titulo", titulo);
+            }
+
+            if (condiciones.Count > 0)
+                sql += " WHERE " + string.Join(" AND ", condiciones);
+
+            sql += " ORDER BY p.Fecha_Inicio;";
+            cmd.CommandText = sql;
 
             DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
 
@@ -90,11 +141,9 @@ namespace Biblioteca.VISTA
                 string texto = row["LibroTitulo"] + " - " + row["UsuarioNombre"];
                 DateTime fechaInicio = DateTime.Parse(row["FechaInicio"].ToString());
                 DateTime? fechaFin = null;
-
                 if (row["FechaFin"] != DBNull.Value)
                     fechaFin = DateTime.Parse(row["FechaFin"].ToString());
 
-                // Controlamos si Devuelto es null
                 int devueltoBD = 0;
                 if (row.Table.Columns.Contains("Devuelto") && row["Devuelto"] != DBNull.Value)
                     devueltoBD = int.Parse(row["Devuelto"].ToString());
@@ -124,21 +173,41 @@ namespace Biblioteca.VISTA
                     Width = flowLayoutPanel1.ClientSize.Width - 20
                 };
 
-                tarjeta.PonerDatos(p); // Pasamos el objeto Prestamo completo
+                tarjeta.PonerDatos(p);
                 flowLayoutPanel1.Controls.Add(tarjeta);
             }
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        // =========================
+        // CARGAR USUARIOS Y LIBROS EN COMBOS
+        // =========================
+        private void CargarUsuariosCombo()
         {
+            cbUsuario.Items.Clear();
+            cbUsuario.Items.Add("--Todos--");
 
+            DataTable dt = BibliotecaBBDD.GetDataTable(new SQLiteCommand("SELECT Nombre FROM Usuarios ORDER BY Nombre;"));
+            foreach (DataRow row in dt.Rows)
+                cbUsuario.Items.Add(row["Nombre"].ToString());
+
+            cbUsuario.SelectedIndex = 0;
         }
 
-        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        private void CargarLibrosCombo()
         {
+            cbLibro.Items.Clear();
+            cbLibro.Items.Add("--Todos--");
 
+            DataTable dt = BibliotecaBBDD.GetDataTable(new SQLiteCommand("SELECT Titulo FROM Libros ORDER BY Titulo;"));
+            foreach (DataRow row in dt.Rows)
+                cbLibro.Items.Add(row["Titulo"].ToString());
+
+            cbLibro.SelectedIndex = 0;
+        }
+
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+            // opcional
         }
     }
 }
-
-
