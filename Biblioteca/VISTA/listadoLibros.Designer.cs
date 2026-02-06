@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNuevo = new System.Windows.Forms.Button();
             this.flpLibros = new System.Windows.Forms.FlowLayoutPanel();
             this.tlpAutor = new System.Windows.Forms.TableLayoutPanel();
             this.cbAutores = new System.Windows.Forms.ComboBox();
@@ -37,7 +38,6 @@
             this.lTitulo = new System.Windows.Forms.Label();
             this.cbTitulos = new System.Windows.Forms.ComboBox();
             this.cbDisponible = new System.Windows.Forms.CheckBox();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.tlpAutor.SuspendLayout();
             this.tliTiutlo.SuspendLayout();
@@ -64,6 +64,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.71694F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(855, 431);
             this.tableLayoutPanel1.TabIndex = 0;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnNuevo.Location = new System.Drawing.Point(684, 49);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(45, 47, 60, 47);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(111, 66);
+            this.btnNuevo.TabIndex = 11;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.btnNuevo.Click += new System.EventHandler(this.AbrirNuevoLibro);
             // 
             // flpLibros
             // 
@@ -159,18 +173,7 @@
             this.cbDisponible.TabIndex = 10;
             this.cbDisponible.Text = "Disponibilidad";
             this.cbDisponible.UseVisualStyleBackColor = true;
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnNuevo.Location = new System.Drawing.Point(684, 49);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(45, 47, 60, 47);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(111, 66);
-            this.btnNuevo.TabIndex = 11;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = false;
+            this.cbDisponible.CheckedChanged += new System.EventHandler(this.cbDisponible_CheckedChanged);
             // 
             // listadoLibros
             // 

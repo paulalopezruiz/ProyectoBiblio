@@ -4,6 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data.SQLite;
 using Biblioteca.CONTROLADOR;
 using Biblioteca.MODELO;
 
@@ -97,14 +98,19 @@ namespace Biblioteca.VISTA
                 tarjeta.BotonBorrar.Height = 25;
                 tarjeta.BotonBorrar.Anchor = AnchorStyles.None;
 
-                // Imagen
+                // Imagen: cargar en memoria para evitar bloqueo del archivo
                 try
                 {
                     if (!string.IsNullOrEmpty(libro.Portada))
                     {
                         string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
                         if (File.Exists(rutaImagen))
-                            tarjeta.Portada = Image.FromFile(rutaImagen);
+                        {
+                            using (var fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
+                            {
+                                tarjeta.Portada = new Bitmap(fs); // carga en memoria
+                            }
+                        }
                         else
                             tarjeta.Portada = null;
                     }
@@ -118,10 +124,10 @@ namespace Biblioteca.VISTA
                     tarjeta.Portada = null;
                 }
 
-                // Evento borrar (temporal)
+                // Evento borrar
                 tarjeta.BotonBorrar.Click += (s, e) =>
                 {
-                    MessageBox.Show($"Se borraría el libro: {libro.Titulo}");
+                    BorrarLibro(libro);
                 };
 
                 flpLibros.Controls.Add(tarjeta);
@@ -171,5 +177,83 @@ namespace Biblioteca.VISTA
         }
 
         private void flpLibros_Paint(object sender, PaintEventArgs e) { }
+
+        private void cbDisponible_CheckedChanged(object sender, EventArgs e) { }
+
+        private void AbrirNuevoLibro(object sender, EventArgs e)
+        {
+            // Obtenemos la instancia única del formulario
+            NuevoLibro frm = NuevoLibro.GetInstance();
+
+            // Cargamos datos en blanco
+            frm.CargarDatos();
+
+            // Mostramos el formulario como diálogo modal
+            frm.ShowDialog();
+
+            // Una vez cerrado, recargamos los libros para reflejar posibles cambios
+            listaLibros = BibliotecaBBDD.GetLibros();
+            FiltrarLibros(null, null);
+        }
+
+        // =========================================
+        // BORRAR LIBRO
+        // =========================================
+        private void BorrarLibro(Libro libro)
+        {
+            if (libro == null) return;
+
+            // Confirmación
+            var resp = MessageBox.Show(
+                $"¿Estás seguro de que quieres borrar el libro \"{libro.Titulo}\"?",
+                "Confirmar borrado",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (resp != DialogResult.Yes) return;
+
+            try
+            {
+                // Borrar de la base de datos
+                SQLiteCommand cmd = new SQLiteCommand("DELETE FROM Libros WHERE ID = @id;");
+                cmd.Parameters.AddWithValue("@id", libro.IdLibro);
+                BibliotecaBBDD.Ejecuta(cmd);
+
+                // Borrar imagen física si existe
+                if (!string.IsNullOrEmpty(libro.Portada))
+                {
+                    string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
+                    if (File.Exists(rutaImagen))
+                    {
+                        // Intentar eliminar varias veces si el archivo estaba bloqueado por alguna razón
+                        for (int i = 0; i < 5; i++)
+                        {
+                            try
+                            {
+                                File.Delete(rutaImagen);
+                                break;
+                            }
+                            catch
+                            {
+                                System.Threading.Thread.Sleep(50); // esperar un poco
+                            }
+                        }
+                    }
+                }
+
+                // Actualizar lista y refrescar tarjetas
+                listaLibros = BibliotecaBBDD.GetLibros();
+                FiltrarLibros(null, null);
+
+                MessageBox.Show("Libro borrado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al borrar el libro: " + ex.Message);
+            }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }
