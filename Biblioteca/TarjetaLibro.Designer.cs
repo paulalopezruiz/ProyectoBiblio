@@ -1,4 +1,4 @@
-﻿namespace Biblioteca
+﻿namespace Biblioteca.VISTA
 {
     partial class TarjetaLibro
     {
@@ -59,6 +59,7 @@
             this.pictureBoxPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPortada.TabIndex = 0;
             this.pictureBoxPortada.TabStop = false;
+            this.pictureBoxPortada.Click += new System.EventHandler(this.pictureBoxPortada_Click);
             // 
             // btnBorrar
             // 

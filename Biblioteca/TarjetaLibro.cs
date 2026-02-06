@@ -2,34 +2,72 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Biblioteca
+namespace Biblioteca.VISTA
 {
     public partial class TarjetaLibro : UserControl
     {
+        private Panel indicadorDisponibilidad;
+
         public TarjetaLibro()
         {
             InitializeComponent();
-            this.BackColor = Color.White; // fondo blanco de la tarjeta
+            CrearIndicadorDisponibilidad();
         }
 
-        // Propiedad pública para asignar la portada
-        public Image Portada
+        // Propiedad para actualizar el círculo según disponibilidad
+        private bool disponible;
+        public bool Disponible
         {
-            get { return pictureBoxPortada.Image; }
+            get => disponible;
             set
             {
-                pictureBoxPortada.Image = value;
-                if (value == null)
-                    pictureBoxPortada.BackColor = Color.LightGray; // gris si no hay imagen
-                else
-                    pictureBoxPortada.BackColor = Color.White;
+                disponible = value;
+                ActualizarIndicador();
             }
         }
 
-        // Propiedad pública para acceder al botón borrar
-        public Button BotonBorrar
+        // Crear el panel circular
+        private void CrearIndicadorDisponibilidad()
         {
-            get { return btnBorrar; }
+            indicadorDisponibilidad = new Panel
+            {
+                Size = new Size(20, 20),
+                BackColor = Color.Gray,
+                Location = new Point(5, 5), // esquina superior izquierda
+                Anchor = AnchorStyles.Top | AnchorStyles.Left
+            };
+
+            // Redondear el panel
+            indicadorDisponibilidad.Paint += (s, e) =>
+            {
+                System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+                gp.AddEllipse(0, 0, indicadorDisponibilidad.Width - 1, indicadorDisponibilidad.Height - 1);
+                indicadorDisponibilidad.Region = new Region(gp);
+            };
+
+            this.Controls.Add(indicadorDisponibilidad);
+            indicadorDisponibilidad.BringToFront();
         }
+
+        private void ActualizarIndicador()
+        {
+            if (disponible)
+                indicadorDisponibilidad.BackColor = Color.Green;
+            else
+                indicadorDisponibilidad.BackColor = Color.Red;
+        }
+
+        // Propiedad para la portada
+        public Image Portada
+        {
+            get => pictureBoxPortada.Image;
+            set => pictureBoxPortada.Image = value;
+        }
+
+        // Botón borrar público
+        public Button BotonBorrar => btnBorrar;
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void pictureBoxPortada_Click(object sender, EventArgs e) { }
     }
 }

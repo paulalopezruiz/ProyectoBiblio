@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Biblioteca.CONTROLADOR;
 using Biblioteca.MODELO;
@@ -16,6 +17,11 @@ namespace Biblioteca.VISTA
         {
             InitializeComponent();
             Load += listadoLibros_Load;
+
+            // Suscribir eventos de filtrado
+            cbTitulos.SelectedIndexChanged += FiltrarLibros;
+            cbAutores.SelectedIndexChanged += FiltrarLibros;
+            cbDisponible.CheckedChanged += FiltrarLibros;
         }
 
         private void listadoLibros_Load(object sender, EventArgs e)
@@ -26,7 +32,7 @@ namespace Biblioteca.VISTA
             RellenarComboAutores();
 
             ConfigurarFlowPanel();
-            CargarTarjetas();
+            CargarTarjetas(listaLibros); // carga inicial con todos los libros
         }
 
         private void RellenarComboTitulos()
@@ -69,19 +75,22 @@ namespace Biblioteca.VISTA
             flpLibros.Margin = new Padding(0);
         }
 
-        private void CargarTarjetas()
+        private void CargarTarjetas(List<Libro> librosFiltrados)
         {
             flpLibros.Controls.Clear();
 
             int tarjetasPorFila = 2;
             int margen = 10;
 
-            foreach (Libro libro in listaLibros)
+            foreach (Libro libro in librosFiltrados)
             {
-                TarjetaLibro tarjeta = new TarjetaLibro();
-                tarjeta.Width = 150;
-                tarjeta.Height = 200;
-                tarjeta.Margin = new Padding(margen);
+                TarjetaLibro tarjeta = new TarjetaLibro
+                {
+                    Width = 150,
+                    Height = 200,
+                    Margin = new Padding(margen),
+                    Disponible = libro.Disponible // actualizamos círculo
+                };
 
                 // Reducir el botón de borrar
                 tarjeta.BotonBorrar.Width = 80;
@@ -109,7 +118,7 @@ namespace Biblioteca.VISTA
                     tarjeta.Portada = null;
                 }
 
-                // Evento borrar
+                // Evento borrar (temporal)
                 tarjeta.BotonBorrar.Click += (s, e) =>
                 {
                     MessageBox.Show($"Se borraría el libro: {libro.Titulo}");
@@ -121,7 +130,6 @@ namespace Biblioteca.VISTA
             AjustarColumnas(tarjetasPorFila, 150, margen);
         }
 
-
         private void AjustarColumnas(int tarjetasPorFila, int anchoTarjeta, int margen)
         {
             int panelWidth = flpLibros.ClientSize.Width;
@@ -132,9 +140,36 @@ namespace Biblioteca.VISTA
             flpLibros.Padding = new Padding(margenIzq, 20, 20, 20);
         }
 
-        private void flpLibros_Paint(object sender, PaintEventArgs e)
+        // =========================================
+        // Filtrado por ComboBox y CheckBox
+        // =========================================
+        private void FiltrarLibros(object sender, EventArgs e)
         {
+            var filtrados = listaLibros.AsEnumerable();
 
+            // Filtrar por título
+            if (cbTitulos.SelectedIndex > 0)
+            {
+                string titulo = cbTitulos.SelectedItem.ToString();
+                filtrados = filtrados.Where(l => l.Titulo == titulo);
+            }
+
+            // Filtrar por autor
+            if (cbAutores.SelectedIndex > 0)
+            {
+                string autor = cbAutores.SelectedItem.ToString();
+                filtrados = filtrados.Where(l => l.Escritor == autor);
+            }
+
+            // Filtrar por disponibilidad
+            if (cbDisponible.Checked)
+            {
+                filtrados = filtrados.Where(l => l.Disponible);
+            }
+
+            CargarTarjetas(filtrados.ToList());
         }
+
+        private void flpLibros_Paint(object sender, PaintEventArgs e) { }
     }
 }

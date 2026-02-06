@@ -139,8 +139,7 @@ namespace Biblioteca.CONTROLADOR
             COUNT(p.ID) AS PrestamosActivos
         FROM Libros l
         LEFT JOIN Prestamos p 
-            ON l.ID = p.ID  -- columna que indica el libro en Prestamos
-            AND p.Devuelto = 0  -- aquí contamos solo los préstamos no devueltos
+            ON l.ID = p.ID_Libro AND p.Devuelto = 0
         GROUP BY l.ID;
     ");
 
@@ -148,23 +147,18 @@ namespace Biblioteca.CONTROLADOR
 
             foreach (DataRow row in dt.Rows)
             {
-                Libro libro = new Libro(
+                libros.Add(new Libro(
                     int.Parse(row["ID"].ToString()),
                     row["Titulo"].ToString(),
                     row["Escritor"].ToString(),
                     row["Portada"].ToString(),
                     int.Parse(row["NEjemplares"].ToString()),
                     int.Parse(row["PrestamosActivos"].ToString())
-                );
-
-                libros.Add(libro);
+                ));
             }
 
             return libros;
         }
-
-
-
 
 
         public static void Ejecuta(SQLiteCommand cmd)
