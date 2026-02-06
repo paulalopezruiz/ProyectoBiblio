@@ -84,6 +84,12 @@
     <Compile Include="MODELO\modelo.cs" />
     <Compile Include="MODELO\Prestamo.cs" />
     <Compile Include="MODELO\Usuario.cs" />
+    <Compile Include="TarjetaLibro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TarjetaLibro.Designer.cs">
+      <DependentUpon>TarjetaLibro.cs</DependentUpon>
+    </Compile>
     <Compile Include="TarjetaPrestamo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +171,9 @@
       <DependentUpon>NuevoUsuario.cs</DependentUpon>
     </Compile>
     <Content Include="imagenes\portadaPrinipito.jpg" />
+    <EmbeddedResource Include="TarjetaLibro.resx">
+      <DependentUpon>TarjetaLibro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TarjetaPrestamo.resx">
       <DependentUpon>TarjetaPrestamo.cs</DependentUpon>
     </EmbeddedResource>
