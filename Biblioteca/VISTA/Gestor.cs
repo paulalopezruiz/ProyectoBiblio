@@ -72,7 +72,7 @@ namespace Biblioteca
                 if (clicked == lUsuario)
                     formulario = new listadoUsuarios();
                 else if (clicked == lLibros)
-                    ; // formulario = new listadoLibros();
+                    formulario = new listadoLibros();
                 else if (clicked == lPrestamos)
                     formulario = new listadoPrestamos();   // <-- AÑADIDO
 
@@ -112,7 +112,7 @@ namespace Biblioteca
         {
             if (form is listadoUsuarios) return lUsuario;
             else if (form is listadoPrestamos) return lPrestamos;  // <-- AÑADIDO
-            // else if (form is listadoLibros) return lLibros;
+            else if (form is listadoLibros) return lLibros;
 
             return null; // ningún menú asociado
         }
@@ -139,5 +139,9 @@ namespace Biblioteca
             CambiarFormulario(formulario, DetectarMenuActivo(formulario));
         }
 
+        private void lLibros_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

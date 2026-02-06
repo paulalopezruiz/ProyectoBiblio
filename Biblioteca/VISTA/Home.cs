@@ -35,8 +35,8 @@ namespace Biblioteca.VISTA
 
         private void pLibros_Click(object sender, EventArgs e)
         {
-            // Aquí puedes hacer lo mismo para libros si quieres
-            // CambiarFormulario?.Invoke(new listadoLibros());
+            CambiarFormulario?.Invoke(new listadoLibros());
+
         }
 
         // -------------------------

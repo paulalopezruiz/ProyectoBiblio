@@ -123,6 +123,7 @@
             this.lLibros.TabIndex = 1;
             this.lLibros.Text = "Libros";
             this.lLibros.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lLibros.Click += new System.EventHandler(this.lLibros_Click);
             // 
             // lPrestamos
             // 

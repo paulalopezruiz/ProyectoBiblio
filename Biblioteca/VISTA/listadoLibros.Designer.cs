@@ -33,10 +33,10 @@
             this.tlpAutor = new System.Windows.Forms.TableLayoutPanel();
             this.lTitulo = new System.Windows.Forms.Label();
             this.lAutor = new System.Windows.Forms.Label();
-            this.cbTitulo = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbTitulos = new System.Windows.Forms.ComboBox();
+            this.cbAutores = new System.Windows.Forms.ComboBox();
             this.btnNuevo = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpLibros = new System.Windows.Forms.FlowLayoutPanel();
             this.cbDisponible = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tliTiutlo.SuspendLayout();
@@ -51,7 +51,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flpLibros, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnNuevo, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.tlpAutor, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tliTiutlo, 0, 0);
@@ -70,7 +70,7 @@
             this.tliTiutlo.ColumnCount = 1;
             this.tliTiutlo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tliTiutlo.Controls.Add(this.lTitulo, 0, 0);
-            this.tliTiutlo.Controls.Add(this.cbTitulo, 0, 1);
+            this.tliTiutlo.Controls.Add(this.cbTitulos, 0, 1);
             this.tliTiutlo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tliTiutlo.Location = new System.Drawing.Point(3, 3);
             this.tliTiutlo.Name = "tliTiutlo";
@@ -84,7 +84,7 @@
             // 
             this.tlpAutor.ColumnCount = 1;
             this.tlpAutor.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpAutor.Controls.Add(this.comboBox1, 0, 1);
+            this.tlpAutor.Controls.Add(this.cbAutores, 0, 1);
             this.tlpAutor.Controls.Add(this.lAutor, 0, 0);
             this.tlpAutor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpAutor.Location = new System.Drawing.Point(216, 3);
@@ -117,23 +117,23 @@
             this.lAutor.Text = "Autor";
             this.lAutor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
-            // cbTitulo
+            // cbTitulos
             // 
-            this.cbTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbTitulo.FormattingEnabled = true;
-            this.cbTitulo.Location = new System.Drawing.Point(3, 82);
-            this.cbTitulo.Name = "cbTitulo";
-            this.cbTitulo.Size = new System.Drawing.Size(201, 33);
-            this.cbTitulo.TabIndex = 1;
+            this.cbTitulos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbTitulos.FormattingEnabled = true;
+            this.cbTitulos.Location = new System.Drawing.Point(3, 82);
+            this.cbTitulos.Name = "cbTitulos";
+            this.cbTitulos.Size = new System.Drawing.Size(201, 33);
+            this.cbTitulos.TabIndex = 1;
             // 
-            // comboBox1
+            // cbAutores
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 82);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(201, 33);
-            this.comboBox1.TabIndex = 2;
+            this.cbAutores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbAutores.FormattingEnabled = true;
+            this.cbAutores.Location = new System.Drawing.Point(3, 82);
+            this.cbAutores.Name = "cbAutores";
+            this.cbAutores.Size = new System.Drawing.Size(201, 33);
+            this.cbAutores.TabIndex = 2;
             // 
             // btnNuevo
             // 
@@ -147,17 +147,18 @@
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
             // 
-            // flowLayoutPanel1
+            // flpLibros
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 4);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 168);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(849, 260);
-            this.flowLayoutPanel1.TabIndex = 9;
-            this.flowLayoutPanel1.WrapContents = false;
+            this.flpLibros.AutoScroll = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.flpLibros, 4);
+            this.flpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLibros.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpLibros.Location = new System.Drawing.Point(3, 168);
+            this.flpLibros.Name = "flpLibros";
+            this.flpLibros.Size = new System.Drawing.Size(849, 260);
+            this.flpLibros.TabIndex = 9;
+            this.flpLibros.WrapContents = false;
+            this.flpLibros.Paint += new System.Windows.Forms.PaintEventHandler(this.flpLibros_Paint);
             // 
             // cbDisponible
             // 
@@ -197,10 +198,10 @@
         private System.Windows.Forms.Label lAutor;
         private System.Windows.Forms.TableLayoutPanel tliTiutlo;
         private System.Windows.Forms.Label lTitulo;
-        private System.Windows.Forms.ComboBox cbTitulo;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbTitulos;
+        private System.Windows.Forms.ComboBox cbAutores;
         private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flpLibros;
         private System.Windows.Forms.CheckBox cbDisponible;
     }
 }

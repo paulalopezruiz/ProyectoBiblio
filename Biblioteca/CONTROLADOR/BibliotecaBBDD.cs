@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using Biblioteca.MODELO;
 
 namespace Biblioteca.CONTROLADOR
 {
@@ -119,6 +121,49 @@ namespace Biblioteca.CONTROLADOR
 
             return 0; // 0 significa "todos los libros"
         }
+
+        // =========================
+        // Obtener lista completa de libros con préstamos activos
+        // =========================
+        public static List<Libro> GetLibros()
+        {
+            List<Libro> libros = new List<Libro>();
+
+            SQLiteCommand cmd = new SQLiteCommand(@"
+        SELECT 
+            l.ID,
+            l.Titulo,
+            l.Escritor,
+            l.Portada,
+            l.NEjemplares,
+            COUNT(p.ID) AS PrestamosActivos
+        FROM Libros l
+        LEFT JOIN Prestamos p 
+            ON l.ID = p.ID  -- columna que indica el libro en Prestamos
+            AND p.Devuelto = 0  -- aquí contamos solo los préstamos no devueltos
+        GROUP BY l.ID;
+    ");
+
+            DataTable dt = GetDataTable(cmd);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Libro libro = new Libro(
+                    int.Parse(row["ID"].ToString()),
+                    row["Titulo"].ToString(),
+                    row["Escritor"].ToString(),
+                    row["Portada"].ToString(),
+                    int.Parse(row["NEjemplares"].ToString()),
+                    int.Parse(row["PrestamosActivos"].ToString())
+                );
+
+                libros.Add(libro);
+            }
+
+            return libros;
+        }
+
+
 
 
 
