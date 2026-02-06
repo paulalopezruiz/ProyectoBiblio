@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Biblioteca
@@ -15,16 +9,27 @@ namespace Biblioteca
         public TarjetaLibro()
         {
             InitializeComponent();
+            this.BackColor = Color.White; // fondo blanco de la tarjeta
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        // Propiedad pública para asignar la portada
+        public Image Portada
         {
-
+            get { return pictureBoxPortada.Image; }
+            set
+            {
+                pictureBoxPortada.Image = value;
+                if (value == null)
+                    pictureBoxPortada.BackColor = Color.LightGray; // gris si no hay imagen
+                else
+                    pictureBoxPortada.BackColor = Color.White;
+            }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        // Propiedad pública para acceder al botón borrar
+        public Button BotonBorrar
         {
-
+            get { return btnBorrar; }
         }
     }
 }

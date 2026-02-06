@@ -170,7 +170,22 @@
     <Compile Include="VISTA\NuevoUsuario.Designer.cs">
       <DependentUpon>NuevoUsuario.cs</DependentUpon>
     </Compile>
-    <Content Include="imagenes\portadaPrinipito.jpg" />
+    <Content Include="imagenes\anillos.jpeg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\don.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\historia.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\hobbit.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imagenes\portadaPrinipito.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\portada_defecto.jpg" />
     <EmbeddedResource Include="TarjetaLibro.resx">
       <DependentUpon>TarjetaLibro.cs</DependentUpon>
     </EmbeddedResource>

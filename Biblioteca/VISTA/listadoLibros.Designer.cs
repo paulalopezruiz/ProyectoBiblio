@@ -29,18 +29,18 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tliTiutlo = new System.Windows.Forms.TableLayoutPanel();
-            this.tlpAutor = new System.Windows.Forms.TableLayoutPanel();
-            this.lTitulo = new System.Windows.Forms.Label();
-            this.lAutor = new System.Windows.Forms.Label();
-            this.cbTitulos = new System.Windows.Forms.ComboBox();
-            this.cbAutores = new System.Windows.Forms.ComboBox();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.flpLibros = new System.Windows.Forms.FlowLayoutPanel();
+            this.tlpAutor = new System.Windows.Forms.TableLayoutPanel();
+            this.cbAutores = new System.Windows.Forms.ComboBox();
+            this.lAutor = new System.Windows.Forms.Label();
+            this.tliTiutlo = new System.Windows.Forms.TableLayoutPanel();
+            this.lTitulo = new System.Windows.Forms.Label();
+            this.cbTitulos = new System.Windows.Forms.ComboBox();
             this.cbDisponible = new System.Windows.Forms.CheckBox();
+            this.btnNuevo = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tliTiutlo.SuspendLayout();
             this.tlpAutor.SuspendLayout();
+            this.tliTiutlo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -51,8 +51,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.flpLibros, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnNuevo, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flpLibros, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tlpAutor, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tliTiutlo, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.cbDisponible, 2, 0);
@@ -65,20 +65,18 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(855, 431);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // tliTiutlo
+            // flpLibros
             // 
-            this.tliTiutlo.ColumnCount = 1;
-            this.tliTiutlo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tliTiutlo.Controls.Add(this.lTitulo, 0, 0);
-            this.tliTiutlo.Controls.Add(this.cbTitulos, 0, 1);
-            this.tliTiutlo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tliTiutlo.Location = new System.Drawing.Point(3, 3);
-            this.tliTiutlo.Name = "tliTiutlo";
-            this.tliTiutlo.RowCount = 2;
-            this.tliTiutlo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tliTiutlo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tliTiutlo.Size = new System.Drawing.Size(207, 159);
-            this.tliTiutlo.TabIndex = 0;
+            this.flpLibros.AutoScroll = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.flpLibros, 4);
+            this.flpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpLibros.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpLibros.Location = new System.Drawing.Point(3, 167);
+            this.flpLibros.Name = "flpLibros";
+            this.flpLibros.Size = new System.Drawing.Size(849, 261);
+            this.flpLibros.TabIndex = 9;
+            this.flpLibros.WrapContents = false;
+            this.flpLibros.Paint += new System.Windows.Forms.PaintEventHandler(this.flpLibros_Paint);
             // 
             // tlpAutor
             // 
@@ -92,19 +90,17 @@
             this.tlpAutor.RowCount = 2;
             this.tlpAutor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpAutor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpAutor.Size = new System.Drawing.Size(207, 159);
+            this.tlpAutor.Size = new System.Drawing.Size(207, 158);
             this.tlpAutor.TabIndex = 1;
             // 
-            // lTitulo
+            // cbAutores
             // 
-            this.lTitulo.AutoSize = true;
-            this.lTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lTitulo.Location = new System.Drawing.Point(3, 0);
-            this.lTitulo.Name = "lTitulo";
-            this.lTitulo.Size = new System.Drawing.Size(201, 79);
-            this.lTitulo.TabIndex = 0;
-            this.lTitulo.Text = "Titulo";
-            this.lTitulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.cbAutores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbAutores.FormattingEnabled = true;
+            this.cbAutores.Location = new System.Drawing.Point(3, 82);
+            this.cbAutores.Name = "cbAutores";
+            this.cbAutores.Size = new System.Drawing.Size(201, 33);
+            this.cbAutores.TabIndex = 2;
             // 
             // lAutor
             // 
@@ -117,6 +113,32 @@
             this.lAutor.Text = "Autor";
             this.lAutor.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
+            // tliTiutlo
+            // 
+            this.tliTiutlo.ColumnCount = 1;
+            this.tliTiutlo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tliTiutlo.Controls.Add(this.lTitulo, 0, 0);
+            this.tliTiutlo.Controls.Add(this.cbTitulos, 0, 1);
+            this.tliTiutlo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tliTiutlo.Location = new System.Drawing.Point(3, 3);
+            this.tliTiutlo.Name = "tliTiutlo";
+            this.tliTiutlo.RowCount = 2;
+            this.tliTiutlo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tliTiutlo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tliTiutlo.Size = new System.Drawing.Size(207, 158);
+            this.tliTiutlo.TabIndex = 0;
+            // 
+            // lTitulo
+            // 
+            this.lTitulo.AutoSize = true;
+            this.lTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lTitulo.Location = new System.Drawing.Point(3, 0);
+            this.lTitulo.Name = "lTitulo";
+            this.lTitulo.Size = new System.Drawing.Size(201, 79);
+            this.lTitulo.TabIndex = 0;
+            this.lTitulo.Text = "Titulo";
+            this.lTitulo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
             // cbTitulos
             // 
             this.cbTitulos.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -126,40 +148,6 @@
             this.cbTitulos.Size = new System.Drawing.Size(201, 33);
             this.cbTitulos.TabIndex = 1;
             // 
-            // cbAutores
-            // 
-            this.cbAutores.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cbAutores.FormattingEnabled = true;
-            this.cbAutores.Location = new System.Drawing.Point(3, 82);
-            this.cbAutores.Name = "cbAutores";
-            this.cbAutores.Size = new System.Drawing.Size(201, 33);
-            this.cbAutores.TabIndex = 2;
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnNuevo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnNuevo.Location = new System.Drawing.Point(669, 47);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 47, 30, 47);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(156, 71);
-            this.btnNuevo.TabIndex = 8;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = false;
-            // 
-            // flpLibros
-            // 
-            this.flpLibros.AutoScroll = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.flpLibros, 4);
-            this.flpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flpLibros.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flpLibros.Location = new System.Drawing.Point(3, 168);
-            this.flpLibros.Name = "flpLibros";
-            this.flpLibros.Size = new System.Drawing.Size(849, 260);
-            this.flpLibros.TabIndex = 9;
-            this.flpLibros.WrapContents = false;
-            this.flpLibros.Paint += new System.Windows.Forms.PaintEventHandler(this.flpLibros_Paint);
-            // 
             // cbDisponible
             // 
             this.cbDisponible.AutoSize = true;
@@ -167,10 +155,22 @@
             this.cbDisponible.Location = new System.Drawing.Point(451, 3);
             this.cbDisponible.Margin = new System.Windows.Forms.Padding(25, 3, 3, 3);
             this.cbDisponible.Name = "cbDisponible";
-            this.cbDisponible.Size = new System.Drawing.Size(185, 159);
+            this.cbDisponible.Size = new System.Drawing.Size(185, 158);
             this.cbDisponible.TabIndex = 10;
             this.cbDisponible.Text = "Disponibilidad";
             this.cbDisponible.UseVisualStyleBackColor = true;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnNuevo.Location = new System.Drawing.Point(684, 49);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(45, 47, 60, 47);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(111, 66);
+            this.btnNuevo.TabIndex = 11;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = false;
             // 
             // listadoLibros
             // 
@@ -183,10 +183,10 @@
             this.Text = "listadoLibros";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tliTiutlo.ResumeLayout(false);
-            this.tliTiutlo.PerformLayout();
             this.tlpAutor.ResumeLayout(false);
             this.tlpAutor.PerformLayout();
+            this.tliTiutlo.ResumeLayout(false);
+            this.tliTiutlo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -200,8 +200,8 @@
         private System.Windows.Forms.Label lTitulo;
         private System.Windows.Forms.ComboBox cbTitulos;
         private System.Windows.Forms.ComboBox cbAutores;
-        private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.FlowLayoutPanel flpLibros;
         private System.Windows.Forms.CheckBox cbDisponible;
+        private System.Windows.Forms.Button btnNuevo;
     }
 }

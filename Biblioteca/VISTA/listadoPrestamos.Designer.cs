@@ -57,11 +57,12 @@
             this.tableLayoutPanel1.Controls.Add(this.tlpUserFliter, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.31884F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.68116F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(570, 276);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(855, 431);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -73,23 +74,25 @@
             this.tableLayoutPanel2.Controls.Add(this.lLibro, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.cbLibro, 0, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(203, 3);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(301, 5);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(187, 97);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(278, 150);
             this.tableLayoutPanel2.TabIndex = 9;
             // 
             // lLibro
             // 
             this.lLibro.AutoSize = true;
             this.lLibro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lLibro.Location = new System.Drawing.Point(3, 25);
+            this.lLibro.Location = new System.Drawing.Point(4, 41);
+            this.lLibro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lLibro.Name = "lLibro";
-            this.lLibro.Size = new System.Drawing.Size(181, 16);
+            this.lLibro.Size = new System.Drawing.Size(270, 25);
             this.lLibro.TabIndex = 0;
             this.lLibro.Text = "Libro";
             this.lLibro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -98,19 +101,20 @@
             // 
             this.cbLibro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbLibro.FormattingEnabled = true;
-            this.cbLibro.Location = new System.Drawing.Point(3, 44);
+            this.cbLibro.Location = new System.Drawing.Point(4, 71);
+            this.cbLibro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbLibro.Name = "cbLibro";
-            this.cbLibro.Size = new System.Drawing.Size(181, 24);
+            this.cbLibro.Size = new System.Drawing.Size(270, 33);
             this.cbLibro.TabIndex = 1;
             // 
             // btnNuevo
             // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnNuevo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnNuevo.Location = new System.Drawing.Point(404, 30);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 30, 40, 30);
+            this.btnNuevo.Location = new System.Drawing.Point(606, 47);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(45, 47, 60, 47);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(126, 43);
+            this.btnNuevo.Size = new System.Drawing.Size(189, 66);
             this.btnNuevo.TabIndex = 7;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
@@ -121,10 +125,9 @@
             this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 4);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(2, 105);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 163);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(566, 169);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(849, 265);
             this.flowLayoutPanel1.TabIndex = 4;
             this.flowLayoutPanel1.WrapContents = false;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
@@ -137,24 +140,25 @@
             this.tlpUserFliter.Controls.Add(this.lUsuario, 0, 1);
             this.tlpUserFliter.Controls.Add(this.cbUsuario, 0, 2);
             this.tlpUserFliter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpUserFliter.Location = new System.Drawing.Point(10, 3);
-            this.tlpUserFliter.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.tlpUserFliter.Location = new System.Drawing.Point(15, 5);
+            this.tlpUserFliter.Margin = new System.Windows.Forms.Padding(15, 5, 4, 5);
             this.tlpUserFliter.Name = "tlpUserFliter";
             this.tlpUserFliter.RowCount = 4;
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpUserFliter.Size = new System.Drawing.Size(187, 97);
+            this.tlpUserFliter.Size = new System.Drawing.Size(278, 150);
             this.tlpUserFliter.TabIndex = 8;
             // 
             // lUsuario
             // 
             this.lUsuario.AutoSize = true;
             this.lUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lUsuario.Location = new System.Drawing.Point(3, 25);
+            this.lUsuario.Location = new System.Drawing.Point(4, 41);
+            this.lUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lUsuario.Name = "lUsuario";
-            this.lUsuario.Size = new System.Drawing.Size(181, 16);
+            this.lUsuario.Size = new System.Drawing.Size(270, 25);
             this.lUsuario.TabIndex = 0;
             this.lUsuario.Text = "Usuario";
             this.lUsuario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -163,18 +167,20 @@
             // 
             this.cbUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbUsuario.FormattingEnabled = true;
-            this.cbUsuario.Location = new System.Drawing.Point(3, 44);
+            this.cbUsuario.Location = new System.Drawing.Point(4, 71);
+            this.cbUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbUsuario.Name = "cbUsuario";
-            this.cbUsuario.Size = new System.Drawing.Size(181, 24);
+            this.cbUsuario.Size = new System.Drawing.Size(270, 33);
             this.cbUsuario.TabIndex = 1;
             // 
             // listadoPrestamos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 276);
+            this.ClientSize = new System.Drawing.Size(855, 431);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "listadoPrestamos";
             this.Load += new System.EventHandler(this.listadoPrestamos_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
