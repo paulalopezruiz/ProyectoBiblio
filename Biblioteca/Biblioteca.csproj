@@ -128,6 +128,12 @@
     <Compile Include="VISTA\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="VISTA\listadoLibros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VISTA\listadoLibros.Designer.cs">
+      <DependentUpon>listadoLibros.cs</DependentUpon>
+    </Compile>
     <Compile Include="VISTA\listadoPrestamos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,7 @@
     <Compile Include="VISTA\NuevoUsuario.Designer.cs">
       <DependentUpon>NuevoUsuario.cs</DependentUpon>
     </Compile>
+    <Content Include="imagenes\portadaPrinipito.jpg" />
     <EmbeddedResource Include="TarjetaPrestamo.resx">
       <DependentUpon>TarjetaPrestamo.cs</DependentUpon>
     </EmbeddedResource>
@@ -188,6 +195,9 @@
     </Compile>
     <EmbeddedResource Include="VISTA\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VISTA\listadoLibros.resx">
+      <DependentUpon>listadoLibros.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VISTA\listadoPrestamos.resx">
       <DependentUpon>listadoPrestamos.cs</DependentUpon>
