@@ -10,7 +10,6 @@ namespace Biblioteca.VISTA
 {
     public partial class listadoPrestamos : Form
     {
-        // Guardaremos aquí el ID del usuario (NO el DNI) cuando venga desde DetalleUsuario
         private string _usuarioID;
         private bool _inicializando;
 
@@ -18,37 +17,39 @@ namespace Biblioteca.VISTA
         {
             InitializeComponent();
 
+            // ✅ ARREGLO: para que aparezca la X aunque en Designer esté en None
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.ControlBox = true;
+
             _usuarioID = null;
-            _inicializando = true; // bloquea eventos mientras cargamos combos
+            _inicializando = true;
 
             btnNuevo.Click += btnNuevoPrestamo_Click;
 
-            // Eventos para filtrar automáticamente por combos
             cbUsuario.SelectedIndexChanged += FiltroCambiado;
             cbLibro.SelectedIndexChanged += FiltroCambiado;
 
-            // Cargar combos al iniciar
             CargarUsuariosCombo();
             CargarLibrosCombo();
 
-            _inicializando = false; // ya pueden dispararse eventos
+            // ✅ asegurar load
+            Load += listadoPrestamos_Load;
+
+            _inicializando = false;
         }
 
-        // Constructor que recibe el DNI del usuario (desde DetalleUsuario)
+        // Constructor desde DetalleUsuario (DNI)
         public listadoPrestamos(string dniUsuario) : this()
         {
             if (string.IsNullOrWhiteSpace(dniUsuario))
                 return;
 
-            // 1) Convertimos DNI -> ID (porque la tabla Prestamos filtra por ID_Usuario)
             _usuarioID = BibliotecaBBDD.GetIDUsuario(dniUsuario);
 
             if (!string.IsNullOrWhiteSpace(_usuarioID))
             {
-                // 2) Obtenemos el nombre mediante el ID (tu helper existente)
                 string nombreUsuario = BibliotecaBBDD.GetNombreUsuario(_usuarioID);
 
-                // 3) Seleccionamos ese nombre en el combo
                 _inicializando = true;
                 for (int i = 0; i < cbUsuario.Items.Count; i++)
                 {
@@ -60,25 +61,49 @@ namespace Biblioteca.VISTA
                 }
                 _inicializando = false;
 
-                // 4) Cargamos SOLO sus préstamos
                 var prestamosFiltrados = ObtenerPrestamos(_usuarioID);
                 CargarTarjetas(prestamosFiltrados);
             }
         }
 
+        // ✅ NUEVO: Constructor desde DetalleLibros (ID del libro)
+        public listadoPrestamos(int idLibro) : this()
+        {
+            if (idLibro <= 0)
+                return;
+
+            // seleccionar libro en combo (por título)
+            string titulo = BibliotecaBBDD.GetTituloLibro(idLibro);
+
+            _inicializando = true;
+            for (int i = 0; i < cbLibro.Items.Count; i++)
+            {
+                if (cbLibro.Items[i]?.ToString() == titulo)
+                {
+                    cbLibro.SelectedIndex = i;
+                    break;
+                }
+            }
+            _inicializando = false;
+
+            // cargar filtrado por libro
+            var prestamosFiltrados = ObtenerPrestamos("", idLibro);
+            CargarTarjetas(prestamosFiltrados);
+        }
+
         private void listadoPrestamos_Load(object sender, EventArgs e)
         {
-            // Si venimos desde DetalleUsuario ya hemos cargado filtrado arriba.
+            // ✅ si ya hay tarjetas cargadas por un constructor filtrado, no recargar
+            if (flowLayoutPanel1.Controls.Count > 0)
+                return;
+
+            // si venimos por usuario ya se cargó antes
             if (!string.IsNullOrWhiteSpace(_usuarioID))
                 return;
 
-            // Carga normal (sin filtro)
             CargarTarjetas(ObtenerPrestamos());
         }
 
-        // =========================
-        // BOTÓN NUEVO PRÉSTAMO
-        // =========================
         private void btnNuevoPrestamo_Click(object sender, EventArgs e)
         {
             NuevoPrestamo frm = new NuevoPrestamo();
@@ -86,19 +111,14 @@ namespace Biblioteca.VISTA
                 CargarTarjetas(ObtenerPrestamos());
         }
 
-        // =========================
-        // EVENTO CUANDO CAMBIA ALGÚN COMBO
-        // =========================
         private void FiltroCambiado(object sender, EventArgs e)
         {
             if (_inicializando) return;
 
             string usuarioID = "";
 
-            // Si han elegido un usuario concreto en el combo (por nombre)
             if (cbUsuario.SelectedItem != null && cbUsuario.SelectedItem.ToString() != "--Todos--")
             {
-                // Convertimos Nombre -> DNI -> ID (usando tus helpers)
                 string nombreUsuario = cbUsuario.SelectedItem.ToString();
                 string dni = BibliotecaBBDD.GetDNIUsuario(nombreUsuario);
                 if (!string.IsNullOrWhiteSpace(dni))
@@ -113,10 +133,6 @@ namespace Biblioteca.VISTA
             CargarTarjetas(filtrados);
         }
 
-        // =========================
-        // OBTENER PRÉSTAMOS DESDE LA BD
-        //   usuarioID = ID del usuario (NO DNI)
-        // =========================
         private List<Prestamo> ObtenerPrestamos(string usuarioID = "", int idLibro = 0)
         {
             var prestamos = new List<Prestamo>();
@@ -170,9 +186,6 @@ namespace Biblioteca.VISTA
             return prestamos;
         }
 
-        // =========================
-        // PINTAR TARJETAS
-        // =========================
         private void CargarTarjetas(List<Prestamo> prestamos)
         {
             flowLayoutPanel1.Controls.Clear();
@@ -189,9 +202,6 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // =========================
-        // CARGAR USUARIOS Y LIBROS EN COMBOS
-        // =========================
         private void CargarUsuariosCombo()
         {
             cbUsuario.Items.Clear();
@@ -218,14 +228,7 @@ namespace Biblioteca.VISTA
             cbLibro.SelectedIndex = 0;
         }
 
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            // opcional
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            // opcional
-        }
+        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }

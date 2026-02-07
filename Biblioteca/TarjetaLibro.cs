@@ -8,10 +8,16 @@ namespace Biblioteca.VISTA
     {
         private Panel indicadorDisponibilidad;
 
+        // ✅ Evento público para click en portada
+        public event EventHandler PortadaClick;
+
         public TarjetaLibro()
         {
             InitializeComponent();
             CrearIndicadorDisponibilidad();
+
+            // opcional (mejor UX)
+            pictureBoxPortada.Cursor = Cursors.Hand;
         }
 
         // Propiedad para actualizar el círculo según disponibilidad
@@ -33,7 +39,7 @@ namespace Biblioteca.VISTA
             {
                 Size = new Size(20, 20),
                 BackColor = Color.Gray,
-                Location = new Point(5, 5), // esquina superior izquierda
+                Location = new Point(5, 5),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
 
@@ -51,10 +57,7 @@ namespace Biblioteca.VISTA
 
         private void ActualizarIndicador()
         {
-            if (disponible)
-                indicadorDisponibilidad.BackColor = Color.Green;
-            else
-                indicadorDisponibilidad.BackColor = Color.Red;
+            indicadorDisponibilidad.BackColor = disponible ? Color.Green : Color.Red;
         }
 
         // Propiedad para la portada
@@ -68,6 +71,11 @@ namespace Biblioteca.VISTA
         public Button BotonBorrar => btnBorrar;
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-        private void pictureBoxPortada_Click(object sender, EventArgs e) { }
+
+        // ✅ Disparar evento al hacer click
+        private void pictureBoxPortada_Click(object sender, EventArgs e)
+        {
+            PortadaClick?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

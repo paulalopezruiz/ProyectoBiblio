@@ -19,7 +19,6 @@ namespace Biblioteca.VISTA
             InitializeComponent();
             Load += listadoLibros_Load;
 
-            // Suscribir eventos de filtrado
             cbTitulos.SelectedIndexChanged += FiltrarLibros;
             cbAutores.SelectedIndexChanged += FiltrarLibros;
             cbDisponible.CheckedChanged += FiltrarLibros;
@@ -33,7 +32,7 @@ namespace Biblioteca.VISTA
             RellenarComboAutores();
 
             ConfigurarFlowPanel();
-            CargarTarjetas(listaLibros); // carga inicial con todos los libros
+            CargarTarjetas(listaLibros);
         }
 
         private void RellenarComboTitulos()
@@ -42,10 +41,8 @@ namespace Biblioteca.VISTA
             cbTitulos.Items.Add("Todos");
 
             foreach (Libro libro in listaLibros)
-            {
                 if (!cbTitulos.Items.Contains(libro.Titulo))
                     cbTitulos.Items.Add(libro.Titulo);
-            }
 
             cbTitulos.SelectedIndex = 0;
         }
@@ -56,10 +53,8 @@ namespace Biblioteca.VISTA
             cbAutores.Items.Add("Todos");
 
             foreach (Libro libro in listaLibros)
-            {
                 if (!cbAutores.Items.Contains(libro.Escritor))
                     cbAutores.Items.Add(libro.Escritor);
-            }
 
             cbAutores.SelectedIndex = 0;
         }
@@ -71,7 +66,6 @@ namespace Biblioteca.VISTA
             flpLibros.AutoScroll = true;
             flpLibros.BackColor = Color.White;
 
-            // Centrar tarjetas y definir margen
             flpLibros.Padding = new Padding(20, 20, 20, 20);
             flpLibros.Margin = new Padding(0);
         }
@@ -90,10 +84,9 @@ namespace Biblioteca.VISTA
                     Width = 150,
                     Height = 200,
                     Margin = new Padding(margen),
-                    Disponible = libro.Disponible // actualizamos círculo
+                    Disponible = libro.Disponible
                 };
 
-                // Reducir el botón de borrar
                 tarjeta.BotonBorrar.Width = 80;
                 tarjeta.BotonBorrar.Height = 25;
                 tarjeta.BotonBorrar.Anchor = AnchorStyles.None;
@@ -107,33 +100,35 @@ namespace Biblioteca.VISTA
                         if (File.Exists(rutaImagen))
                         {
                             using (var fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
-                            {
-                                tarjeta.Portada = new Bitmap(fs); // carga en memoria
-                            }
+                                tarjeta.Portada = new Bitmap(fs);
                         }
-                        else
-                            tarjeta.Portada = null;
+                        else tarjeta.Portada = null;
                     }
-                    else
-                    {
-                        tarjeta.Portada = null;
-                    }
+                    else tarjeta.Portada = null;
                 }
                 catch
                 {
                     tarjeta.Portada = null;
                 }
 
-                // Evento borrar
-                tarjeta.BotonBorrar.Click += (s, e) =>
-                {
-                    BorrarLibro(libro);
-                };
+                // ✅ Click en portada -> detalle
+                tarjeta.PortadaClick += (s, e) => AbrirDetalleLibro(libro);
+
+                // Borrar
+                tarjeta.BotonBorrar.Click += (s, e) => BorrarLibro(libro);
 
                 flpLibros.Controls.Add(tarjeta);
             }
 
             AjustarColumnas(tarjetasPorFila, 150, margen);
+        }
+
+        private void AbrirDetalleLibro(Libro libro)
+        {
+            if (libro == null) return;
+
+            using (var detalle = new DetalleLibros(libro))
+                detalle.ShowDialog(this);
         }
 
         private void AjustarColumnas(int tarjetasPorFila, int anchoTarjeta, int margen)
@@ -146,64 +141,42 @@ namespace Biblioteca.VISTA
             flpLibros.Padding = new Padding(margenIzq, 20, 20, 20);
         }
 
-        // =========================================
-        // Filtrado por ComboBox y CheckBox
-        // =========================================
         private void FiltrarLibros(object sender, EventArgs e)
         {
             var filtrados = listaLibros.AsEnumerable();
 
-            // Filtrar por título
             if (cbTitulos.SelectedIndex > 0)
             {
                 string titulo = cbTitulos.SelectedItem.ToString();
                 filtrados = filtrados.Where(l => l.Titulo == titulo);
             }
 
-            // Filtrar por autor
             if (cbAutores.SelectedIndex > 0)
             {
                 string autor = cbAutores.SelectedItem.ToString();
                 filtrados = filtrados.Where(l => l.Escritor == autor);
             }
 
-            // Filtrar por disponibilidad
             if (cbDisponible.Checked)
-            {
                 filtrados = filtrados.Where(l => l.Disponible);
-            }
 
             CargarTarjetas(filtrados.ToList());
         }
 
-        private void flpLibros_Paint(object sender, PaintEventArgs e) { }
-
-        private void cbDisponible_CheckedChanged(object sender, EventArgs e) { }
-
         private void AbrirNuevoLibro(object sender, EventArgs e)
         {
-            // Obtenemos la instancia única del formulario
             NuevoLibro frm = NuevoLibro.GetInstance();
-
-            // Cargamos datos en blanco
             frm.CargarDatos();
-
-            // Mostramos el formulario como diálogo modal
             frm.ShowDialog();
 
-            // Una vez cerrado, recargamos los libros para reflejar posibles cambios
             listaLibros = BibliotecaBBDD.GetLibros();
             FiltrarLibros(null, null);
         }
 
-        // =========================================
-        // BORRAR LIBRO
-        // =========================================
         private void BorrarLibro(Libro libro)
         {
             if (libro == null) return;
 
-            // Confirmación
             var resp = MessageBox.Show(
                 $"¿Estás seguro de que quieres borrar el libro \"{libro.Titulo}\"?",
                 "Confirmar borrado",
@@ -215,34 +188,23 @@ namespace Biblioteca.VISTA
 
             try
             {
-                // Borrar de la base de datos
                 SQLiteCommand cmd = new SQLiteCommand("DELETE FROM Libros WHERE ID = @id;");
                 cmd.Parameters.AddWithValue("@id", libro.IdLibro);
                 BibliotecaBBDD.Ejecuta(cmd);
 
-                // Borrar imagen física si existe
                 if (!string.IsNullOrEmpty(libro.Portada))
                 {
                     string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
                     if (File.Exists(rutaImagen))
                     {
-                        // Intentar eliminar varias veces si el archivo estaba bloqueado por alguna razón
                         for (int i = 0; i < 5; i++)
                         {
-                            try
-                            {
-                                File.Delete(rutaImagen);
-                                break;
-                            }
-                            catch
-                            {
-                                System.Threading.Thread.Sleep(50); // esperar un poco
-                            }
+                            try { File.Delete(rutaImagen); break; }
+                            catch { System.Threading.Thread.Sleep(50); }
                         }
                     }
                 }
 
-                // Actualizar lista y refrescar tarjetas
                 listaLibros = BibliotecaBBDD.GetLibros();
                 FiltrarLibros(null, null);
 
@@ -254,6 +216,8 @@ namespace Biblioteca.VISTA
             }
         }
 
+        private void flpLibros_Paint(object sender, PaintEventArgs e) { }
+        private void cbDisponible_CheckedChanged(object sender, EventArgs e) { }
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }
