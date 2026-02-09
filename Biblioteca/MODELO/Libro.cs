@@ -9,7 +9,7 @@ namespace Biblioteca.MODELO
         public string Escritor { get; set; }
         public string Portada { get; set; }
         public int NEjemplares { get; set; }
-        public int PrestamosActivos { get; set; } // calculado dinámicamente
+        public int PrestamosActivos { get; set; } 
 
         // Disponibilidad calculada
         public bool Disponible => NEjemplares - PrestamosActivos > 0;

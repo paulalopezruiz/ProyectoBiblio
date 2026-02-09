@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Data.SQLite;
 using Biblioteca.MODELO;
 using Biblioteca.CONTROLADOR;
 
@@ -8,11 +7,15 @@ namespace Biblioteca.VISTA
 {
     public partial class NuevoUsuario : Form
     {
+        private readonly Controlador controlador;
+
         public Usuario UsuarioCreado { get; private set; }
 
-        public NuevoUsuario()
+        public NuevoUsuario(Controlador controlador)
         {
             InitializeComponent();
+            this.controlador = controlador ?? throw new ArgumentNullException(nameof(controlador));
+
             btnGuardar.Click += btnGuardar_Click;
         }
 
@@ -29,22 +32,10 @@ namespace Biblioteca.VISTA
             string telefono = tbTelefono.Text.Trim();
             string dni = tbDNI.Text.Trim();
 
-            if (nombre.Length == 0 || telefono.Length == 0 || dni.Length == 0)
-            {
-                MessageBox.Show("Faltan datos.");
-                return;
-            }
-
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand(
-                    "INSERT INTO Usuarios (Nombre, Telefono, DNI) VALUES (@nombre, @telefono, @dni);"
-                );
-                cmd.Parameters.AddWithValue("@nombre", nombre);
-                cmd.Parameters.AddWithValue("@telefono", telefono);
-                cmd.Parameters.AddWithValue("@dni", dni);
-
-                BibliotecaBBDD.Ejecuta(cmd);
+                // Llamamos al controlador, que hace TODA la validación
+                controlador.InsertarUsuario(nombre, telefono, dni);
 
                 UsuarioCreado = new Usuario(nombre, telefono, dni);
 
@@ -53,26 +44,12 @@ namespace Biblioteca.VISTA
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error guardando", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error guardando usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void NuevoUsuario_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e) { }
+        private void NuevoUsuario_Load(object sender, EventArgs e) { }
     }
 }
-
-

@@ -7,18 +7,18 @@ using Biblioteca.MODELO;
 
 namespace Biblioteca.CONTROLADOR
 {
-    public class BibliotecaBBDD
+    // Clase de acceso a la base de datos
+    public static class BibliotecaBBDD
     {
-
-
+        // Obtiene la ruta de la base de datos
         private static string ObtenerRutaBBDD()
         {
-            // Ruta de la raíz del proyecto (no bin)
             string rutaBin = AppDomain.CurrentDomain.BaseDirectory;
             string rutaRaiz = Path.Combine(rutaBin, @"..\..\Biblioteca.db");
             return Path.GetFullPath(rutaRaiz);
         }
 
+        // Conecta con SQLite
         public static SQLiteConnection Conectar()
         {
             string cs = "Data Source=" + ObtenerRutaBBDD() + ";Version=3;";
@@ -27,6 +27,7 @@ namespace Biblioteca.CONTROLADOR
             return conexion;
         }
 
+        // Ejecuta un comando y devuelve un DataTable
         public static DataTable GetDataTable(SQLiteCommand cmd)
         {
             try
@@ -45,20 +46,32 @@ namespace Biblioteca.CONTROLADOR
                 throw new Exception("Error en GetDataTable: " + ex.Message);
             }
         }
-        // =========================
-        // Obtener nombre del usuario desde ID (DNI)
-        // =========================
+
+        // Ejecuta un comando sin devolver datos (INSERT, UPDATE, DELETE)
+        public static void Ejecuta(SQLiteCommand cmd)
+        {
+            try
+            {
+                using (SQLiteConnection conexion = Conectar())
+                {
+                    cmd.Connection = conexion;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en Ejecuta: " + ex.Message);
+            }
+        }
+
+        // Métodos de consulta para usuarios
         public static string GetNombreUsuario(string idUsuario)
         {
             SQLiteCommand cmd = new SQLiteCommand("SELECT Nombre FROM Usuarios WHERE ID = @id;");
             cmd.Parameters.AddWithValue("@id", idUsuario);
 
             DataTable dt = GetDataTable(cmd);
-
-            if (dt.Rows.Count > 0)
-                return dt.Rows[0]["Nombre"].ToString();
-
-            return "Desconocido"; // Por si no encuentra
+            return dt.Rows.Count > 0 ? dt.Rows[0]["Nombre"].ToString() : "Desconocido";
         }
 
         public static string GetIDUsuario(string dniUsuario)
@@ -69,79 +82,57 @@ namespace Biblioteca.CONTROLADOR
             cmd.Parameters.AddWithValue("@dni", dniUsuario);
 
             DataTable dt = GetDataTable(cmd);
-            if (dt.Rows.Count > 0)
-                return dt.Rows[0]["ID"].ToString();
-
-            return "";
+            return dt.Rows.Count > 0 ? dt.Rows[0]["ID"].ToString() : "";
         }
 
-
-
-        // =========================
-        // Obtener título del libro desde ID
-        // =========================
-        public static string GetTituloLibro(int idLibro)
-        {
-            SQLiteCommand cmd = new SQLiteCommand("SELECT Titulo FROM Libros WHERE ID = @id;");
-            cmd.Parameters.AddWithValue("@id", idLibro);
-
-            DataTable dt = GetDataTable(cmd);
-
-            if (dt.Rows.Count > 0)
-                return dt.Rows[0]["Titulo"].ToString();
-
-            return "Desconocido"; // Por si no encuentra
-        }
-
-        // Devuelve el DNI del usuario desde su nombre
         public static string GetDNIUsuario(string nombreUsuario)
         {
             SQLiteCommand cmd = new SQLiteCommand("SELECT DNI FROM Usuarios WHERE Nombre = @nombre;");
             cmd.Parameters.AddWithValue("@nombre", nombreUsuario);
 
             DataTable dt = GetDataTable(cmd);
-
-            if (dt.Rows.Count > 0)
-                return dt.Rows[0]["DNI"].ToString();
-
-            return ""; // Devuelve vacío si no se encuentra
+            return dt.Rows.Count > 0 ? dt.Rows[0]["DNI"].ToString() : "";
         }
 
+   
+        // Métodos de consulta para libros
+        public static string GetTituloLibro(int idLibro)
+        {
+            SQLiteCommand cmd = new SQLiteCommand("SELECT Titulo FROM Libros WHERE ID = @id;");
+            cmd.Parameters.AddWithValue("@id", idLibro);
 
-        // Devuelve el ID del libro desde su título
+            DataTable dt = GetDataTable(cmd);
+            return dt.Rows.Count > 0 ? dt.Rows[0]["Titulo"].ToString() : "Desconocido";
+        }
+
         public static int GetIDLibro(string titulo)
         {
             SQLiteCommand cmd = new SQLiteCommand("SELECT ID FROM Libros WHERE Titulo = @titulo;");
             cmd.Parameters.AddWithValue("@titulo", titulo);
 
             DataTable dt = GetDataTable(cmd);
-
-            if (dt.Rows.Count > 0)
-                return int.Parse(dt.Rows[0]["ID"].ToString());
-
-            return 0; // 0 significa "todos los libros"
+            return dt.Rows.Count > 0 ? int.Parse(dt.Rows[0]["ID"].ToString()) : 0;
         }
 
-        // =========================
-        // Obtener lista completa de libros con préstamos activos
-        // =========================
+
+
         public static List<Libro> GetLibros()
         {
             List<Libro> libros = new List<Libro>();
 
             SQLiteCommand cmd = new SQLiteCommand(@"
-        SELECT 
-            l.ID,
-            l.Titulo,
-            l.Escritor,
-            l.Portada,
-            l.NEjemplares,
-            COUNT(p.ID) AS PrestamosActivos
-        FROM Libros l
-        LEFT JOIN Prestamos p 
-            ON l.ID = p.ID_Libro AND p.Devuelto = 0
-        GROUP BY l.ID;
-    ");
+                SELECT 
+                    l.ID,
+                    l.Titulo,
+                    l.Escritor,
+                    l.Portada,
+                    l.NEjemplares,
+                    COUNT(p.ID) AS PrestamosActivos
+                FROM Libros l
+                LEFT JOIN Prestamos p 
+                    ON l.ID = p.ID_Libro AND p.Devuelto = 0
+                GROUP BY l.ID;
+            ");
 
             DataTable dt = GetDataTable(cmd);
 
@@ -161,20 +152,5 @@ namespace Biblioteca.CONTROLADOR
         }
 
 
-        public static void Ejecuta(SQLiteCommand cmd)
-        {
-            try
-            {
-                using (SQLiteConnection conexion = Conectar())
-                {
-                    cmd.Connection = conexion;
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error en Ejecuta: " + ex.Message);
-            }
-        }
     }
 }

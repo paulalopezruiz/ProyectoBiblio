@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Windows.Forms;
 using Biblioteca.MODELO;
+using Biblioteca.CONTROLADOR;
 
 namespace Biblioteca.VISTA
 {
     public partial class DetalleUsuario : Form
     {
         private readonly Usuario _usuario;
-        private bool _prestamosAbiertos = false; // Para controlar que no se vuelva a abrir detalle
 
         public DetalleUsuario(Usuario usuario)
         {
@@ -31,28 +31,49 @@ namespace Biblioteca.VISTA
         }
 
         private void btnVerPrestamos_Click(object sender, EventArgs e)
-{
-    if (_usuario == null)
-    {
-        MessageBox.Show("Usuario no válido.");
-        return;
-    }
+        {
+            if (_usuario == null)
+            {
+                MessageBox.Show("Usuario no válido.");
+                return;
+            }
 
-    Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
-    if (gestor == null)
-    {
-        MessageBox.Show("No se encontró el Gestor para cambiar de pantalla.");
-        return;
-    }
+            // Obtenemos el Gestor que tiene la instancia del Controlador
+            Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
+            if (gestor == null)
+            {
+                MessageBox.Show("No se encontró el Gestor para cambiar de pantalla.");
+                return;
+            }
 
-    // Abrir listado de préstamos filtrado por ID del usuario
-    listadoPrestamos prestamos = new listadoPrestamos(_usuario.DNI);
-    gestor.NavegarA(prestamos);
+            // Evitar abrir doble listado de préstamos: buscamos por tipo de formulario y usuario
+            var yaAbierto = Application.OpenForms
+                                .OfType<Form>()
+                                .FirstOrDefault(f => f is listadoPrestamos lp &&
+                                                     lp.Text.Contains(_usuario.Nombre)); // se puede filtrar por título
 
-    // Cerrar el detalle del usuario inmediatamente
-    this.Close();
-}
+            if (yaAbierto != null)
+            {
+                yaAbierto.BringToFront();
+                return;
+            }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+            // Abrir listado de préstamos filtrado por ID del usuario
+            listadoPrestamos prestamos = new listadoPrestamos(gestor.Controlador, _usuario.DNI);
+            prestamos.Text = $"Préstamos de {_usuario.Nombre}"; // para identificar el formulario
+            gestor.NavegarA(prestamos);
+
+            this.Close();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

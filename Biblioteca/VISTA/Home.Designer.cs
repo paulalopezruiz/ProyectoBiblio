@@ -68,6 +68,7 @@
             this.tlpHome.Controls.Add(this.pUser, 0, 1);
             this.tlpHome.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpHome.Location = new System.Drawing.Point(0, 0);
+            this.tlpHome.MinimumSize = new System.Drawing.Size(800, 450);
             this.tlpHome.Name = "tlpHome";
             this.tlpHome.RowCount = 3;
             this.tlpHome.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));

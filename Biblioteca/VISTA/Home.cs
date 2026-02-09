@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Biblioteca.CONTROLADOR;
+using Biblioteca.VISTA;
 
 namespace Biblioteca.VISTA
 {
@@ -9,9 +11,13 @@ namespace Biblioteca.VISTA
         // Evento que notificará al Gestor que queremos cambiar el formulario
         public event Action<Form> CambiarFormulario;
 
+        // Instancia del controlador para pasar a los listados
+        private Controlador controlador;
+
         public Home()
         {
             InitializeComponent();
+            controlador = new Controlador();
         }
 
         private void panelTarjeta_Paint(object sender, PaintEventArgs e)
@@ -29,24 +35,22 @@ namespace Biblioteca.VISTA
 
         private void pUser_Click(object sender, EventArgs e)
         {
-            // En vez de abrir directamente el formulario, lanzamos un evento
-            CambiarFormulario?.Invoke(new listadoUsuarios());
+            // Pasamos el controlador al listado
+            CambiarFormulario?.Invoke(new listadoUsuarios(controlador));
         }
 
         private void pLibros_Click(object sender, EventArgs e)
         {
-            CambiarFormulario?.Invoke(new listadoLibros());
-
+            // Pasamos el controlador al listado
+            CambiarFormulario?.Invoke(new listadoLibros(controlador));
         }
 
-        // -------------------------
-        // Click en PRÉSTAMOS
-        // -------------------------
         private void pPrestamos_Click(object sender, EventArgs e)
         {
-            CambiarFormulario?.Invoke(new listadoPrestamos());
-
+            // Pasamos el controlador al listado
+            CambiarFormulario?.Invoke(new listadoPrestamos(controlador));
         }
+
         private void tlpHome_Paint(object sender, PaintEventArgs e)
         {
             // opcional

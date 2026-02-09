@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Biblioteca.CONTROLADOR; 
 using Biblioteca.VISTA;
-using Biblioteca.CONTROLADOR;
 
 namespace Biblioteca
 {
     public partial class Gestor : Form
     {
-        public Controlador Controlador { get; set; } = new Controlador();
+        // Propiedad del controlador, inicializada en el constructor
+        public Controlador Controlador { get; set; }
 
         private Label[] menuItems;
         private Form formularioActual; // el formulario actualmente cargado
@@ -18,6 +19,9 @@ namespace Biblioteca
             InitializeComponent();
 
             this.IsMdiContainer = true;
+
+            // Inicializamos el controlador aquí
+            Controlador = new Controlador();
 
             // Enlazamos clicks del menú
             lUsuario.Click += Menu_Click;
@@ -69,12 +73,13 @@ namespace Biblioteca
             {
                 Form formulario = null;
 
+                // PASAMOS EL CONTROLADOR a los listados
                 if (clicked == lUsuario)
-                    formulario = new listadoUsuarios();
+                    formulario = new listadoUsuarios(Controlador);
                 else if (clicked == lLibros)
-                    formulario = new listadoLibros();
+                    formulario = new listadoLibros(Controlador);
                 else if (clicked == lPrestamos)
-                    formulario = new listadoPrestamos();   // <-- AÑADIDO
+                    formulario = new listadoPrestamos(Controlador);
 
                 if (formulario != null)
                 {
@@ -111,7 +116,7 @@ namespace Biblioteca
         private Label DetectarMenuActivo(Form form)
         {
             if (form is listadoUsuarios) return lUsuario;
-            else if (form is listadoPrestamos) return lPrestamos;  // <-- AÑADIDO
+            else if (form is listadoPrestamos) return lPrestamos;
             else if (form is listadoLibros) return lLibros;
 
             return null; // ningún menú asociado
@@ -135,13 +140,12 @@ namespace Biblioteca
 
         public void NavegarA(Form formulario)
         {
-            // Reutiliza tu lógica actual y marca el menú correcto
             CambiarFormulario(formulario, DetectarMenuActivo(formulario));
         }
 
         private void lLibros_Click(object sender, EventArgs e)
         {
-
+            // Mantengo tu código tal cual
         }
     }
 }

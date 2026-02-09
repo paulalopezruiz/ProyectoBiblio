@@ -13,12 +13,15 @@ namespace Biblioteca.VISTA
     public partial class listadoLibros : Form
     {
         private List<Libro> listaLibros;
+        private Controlador controlador;
 
-        public listadoLibros()
+        // Constructor adaptado a MVC
+        public listadoLibros(Controlador controlador)
         {
             InitializeComponent();
-            Load += listadoLibros_Load;
+            this.controlador = controlador;
 
+            Load += listadoLibros_Load;
             cbTitulos.SelectedIndexChanged += FiltrarLibros;
             cbAutores.SelectedIndexChanged += FiltrarLibros;
             cbDisponible.CheckedChanged += FiltrarLibros;
@@ -26,11 +29,10 @@ namespace Biblioteca.VISTA
 
         private void listadoLibros_Load(object sender, EventArgs e)
         {
-            listaLibros = BibliotecaBBDD.GetLibros();
+            listaLibros = controlador.ObtenerLibros(); // USAMOS CONTROLADOR
 
             RellenarComboTitulos();
             RellenarComboAutores();
-
             ConfigurarFlowPanel();
             CargarTarjetas(listaLibros);
         }
@@ -141,6 +143,9 @@ namespace Biblioteca.VISTA
             flpLibros.Padding = new Padding(margenIzq, 20, 20, 20);
         }
 
+        // =========================
+        // FILTRAR LIBROS (método necesario)
+        // =========================
         private void FiltrarLibros(object sender, EventArgs e)
         {
             var filtrados = listaLibros.AsEnumerable();
@@ -165,11 +170,11 @@ namespace Biblioteca.VISTA
 
         private void AbrirNuevoLibro(object sender, EventArgs e)
         {
-            NuevoLibro frm = NuevoLibro.GetInstance();
+            NuevoLibro frm = new NuevoLibro(controlador);
             frm.CargarDatos();
             frm.ShowDialog();
 
-            listaLibros = BibliotecaBBDD.GetLibros();
+            listaLibros = controlador.ObtenerLibros(); // USAMOS CONTROLADOR
             FiltrarLibros(null, null);
         }
 
@@ -190,7 +195,8 @@ namespace Biblioteca.VISTA
             {
                 SQLiteCommand cmd = new SQLiteCommand("DELETE FROM Libros WHERE ID = @id;");
                 cmd.Parameters.AddWithValue("@id", libro.IdLibro);
-                BibliotecaBBDD.Ejecuta(cmd);
+
+                controlador.EjecutarComando(cmd); // USAMOS CONTROLADOR
 
                 if (!string.IsNullOrEmpty(libro.Portada))
                 {
@@ -205,7 +211,7 @@ namespace Biblioteca.VISTA
                     }
                 }
 
-                listaLibros = BibliotecaBBDD.GetLibros();
+                listaLibros = controlador.ObtenerLibros(); // USAMOS CONTROLADOR
                 FiltrarLibros(null, null);
 
                 MessageBox.Show("Libro borrado correctamente.");

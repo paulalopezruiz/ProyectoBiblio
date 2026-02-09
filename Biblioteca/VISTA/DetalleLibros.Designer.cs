@@ -53,13 +53,15 @@
             this.tableLayoutPanel1.Controls.Add(this.pictureBoxPortada, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45.38606F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.96422F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.649717F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(647, 355);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(958, 543);
             this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // tableLayoutPanel2
             // 
@@ -74,23 +76,25 @@
             this.tableLayoutPanel2.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label3, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(164, 164);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(243, 251);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(317, 167);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(471, 255);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
             this.lblTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTitulo.Location = new System.Drawing.Point(3, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(4, 0);
+            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(94, 16);
+            this.lblTitulo.Size = new System.Drawing.Size(148, 25);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Título";
             // 
@@ -98,9 +102,10 @@
             // 
             this.lblAutor.AutoSize = true;
             this.lblAutor.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblAutor.Location = new System.Drawing.Point(3, 41);
+            this.lblAutor.Location = new System.Drawing.Point(4, 63);
+            this.lblAutor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAutor.Name = "lblAutor";
-            this.lblAutor.Size = new System.Drawing.Size(94, 16);
+            this.lblAutor.Size = new System.Drawing.Size(148, 25);
             this.lblAutor.TabIndex = 1;
             this.lblAutor.Text = "Autor";
             // 
@@ -108,9 +113,10 @@
             // 
             this.lblISBN.AutoSize = true;
             this.lblISBN.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblISBN.Location = new System.Drawing.Point(3, 82);
+            this.lblISBN.Location = new System.Drawing.Point(4, 126);
+            this.lblISBN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblISBN.Name = "lblISBN";
-            this.lblISBN.Size = new System.Drawing.Size(94, 16);
+            this.lblISBN.Size = new System.Drawing.Size(148, 25);
             this.lblISBN.TabIndex = 2;
             this.lblISBN.Text = "Nº Ejemplares";
             // 
@@ -119,10 +125,10 @@
             this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardar.Location = new System.Drawing.Point(100, 126);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(100, 3, 100, 3);
+            this.btnGuardar.Location = new System.Drawing.Point(150, 194);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(117, 38);
+            this.btnGuardar.Size = new System.Drawing.Size(171, 56);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Ver Prestamos";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -131,10 +137,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Location = new System.Drawing.Point(102, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(159, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(213, 16);
+            this.label1.Size = new System.Drawing.Size(309, 25);
             this.label1.TabIndex = 7;
             this.label1.Text = "label1";
             // 
@@ -142,10 +147,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Location = new System.Drawing.Point(102, 41);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(159, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(213, 16);
+            this.label2.Size = new System.Drawing.Size(309, 25);
             this.label2.TabIndex = 8;
             this.label2.Text = "label2";
             // 
@@ -153,10 +157,9 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Location = new System.Drawing.Point(102, 82);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(159, 126);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(213, 16);
+            this.label3.Size = new System.Drawing.Size(309, 25);
             this.label3.TabIndex = 9;
             this.label3.Text = "label3";
             // 
@@ -164,21 +167,21 @@
             // 
             this.pictureBoxPortada.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxPortada.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxPortada.Location = new System.Drawing.Point(164, 3);
+            this.pictureBoxPortada.Location = new System.Drawing.Point(243, 5);
+            this.pictureBoxPortada.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBoxPortada.Name = "pictureBoxPortada";
-            this.pictureBoxPortada.Size = new System.Drawing.Size(317, 155);
+            this.pictureBoxPortada.Size = new System.Drawing.Size(471, 236);
             this.pictureBoxPortada.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxPortada.TabIndex = 1;
             this.pictureBoxPortada.TabStop = false;
             // 
             // DetalleLibros
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 355);
+            this.ClientSize = new System.Drawing.Size(958, 543);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(665, 402);
+            this.MinimumSize = new System.Drawing.Size(984, 588);
             this.Name = "DetalleLibros";
             this.Text = "DetalleLibros";
             this.tableLayoutPanel1.ResumeLayout(false);

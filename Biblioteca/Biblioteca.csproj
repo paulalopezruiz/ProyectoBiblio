@@ -175,6 +175,7 @@
     <Content Include="imagenes\don.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="imagenes\geronimo.jpg" />
     <Content Include="imagenes\historia.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

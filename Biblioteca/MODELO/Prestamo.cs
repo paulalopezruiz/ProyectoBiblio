@@ -4,11 +4,11 @@ namespace Biblioteca.MODELO
 {
     public class Prestamo
     {
-        public int ID { get; set; }          // ID del préstamo
-        public int ID_Libro { get; set; }    // FK del libro
-        public string ID_Usuario { get; set; } // FK del usuario (DNI)
+        public int ID { get; set; }         
+        public int ID_Libro { get; set; }   
+        public string ID_Usuario { get; set; } 
         public DateTime Fecha_Inicio { get; set; }
-        public DateTime? Fecha_Fin { get; set; } // nullable
+        public DateTime? Fecha_Fin { get; set; } 
         public bool Devuelto { get; set; }
 
         public Prestamo(int id, int idLibro, string idUsuario, DateTime fechaInicio, int devuelto = 0)

@@ -4,17 +4,14 @@ namespace Biblioteca.MODELO
 {
     public class Usuario
     {
-        // =========================
-        // PROPIEDADES
-        // =========================
-        public string ID { get; set; }          // ID interno en la BD
+       
+        public string ID { get; set; }        
         public string Nombre { get; set; }
         public string Telefono { get; set; }
         public string DNI { get; set; }
 
-        // =========================
         // CONSTRUCTORES
-        // =========================
+
         // Constructor completo con ID
         public Usuario(string id, string nombre, string telefono, string dni)
         {
@@ -42,9 +39,9 @@ namespace Biblioteca.MODELO
             Telefono = null;
         }
 
-        // =========================
+
         // MÉTODOS
-        // =========================
+ 
         public override string ToString()
         {
             return string.Format("{0} - {1}", Nombre, DNI);

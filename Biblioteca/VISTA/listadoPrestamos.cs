@@ -2,8 +2,7 @@
 using Biblioteca.MODELO;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SQLite;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Biblioteca.VISTA
@@ -12,48 +11,43 @@ namespace Biblioteca.VISTA
     {
         private string _usuarioID;
         private bool _inicializando;
+        private Controlador controlador;
 
-        public listadoPrestamos()
+        // Constructor principal
+        public listadoPrestamos(Controlador controlador)
         {
             InitializeComponent();
+            this.controlador = controlador;
 
-            // ✅ ARREGLO: para que aparezca la X aunque en Designer esté en None
-            //this.FormBorderStyle = FormBorderStyle.Sizable;
             this.ControlBox = true;
 
             _usuarioID = null;
             _inicializando = true;
 
             btnNuevo.Click += btnNuevoPrestamo_Click;
-
             cbUsuario.SelectedIndexChanged += FiltroCambiado;
             cbLibro.SelectedIndexChanged += FiltroCambiado;
 
             CargarUsuariosCombo();
             CargarLibrosCombo();
 
-            // ✅ asegurar load
             Load += listadoPrestamos_Load;
-
             _inicializando = false;
         }
 
-        // Constructor desde DetalleUsuario (DNI)
-        public listadoPrestamos(string dniUsuario) : this()
+        // Constructor desde DetalleUsuario
+        public listadoPrestamos(Controlador controlador, string dniUsuario) : this(controlador)
         {
-            if (string.IsNullOrWhiteSpace(dniUsuario))
-                return;
+            if (string.IsNullOrWhiteSpace(dniUsuario)) return;
 
-            _usuarioID = BibliotecaBBDD.GetIDUsuario(dniUsuario);
-
+            _usuarioID = controlador.ObtenerIDUsuario(dniUsuario);
             if (!string.IsNullOrWhiteSpace(_usuarioID))
             {
-                string nombreUsuario = BibliotecaBBDD.GetNombreUsuario(_usuarioID);
-
+                // Seleccionar usuario correcto en ComboBox
                 _inicializando = true;
                 for (int i = 0; i < cbUsuario.Items.Count; i++)
                 {
-                    if (cbUsuario.Items[i]?.ToString() == nombreUsuario)
+                    if (cbUsuario.Items[i] is ComboBoxItem item && item.Value == _usuarioID)
                     {
                         cbUsuario.SelectedIndex = i;
                         break;
@@ -66,15 +60,12 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // ✅ NUEVO: Constructor desde DetalleLibros (ID del libro)
-        public listadoPrestamos(int idLibro) : this()
+        // Constructor desde DetalleLibros
+        public listadoPrestamos(Controlador controlador, int idLibro) : this(controlador)
         {
-            if (idLibro <= 0)
-                return;
+            if (idLibro <= 0) return;
 
-            // seleccionar libro en combo (por título)
-            string titulo = BibliotecaBBDD.GetTituloLibro(idLibro);
-
+            string titulo = controlador.ObtenerTituloLibro(idLibro);
             _inicializando = true;
             for (int i = 0; i < cbLibro.Items.Count; i++)
             {
@@ -86,27 +77,20 @@ namespace Biblioteca.VISTA
             }
             _inicializando = false;
 
-            // cargar filtrado por libro
             var prestamosFiltrados = ObtenerPrestamos("", idLibro);
             CargarTarjetas(prestamosFiltrados);
         }
 
         private void listadoPrestamos_Load(object sender, EventArgs e)
         {
-            // ✅ si ya hay tarjetas cargadas por un constructor filtrado, no recargar
-            if (flowLayoutPanel1.Controls.Count > 0)
-                return;
-
-            // si venimos por usuario ya se cargó antes
-            if (!string.IsNullOrWhiteSpace(_usuarioID))
-                return;
-
+            if (flowLayoutPanel1.Controls.Count > 0) return;
+            if (!string.IsNullOrWhiteSpace(_usuarioID)) return;
             CargarTarjetas(ObtenerPrestamos());
         }
 
         private void btnNuevoPrestamo_Click(object sender, EventArgs e)
         {
-            NuevoPrestamo frm = new NuevoPrestamo();
+            NuevoPrestamo frm = new NuevoPrestamo(controlador);
             if (frm.ShowDialog() == DialogResult.OK)
                 CargarTarjetas(ObtenerPrestamos());
         }
@@ -116,18 +100,14 @@ namespace Biblioteca.VISTA
             if (_inicializando) return;
 
             string usuarioID = "";
-
-            if (cbUsuario.SelectedItem != null && cbUsuario.SelectedItem.ToString() != "--Todos--")
+            if (cbUsuario.SelectedItem != null && cbUsuario.SelectedItem is ComboBoxItem itemUsuario && itemUsuario.Value != "--Todos--")
             {
-                string nombreUsuario = cbUsuario.SelectedItem.ToString();
-                string dni = BibliotecaBBDD.GetDNIUsuario(nombreUsuario);
-                if (!string.IsNullOrWhiteSpace(dni))
-                    usuarioID = BibliotecaBBDD.GetIDUsuario(dni);
+                usuarioID = itemUsuario.Value; // Ya tenemos el ID
             }
 
             int idLibro = 0;
             if (cbLibro.SelectedItem != null && cbLibro.SelectedItem.ToString() != "--Todos--")
-                idLibro = BibliotecaBBDD.GetIDLibro(cbLibro.SelectedItem.ToString());
+                idLibro = controlador.ObtenerIDLibro(cbLibro.SelectedItem.ToString());
 
             var filtrados = ObtenerPrestamos(usuarioID, idLibro);
             CargarTarjetas(filtrados);
@@ -136,9 +116,8 @@ namespace Biblioteca.VISTA
         private List<Prestamo> ObtenerPrestamos(string usuarioID = "", int idLibro = 0)
         {
             var prestamos = new List<Prestamo>();
-            List<string> condiciones = new List<string>();
-            SQLiteCommand cmd = new SQLiteCommand();
-
+            var condiciones = new List<string>();
+            var cmd = new System.Data.SQLite.SQLiteCommand();
             string sql = "SELECT ID, ID_Libro, ID_Usuario, Fecha_Inicio, Fecha_Fin, Devuelto FROM Prestamos";
 
             if (!string.IsNullOrWhiteSpace(usuarioID))
@@ -159,9 +138,9 @@ namespace Biblioteca.VISTA
             sql += " ORDER BY Fecha_Inicio;";
             cmd.CommandText = sql;
 
-            DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
+            var dt = controlador.GetDataTable(cmd);
 
-            foreach (DataRow row in dt.Rows)
+            foreach (System.Data.DataRow row in dt.Rows)
             {
                 int idPrestamo = int.Parse(row["ID"].ToString());
                 int idLibroPrestamo = int.Parse(row["ID_Libro"].ToString());
@@ -189,14 +168,12 @@ namespace Biblioteca.VISTA
         private void CargarTarjetas(List<Prestamo> prestamos)
         {
             flowLayoutPanel1.Controls.Clear();
-
             foreach (var p in prestamos)
             {
-                TarjetaPrestamo tarjeta = new TarjetaPrestamo
+                var tarjeta = new TarjetaPrestamo
                 {
                     Width = flowLayoutPanel1.ClientSize.Width - 20
                 };
-
                 tarjeta.PonerDatos(p);
                 flowLayoutPanel1.Controls.Add(tarjeta);
             }
@@ -205,13 +182,13 @@ namespace Biblioteca.VISTA
         private void CargarUsuariosCombo()
         {
             cbUsuario.Items.Clear();
-            cbUsuario.Items.Add("--Todos--");
+            cbUsuario.Items.Add(new ComboBoxItem("--Todos--", "--Todos--"));
 
-            SQLiteCommand cmd = new SQLiteCommand("SELECT Nombre FROM Usuarios ORDER BY Nombre;");
-            DataTable dt = BibliotecaBBDD.GetDataTable(cmd);
-
-            foreach (DataRow row in dt.Rows)
-                cbUsuario.Items.Add(row["Nombre"].ToString());
+            var usuarios = controlador.ObtenerUsuarios();
+            foreach (var u in usuarios)
+            {
+                cbUsuario.Items.Add(new ComboBoxItem(u.Nombre, u.ID));
+            }
 
             cbUsuario.SelectedIndex = 0;
         }
@@ -221,14 +198,29 @@ namespace Biblioteca.VISTA
             cbLibro.Items.Clear();
             cbLibro.Items.Add("--Todos--");
 
-            DataTable dt = BibliotecaBBDD.GetDataTable(new SQLiteCommand("SELECT Titulo FROM Libros ORDER BY Titulo;"));
-            foreach (DataRow row in dt.Rows)
-                cbLibro.Items.Add(row["Titulo"].ToString());
+            var libros = controlador.ObtenerTitulosLibros();
+            foreach (var l in libros)
+                cbLibro.Items.Add(l);
 
             cbLibro.SelectedIndex = 0;
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void tableLayoutPanel1_Paint(object sender, EventArgs e) { }
+
+        // Clase auxiliar para almacenar texto y valor en ComboBox
+        private class ComboBoxItem
+        {
+            public string Text { get; }
+            public string Value { get; }
+
+            public ComboBoxItem(string text, string value)
+            {
+                Text = text;
+                Value = value;
+            }
+
+            public override string ToString() => Text;
+        }
     }
 }

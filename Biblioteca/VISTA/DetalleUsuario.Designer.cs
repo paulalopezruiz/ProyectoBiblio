@@ -50,14 +50,15 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(647, 355);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(958, 555);
             this.tableLayoutPanel1.TabIndex = 1;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint_1);
             // 
             // tableLayoutPanel2
             // 
@@ -72,23 +73,25 @@
             this.tableLayoutPanel2.Controls.Add(this.lTlf, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.lDni, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(164, 91);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(243, 143);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(317, 171);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(471, 267);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblNombre
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblNombre.Location = new System.Drawing.Point(3, 0);
+            this.lblNombre.Location = new System.Drawing.Point(4, 0);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(61, 16);
+            this.lblNombre.Size = new System.Drawing.Size(96, 25);
             this.lblNombre.TabIndex = 0;
             this.lblNombre.Text = "Nombre";
             // 
@@ -96,9 +99,10 @@
             // 
             this.lblTelefono.AutoSize = true;
             this.lblTelefono.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblTelefono.Location = new System.Drawing.Point(3, 42);
+            this.lblTelefono.Location = new System.Drawing.Point(4, 66);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(61, 16);
+            this.lblTelefono.Size = new System.Drawing.Size(96, 25);
             this.lblTelefono.TabIndex = 1;
             this.lblTelefono.Text = "Telefono";
             // 
@@ -106,9 +110,10 @@
             // 
             this.lblDNI.AutoSize = true;
             this.lblDNI.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lblDNI.Location = new System.Drawing.Point(3, 84);
+            this.lblDNI.Location = new System.Drawing.Point(4, 132);
+            this.lblDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDNI.Name = "lblDNI";
-            this.lblDNI.Size = new System.Drawing.Size(61, 16);
+            this.lblDNI.Size = new System.Drawing.Size(96, 25);
             this.lblDNI.TabIndex = 2;
             this.lblDNI.Text = "DNI";
             // 
@@ -117,10 +122,10 @@
             this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardar.Location = new System.Drawing.Point(100, 129);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(100, 3, 100, 3);
+            this.btnGuardar.Location = new System.Drawing.Point(150, 203);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(117, 39);
+            this.btnGuardar.Size = new System.Drawing.Size(171, 59);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Ver Prestamos";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -130,10 +135,9 @@
             // 
             this.lNombre.AutoSize = true;
             this.lNombre.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lNombre.Location = new System.Drawing.Point(69, 0);
-            this.lNombre.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lNombre.Location = new System.Drawing.Point(107, 0);
             this.lNombre.Name = "lNombre";
-            this.lNombre.Size = new System.Drawing.Size(246, 16);
+            this.lNombre.Size = new System.Drawing.Size(361, 25);
             this.lNombre.TabIndex = 7;
             this.lNombre.Text = "label1";
             // 
@@ -141,10 +145,9 @@
             // 
             this.lTlf.AutoSize = true;
             this.lTlf.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lTlf.Location = new System.Drawing.Point(69, 42);
-            this.lTlf.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lTlf.Location = new System.Drawing.Point(107, 66);
             this.lTlf.Name = "lTlf";
-            this.lTlf.Size = new System.Drawing.Size(246, 16);
+            this.lTlf.Size = new System.Drawing.Size(361, 25);
             this.lTlf.TabIndex = 8;
             this.lTlf.Text = "label2";
             // 
@@ -152,21 +155,19 @@
             // 
             this.lDni.AutoSize = true;
             this.lDni.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lDni.Location = new System.Drawing.Point(69, 84);
-            this.lDni.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lDni.Location = new System.Drawing.Point(107, 132);
             this.lDni.Name = "lDni";
-            this.lDni.Size = new System.Drawing.Size(246, 16);
+            this.lDni.Size = new System.Drawing.Size(361, 25);
             this.lDni.TabIndex = 9;
             this.lDni.Text = "label3";
             // 
             // DetalleUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 355);
+            this.ClientSize = new System.Drawing.Size(958, 555);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
-            this.MinimumSize = new System.Drawing.Size(665, 402);
+            this.MinimumSize = new System.Drawing.Size(984, 588);
             this.Name = "DetalleUsuario";
             this.Text = "DetalleUsuario";
             this.Load += new System.EventHandler(this.DetalleUsuario_Load);

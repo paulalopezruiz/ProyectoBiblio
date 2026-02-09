@@ -53,12 +53,13 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.43243F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 79.45946F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8.288288F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(647, 355);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(864, 555);
             this.tableLayoutPanel1.TabIndex = 1;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -78,7 +79,8 @@
             this.tableLayoutPanel2.Controls.Add(this.lblFechaLimite, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnDevolver, 0, 5);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(164, 47);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(220, 73);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 6;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -87,16 +89,17 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(317, 275);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(424, 430);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lLibro
             // 
             this.lLibro.AutoSize = true;
             this.lLibro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lLibro.Location = new System.Drawing.Point(3, 0);
+            this.lLibro.Location = new System.Drawing.Point(4, 0);
+            this.lLibro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lLibro.Name = "lLibro";
-            this.lLibro.Size = new System.Drawing.Size(138, 45);
+            this.lLibro.Size = new System.Drawing.Size(184, 71);
             this.lLibro.TabIndex = 3;
             this.lLibro.Text = "Libro";
             this.lLibro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -105,9 +108,10 @@
             // 
             this.lUsuario.AutoSize = true;
             this.lUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lUsuario.Location = new System.Drawing.Point(3, 45);
+            this.lUsuario.Location = new System.Drawing.Point(4, 71);
+            this.lUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lUsuario.Name = "lUsuario";
-            this.lUsuario.Size = new System.Drawing.Size(138, 45);
+            this.lUsuario.Size = new System.Drawing.Size(184, 71);
             this.lUsuario.TabIndex = 4;
             this.lUsuario.Text = "Usuario";
             this.lUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,9 +120,10 @@
             // 
             this.lFechaInicio.AutoSize = true;
             this.lFechaInicio.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lFechaInicio.Location = new System.Drawing.Point(3, 90);
+            this.lFechaInicio.Location = new System.Drawing.Point(4, 142);
+            this.lFechaInicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lFechaInicio.Name = "lFechaInicio";
-            this.lFechaInicio.Size = new System.Drawing.Size(138, 45);
+            this.lFechaInicio.Size = new System.Drawing.Size(184, 71);
             this.lFechaInicio.TabIndex = 5;
             this.lFechaInicio.Text = "Fecha Inicio";
             this.lFechaInicio.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -127,10 +132,9 @@
             // 
             this.lblLibroValor.AutoSize = true;
             this.lblLibroValor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblLibroValor.Location = new System.Drawing.Point(146, 0);
-            this.lblLibroValor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblLibroValor.Location = new System.Drawing.Point(195, 0);
             this.lblLibroValor.Name = "lblLibroValor";
-            this.lblLibroValor.Size = new System.Drawing.Size(169, 45);
+            this.lblLibroValor.Size = new System.Drawing.Size(226, 71);
             this.lblLibroValor.TabIndex = 6;
             this.lblLibroValor.Text = "label1";
             this.lblLibroValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -139,10 +143,9 @@
             // 
             this.lblFechaFinTitulo.AutoSize = true;
             this.lblFechaFinTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFechaFinTitulo.Location = new System.Drawing.Point(2, 135);
-            this.lblFechaFinTitulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFechaFinTitulo.Location = new System.Drawing.Point(3, 213);
             this.lblFechaFinTitulo.Name = "lblFechaFinTitulo";
-            this.lblFechaFinTitulo.Size = new System.Drawing.Size(140, 45);
+            this.lblFechaFinTitulo.Size = new System.Drawing.Size(186, 71);
             this.lblFechaFinTitulo.TabIndex = 7;
             this.lblFechaFinTitulo.Text = "Fecha Fin";
             this.lblFechaFinTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -151,10 +154,9 @@
             // 
             this.lblUsuarioValor.AutoSize = true;
             this.lblUsuarioValor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblUsuarioValor.Location = new System.Drawing.Point(146, 45);
-            this.lblUsuarioValor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuarioValor.Location = new System.Drawing.Point(195, 71);
             this.lblUsuarioValor.Name = "lblUsuarioValor";
-            this.lblUsuarioValor.Size = new System.Drawing.Size(169, 45);
+            this.lblUsuarioValor.Size = new System.Drawing.Size(226, 71);
             this.lblUsuarioValor.TabIndex = 8;
             this.lblUsuarioValor.Text = "label2";
             this.lblUsuarioValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -163,10 +165,9 @@
             // 
             this.lblFechaInicioValor.AutoSize = true;
             this.lblFechaInicioValor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFechaInicioValor.Location = new System.Drawing.Point(146, 90);
-            this.lblFechaInicioValor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFechaInicioValor.Location = new System.Drawing.Point(195, 142);
             this.lblFechaInicioValor.Name = "lblFechaInicioValor";
-            this.lblFechaInicioValor.Size = new System.Drawing.Size(169, 45);
+            this.lblFechaInicioValor.Size = new System.Drawing.Size(226, 71);
             this.lblFechaInicioValor.TabIndex = 9;
             this.lblFechaInicioValor.Text = "label3";
             this.lblFechaInicioValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -175,10 +176,9 @@
             // 
             this.lblFechaFinValor.AutoSize = true;
             this.lblFechaFinValor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFechaFinValor.Location = new System.Drawing.Point(146, 135);
-            this.lblFechaFinValor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFechaFinValor.Location = new System.Drawing.Point(195, 213);
             this.lblFechaFinValor.Name = "lblFechaFinValor";
-            this.lblFechaFinValor.Size = new System.Drawing.Size(169, 45);
+            this.lblFechaFinValor.Size = new System.Drawing.Size(226, 71);
             this.lblFechaFinValor.TabIndex = 10;
             this.lblFechaFinValor.Text = "lblFechaFinValor";
             this.lblFechaFinValor.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -189,10 +189,9 @@
             this.lblFechaLimite.BackColor = System.Drawing.Color.DarkOrange;
             this.tableLayoutPanel2.SetColumnSpan(this.lblFechaLimite, 2);
             this.lblFechaLimite.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblFechaLimite.Location = new System.Drawing.Point(2, 180);
-            this.lblFechaLimite.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblFechaLimite.Location = new System.Drawing.Point(3, 284);
             this.lblFechaLimite.Name = "lblFechaLimite";
-            this.lblFechaLimite.Size = new System.Drawing.Size(313, 45);
+            this.lblFechaLimite.Size = new System.Drawing.Size(418, 71);
             this.lblFechaLimite.TabIndex = 11;
             this.lblFechaLimite.Text = "FECHA LIMITE: fecha";
             this.lblFechaLimite.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -201,21 +200,21 @@
             // 
             this.tableLayoutPanel2.SetColumnSpan(this.btnDevolver, 2);
             this.btnDevolver.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnDevolver.Location = new System.Drawing.Point(53, 231);
-            this.btnDevolver.Margin = new System.Windows.Forms.Padding(53, 6, 53, 6);
+            this.btnDevolver.Location = new System.Drawing.Point(80, 364);
+            this.btnDevolver.Margin = new System.Windows.Forms.Padding(80, 9, 80, 9);
             this.btnDevolver.Name = "btnDevolver";
-            this.btnDevolver.Size = new System.Drawing.Size(211, 38);
+            this.btnDevolver.Size = new System.Drawing.Size(264, 57);
             this.btnDevolver.TabIndex = 12;
             this.btnDevolver.Text = "DEVOLVER";
             this.btnDevolver.UseVisualStyleBackColor = true;
             // 
             // DetallePrestamo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 355);
+            this.ClientSize = new System.Drawing.Size(864, 555);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.MinimumSize = new System.Drawing.Size(890, 626);
             this.Name = "DetallePrestamo";
             this.Text = "DetallePrestamo";
             this.Load += new System.EventHandler(this.DetallePrestamo_Load_1);
