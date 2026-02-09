@@ -81,7 +81,6 @@
     <Compile Include="CONTROLADOR\BibliotecaBBDD.cs" />
     <Compile Include="CONTROLADOR\Controlador.cs" />
     <Compile Include="MODELO\Libro.cs" />
-    <Compile Include="MODELO\modelo.cs" />
     <Compile Include="MODELO\Prestamo.cs" />
     <Compile Include="MODELO\Usuario.cs" />
     <Compile Include="TarjetaLibro.cs">

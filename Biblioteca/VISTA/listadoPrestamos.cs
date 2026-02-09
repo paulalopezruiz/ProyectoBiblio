@@ -18,7 +18,7 @@ namespace Biblioteca.VISTA
             InitializeComponent();
 
             // ✅ ARREGLO: para que aparezca la X aunque en Designer esté en None
-            this.FormBorderStyle = FormBorderStyle.Sizable;
+            //this.FormBorderStyle = FormBorderStyle.Sizable;
             this.ControlBox = true;
 
             _usuarioID = null;
