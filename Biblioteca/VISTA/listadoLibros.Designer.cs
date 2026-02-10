@@ -78,7 +78,7 @@
             this.btnNuevo.TabIndex = 11;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
-            this.btnNuevo.Click += new System.EventHandler(this.AbrirNuevoLibro);
+            this.btnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
             // flpLibros
             // 
@@ -174,7 +174,6 @@
             this.cbDisponible.TabIndex = 10;
             this.cbDisponible.Text = "Disponibilidad";
             this.cbDisponible.UseVisualStyleBackColor = true;
-            this.cbDisponible.CheckedChanged += new System.EventHandler(this.cbDisponible_CheckedChanged);
             // 
             // listadoLibros
             // 

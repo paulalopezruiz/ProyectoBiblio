@@ -23,9 +23,8 @@ namespace Biblioteca.VISTA
         {
             if (_usuario == null) return;
 
-            Gestor gestor = this.MdiParent as Gestor
-                            ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
-
+            // Obtener controlador desde Gestor
+            Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
             controlador = gestor?.Controlador;
 
             // Mostrar datos
@@ -47,6 +46,9 @@ namespace Biblioteca.VISTA
             tbNombre.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Nombre);
             tbTelefono.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Telefono);
             tbDni.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Dni);
+
+            // Botón Ver Préstamos
+            btnVerPrestamos.Click += BtnVerPrestamos_Click;
         }
 
         private enum Campo
@@ -94,6 +96,18 @@ namespace Biblioteca.VISTA
 
             HuboCambios = true;
             ke.SuppressKeyPress = true;
+        }
+
+        private void BtnVerPrestamos_Click(object sender, EventArgs e)
+        {
+            // Abrir listado de préstamos filtrado por este usuario
+            listadoPrestamos listado = new listadoPrestamos(controlador, _usuario.DNI);
+
+            Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
+            if (gestor != null)
+            {
+                gestor.NavegarA(listado); // Se incrusta en MDI sin duplicados
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)

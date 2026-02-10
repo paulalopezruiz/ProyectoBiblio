@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Linq;
 using Biblioteca.MODELO;
 
 namespace Biblioteca.CONTROLADOR
@@ -33,6 +34,27 @@ namespace Biblioteca.CONTROLADOR
 
         public void InsertarUsuario(string nombre, string telefono, string dni)
         {
+            // =========================
+            // VALIDACIONES
+            // =========================
+            if (string.IsNullOrWhiteSpace(nombre))
+                throw new Exception("El nombre no puede estar vacío.");
+
+            if (string.IsNullOrWhiteSpace(telefono))
+                throw new Exception("El teléfono no puede estar vacío.");
+
+            if (!telefono.All(char.IsDigit))
+                throw new Exception("El teléfono solo puede contener números.");
+
+            if (string.IsNullOrWhiteSpace(dni))
+                throw new Exception("El DNI no puede estar vacío.");
+
+            if (!EsDNIValido(dni))
+                throw new Exception("El DNI no tiene un formato válido.");
+
+            // =========================
+            // INSERTAR EN BBDD
+            // =========================
             SQLiteCommand cmd = new SQLiteCommand(
                 "INSERT INTO Usuarios (Nombre, Telefono, DNI) VALUES (@nombre, @telefono, @dni);"
             );
@@ -41,6 +63,24 @@ namespace Biblioteca.CONTROLADOR
             cmd.Parameters.AddWithValue("@dni", dni);
             BibliotecaBBDD.Ejecuta(cmd);
         }
+
+   
+        private bool EsDNIValido(string dni)
+        {
+            if (dni.Length != 9) return false;
+
+            string numeros = dni.Substring(0, 8);
+            char letra = char.ToUpper(dni[8]);
+
+            if (!numeros.All(char.IsDigit)) return false;
+
+            string letrasDNI = "TRWAGMYFPDXBNJZSQVHLCKE";
+            int num = int.Parse(numeros);
+            char letraCorrecta = letrasDNI[num % 23];
+
+            return letra == letraCorrecta;
+        }
+
 
         public void BorrarUsuario(string dni)
         {
@@ -163,6 +203,35 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.UpdateUsuarioDNI(idUsuario, nuevoDNI);
         }
 
+        // =========================
+        // ACTUALIZAR LIBRO
+        // =========================
+        public void ActualizarTituloLibro(int idLibro, string nuevoTitulo)
+        {
+            BibliotecaBBDD.ActualizarTituloLibro(idLibro, nuevoTitulo);
+        }
+
+        public void ActualizarAutorLibro(int idLibro, string nuevoAutor)
+        {
+            BibliotecaBBDD.ActualizarAutorLibro(idLibro, nuevoAutor);
+        }
+
+        public void ActualizarNEjemplares(int idLibro, int nEjemplares)
+        {
+            BibliotecaBBDD.ActualizarNEjemplares(idLibro, nEjemplares);
+        }
+
+        public void ActualizarPortadaLibro(int idLibro, string rutaPortada)
+        {
+            BibliotecaBBDD.ActualizarPortada(idLibro, rutaPortada);
+        }
+
+
+        // BORRAR LIBRO
+        public void BorrarLibro(int idLibro)
+        {
+            BibliotecaBBDD.BorrarLibro(idLibro);
+        }
 
 
 

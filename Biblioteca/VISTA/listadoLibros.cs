@@ -4,7 +4,6 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Data.SQLite;
 using Biblioteca.CONTROLADOR;
 using Biblioteca.MODELO;
 
@@ -15,7 +14,6 @@ namespace Biblioteca.VISTA
         private List<Libro> listaLibros;
         private Controlador controlador;
 
-        // Constructor adaptado a MVC
         public listadoLibros(Controlador controlador)
         {
             InitializeComponent();
@@ -29,7 +27,7 @@ namespace Biblioteca.VISTA
 
         private void listadoLibros_Load(object sender, EventArgs e)
         {
-            listaLibros = controlador.ObtenerLibros(); // USAMOS CONTROLADOR
+            listaLibros = controlador.ObtenerLibros();
 
             RellenarComboTitulos();
             RellenarComboAutores();
@@ -41,11 +39,9 @@ namespace Biblioteca.VISTA
         {
             cbTitulos.Items.Clear();
             cbTitulos.Items.Add("Todos");
-
             foreach (Libro libro in listaLibros)
                 if (!cbTitulos.Items.Contains(libro.Titulo))
                     cbTitulos.Items.Add(libro.Titulo);
-
             cbTitulos.SelectedIndex = 0;
         }
 
@@ -53,11 +49,9 @@ namespace Biblioteca.VISTA
         {
             cbAutores.Items.Clear();
             cbAutores.Items.Add("Todos");
-
             foreach (Libro libro in listaLibros)
                 if (!cbAutores.Items.Contains(libro.Escritor))
                     cbAutores.Items.Add(libro.Escritor);
-
             cbAutores.SelectedIndex = 0;
         }
 
@@ -67,7 +61,6 @@ namespace Biblioteca.VISTA
             flpLibros.WrapContents = true;
             flpLibros.AutoScroll = true;
             flpLibros.BackColor = Color.White;
-
             flpLibros.Padding = new Padding(20, 20, 20, 20);
             flpLibros.Margin = new Padding(0);
         }
@@ -75,8 +68,6 @@ namespace Biblioteca.VISTA
         private void CargarTarjetas(List<Libro> librosFiltrados)
         {
             flpLibros.Controls.Clear();
-
-            int tarjetasPorFila = 2;
             int margen = 10;
 
             foreach (Libro libro in librosFiltrados)
@@ -89,11 +80,10 @@ namespace Biblioteca.VISTA
                     Disponible = libro.Disponible
                 };
 
-                tarjeta.BotonBorrar.Width = 80;
-                tarjeta.BotonBorrar.Height = 25;
-                tarjeta.BotonBorrar.Anchor = AnchorStyles.None;
+                // Borrar
+                tarjeta.BotonBorrar.Click += (s, e) => BorrarLibro(libro);
 
-                // Imagen: cargar en memoria para evitar bloqueo del archivo
+                // Imagen: cargar en memoria
                 try
                 {
                     if (!string.IsNullOrEmpty(libro.Portada))
@@ -108,74 +98,69 @@ namespace Biblioteca.VISTA
                     }
                     else tarjeta.Portada = null;
                 }
-                catch
+                catch { tarjeta.Portada = null; }
+
+                // Click en portada -> detalle
+                tarjeta.PortadaClick += (s, e) =>
                 {
-                    tarjeta.Portada = null;
-                }
-
-                // ✅ Click en portada -> detalle
-                tarjeta.PortadaClick += (s, e) => AbrirDetalleLibro(libro);
-
-                // Borrar
-                tarjeta.BotonBorrar.Click += (s, e) => BorrarLibro(libro);
+                    AbrirDetalleLibro(libro, tarjeta);
+                };
 
                 flpLibros.Controls.Add(tarjeta);
             }
-
-            AjustarColumnas(tarjetasPorFila, 150, margen);
         }
 
-        private void AbrirDetalleLibro(Libro libro)
+        private void AbrirDetalleLibro(Libro libro, TarjetaLibro tarjeta)
         {
             if (libro == null) return;
 
-            using (var detalle = new DetalleLibros(libro))
-                detalle.ShowDialog(this);
+            DetalleLibros detalle = new DetalleLibros(libro);
+
+            // Suscribir evento de actualización
+            detalle.LibroActualizado += (s, ev) =>
+            {
+                tarjeta.Disponible = libro.Disponible;
+
+                // Actualizar portada
+                try
+                {
+                    if (!string.IsNullOrEmpty(libro.Portada))
+                    {
+                        string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
+                        if (File.Exists(rutaImagen))
+                        {
+                            using (var fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
+                                tarjeta.Portada = new Bitmap(fs);
+                        }
+                    }
+                }
+                catch { tarjeta.Portada = null; }
+            };
+
+            // Al cerrar, recargar toda la lista
+            detalle.FormClosed += (s, ev) =>
+            {
+                listaLibros = controlador.ObtenerLibros();
+                FiltrarLibros(null, null);
+            };
+
+            detalle.Show();
         }
 
-        private void AjustarColumnas(int tarjetasPorFila, int anchoTarjeta, int margen)
-        {
-            int panelWidth = flpLibros.ClientSize.Width;
-            int espacioTotal = tarjetasPorFila * (anchoTarjeta + 2 * margen);
-            int margenIzq = (panelWidth - espacioTotal) / 2;
-            if (margenIzq < 0) margenIzq = 0;
-
-            flpLibros.Padding = new Padding(margenIzq, 20, 20, 20);
-        }
-
-        // =========================
-        // FILTRAR LIBROS (método necesario)
-        // =========================
         private void FiltrarLibros(object sender, EventArgs e)
         {
             var filtrados = listaLibros.AsEnumerable();
 
             if (cbTitulos.SelectedIndex > 0)
-            {
-                string titulo = cbTitulos.SelectedItem.ToString();
-                filtrados = filtrados.Where(l => l.Titulo == titulo);
-            }
+                filtrados = filtrados.Where(l => l.Titulo == cbTitulos.SelectedItem.ToString());
 
             if (cbAutores.SelectedIndex > 0)
-            {
-                string autor = cbAutores.SelectedItem.ToString();
-                filtrados = filtrados.Where(l => l.Escritor == autor);
-            }
+                filtrados = filtrados.Where(l => l.Escritor == cbAutores.SelectedItem.ToString());
 
             if (cbDisponible.Checked)
                 filtrados = filtrados.Where(l => l.Disponible);
 
             CargarTarjetas(filtrados.ToList());
-        }
-
-        private void AbrirNuevoLibro(object sender, EventArgs e)
-        {
-            NuevoLibro frm = new NuevoLibro(controlador);
-            frm.CargarDatos();
-            frm.ShowDialog();
-
-            listaLibros = controlador.ObtenerLibros(); // USAMOS CONTROLADOR
-            FiltrarLibros(null, null);
         }
 
         private void BorrarLibro(Libro libro)
@@ -193,25 +178,9 @@ namespace Biblioteca.VISTA
 
             try
             {
-                SQLiteCommand cmd = new SQLiteCommand("DELETE FROM Libros WHERE ID = @id;");
-                cmd.Parameters.AddWithValue("@id", libro.IdLibro);
+                controlador.BorrarLibro(libro.IdLibro);
 
-                controlador.EjecutarComando(cmd); // USAMOS CONTROLADOR
-
-                if (!string.IsNullOrEmpty(libro.Portada))
-                {
-                    string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
-                    if (File.Exists(rutaImagen))
-                    {
-                        for (int i = 0; i < 5; i++)
-                        {
-                            try { File.Delete(rutaImagen); break; }
-                            catch { System.Threading.Thread.Sleep(50); }
-                        }
-                    }
-                }
-
-                listaLibros = controlador.ObtenerLibros(); // USAMOS CONTROLADOR
+                listaLibros = controlador.ObtenerLibros();
                 FiltrarLibros(null, null);
 
                 MessageBox.Show("Libro borrado correctamente.");
@@ -222,8 +191,29 @@ namespace Biblioteca.VISTA
             }
         }
 
-        private void flpLibros_Paint(object sender, PaintEventArgs e) { }
-        private void cbDisponible_CheckedChanged(object sender, EventArgs e) { }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
+        private void BtnNuevo_Click(object sender, EventArgs e)
+        {
+            NuevoLibro nuevoLibro = new NuevoLibro(controlador);
+
+            // Cuando se cierre, recargamos la lista y los filtros
+            nuevoLibro.FormClosed += (s, ev) =>
+            {
+                listaLibros = controlador.ObtenerLibros();
+                FiltrarLibros(null, null);
+            };
+
+            nuevoLibro.Show(); // <-- se abre como ventana independiente
+        }
+
+
+        private void flpLibros_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

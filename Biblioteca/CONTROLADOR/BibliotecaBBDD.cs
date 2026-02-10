@@ -185,6 +185,57 @@ namespace Biblioteca.CONTROLADOR
             Ejecuta(cmd);
         }
 
+        // ==================================
+        // ACTUALIZAR LIBRO
+        // ==================================
+
+        public static void ActualizarTituloLibro(int idLibro, string nuevoTitulo)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Libros SET Titulo = @titulo WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@titulo", nuevoTitulo);
+            cmd.Parameters.AddWithValue("@id", idLibro);
+            Ejecuta(cmd);
+        }
+
+        public static void ActualizarAutorLibro(int idLibro, string nuevoAutor)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Libros SET Escritor = @autor WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@autor", nuevoAutor);
+            cmd.Parameters.AddWithValue("@id", idLibro);
+            Ejecuta(cmd);
+        }
+
+        public static void ActualizarNEjemplares(int idLibro, int nEjemplares)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Libros SET NEjemplares = @nEjemplares WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@nEjemplares", nEjemplares);
+            cmd.Parameters.AddWithValue("@id", idLibro);
+            Ejecuta(cmd);
+        }
+
+        public static void ActualizarPortada(int idLibro, string rutaPortada)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Libros SET Portada = @portada WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@portada", rutaPortada);
+            cmd.Parameters.AddWithValue("@id", idLibro);
+            Ejecuta(cmd);
+        }
+
+        public static void BorrarLibro(int idLibro)
+        {
+            SQLiteCommand cmd = new SQLiteCommand("DELETE FROM Libros WHERE ID = @id;");
+            cmd.Parameters.AddWithValue("@id", idLibro);
+            Ejecuta(cmd);
+        }
+
 
 
     }

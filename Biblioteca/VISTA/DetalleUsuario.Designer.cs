@@ -37,7 +37,7 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnVerPrestamos = new System.Windows.Forms.Button();
             this.lNombre = new System.Windows.Forms.Label();
             this.lTlf = new System.Windows.Forms.Label();
             this.lDni = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             this.tableLayoutPanel2.Controls.Add(this.lblNombre, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.lblTelefono, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblDNI, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnVerPrestamos, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.lNombre, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.lTlf, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.lDni, 1, 2);
@@ -169,18 +169,18 @@
             this.lblDNI.TabIndex = 2;
             this.lblDNI.Text = "DNI";
             // 
-            // btnGuardar
+            // btnVerPrestamos
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
-            this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardar.Location = new System.Drawing.Point(150, 203);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(171, 59);
-            this.btnGuardar.TabIndex = 6;
-            this.btnGuardar.Text = "Ver Prestamos";
-            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnVerPrestamos.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.tableLayoutPanel2.SetColumnSpan(this.btnVerPrestamos, 2);
+            this.btnVerPrestamos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVerPrestamos.Location = new System.Drawing.Point(150, 203);
+            this.btnVerPrestamos.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
+            this.btnVerPrestamos.Name = "btnVerPrestamos";
+            this.btnVerPrestamos.Size = new System.Drawing.Size(171, 59);
+            this.btnVerPrestamos.TabIndex = 6;
+            this.btnVerPrestamos.Text = "Ver Prestamos";
+            this.btnVerPrestamos.UseVisualStyleBackColor = false;
             // 
             // lNombre
             // 
@@ -238,7 +238,7 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblDNI;
-        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnVerPrestamos;
         private System.Windows.Forms.Label lNombre;
         private System.Windows.Forms.Label lTlf;
         private System.Windows.Forms.Label lDni;
