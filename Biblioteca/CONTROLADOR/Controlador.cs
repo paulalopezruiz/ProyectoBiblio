@@ -144,9 +144,26 @@ namespace Biblioteca.CONTROLADOR
         public void EjecutarComando(SQLiteCommand cmd) => BibliotecaBBDD.Ejecuta(cmd);
         public DataTable GetDataTable(SQLiteCommand cmd) => BibliotecaBBDD.GetDataTable(cmd);
 
-        //EDICION DE USUARIOS Y LIBROS
+        // =========================
+        // EDICIÓN DE USUARIOS
+        // =========================
 
-      
+        public void ActualizarNombreUsuario(string idUsuario, string nuevoNombre)
+        {
+            BibliotecaBBDD.UpdateUsuarioNombre(idUsuario, nuevoNombre);
+        }
+
+        public void ActualizarTelefonoUsuario(string idUsuario, string nuevoTelefono)
+        {
+            BibliotecaBBDD.UpdateUsuarioTelefono(idUsuario, nuevoTelefono);
+        }
+
+        public void ActualizarDNIUsuario(string idUsuario, string nuevoDNI)
+        {
+            BibliotecaBBDD.UpdateUsuarioDNI(idUsuario, nuevoDNI);
+        }
+
+
 
 
 

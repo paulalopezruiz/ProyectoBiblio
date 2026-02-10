@@ -1,5 +1,4 @@
-﻿using Biblioteca.CONTROLADOR;
-using Biblioteca.MODELO;
+﻿using Biblioteca.MODELO;
 using Biblioteca.VISTA;
 using System;
 using System.Windows.Forms;
@@ -10,21 +9,19 @@ namespace Biblioteca
     {
         private Usuario _usuario;
 
-        // Evento que notifica al formulario padre que el usuario fue borrado
+        // EVENTOS
         public event EventHandler<Usuario> UsuarioBorrado;
+        public event EventHandler UsuarioActualizado;
 
-        // Instancia del detalle abierto
         private DetalleUsuario detalleAbierto = null;
 
         public TarjetaUsuario()
         {
             InitializeComponent();
 
-            // Click en nombre o foto abre detalle
             lName.Click += lName_Click;
             userPhoto.Click += userPhoto_Click;
 
-            // Cursor de mano opcional
             lName.Cursor = Cursors.Hand;
             userPhoto.Cursor = Cursors.Hand;
 
@@ -33,7 +30,7 @@ namespace Biblioteca
 
         public Usuario Usuario
         {
-            get { return _usuario; }
+            get => _usuario;
             set
             {
                 _usuario = value;
@@ -56,7 +53,6 @@ namespace Biblioteca
         {
             if (_usuario == null) return;
 
-            // Si ya hay un detalle abierto, lo traemos al frente
             if (detalleAbierto != null && !detalleAbierto.IsDisposed)
             {
                 detalleAbierto.BringToFront();
@@ -64,19 +60,20 @@ namespace Biblioteca
             }
 
             detalleAbierto = new DetalleUsuario(_usuario);
-            detalleAbierto.FormClosed += (s, e) => detalleAbierto = null; // Limpiamos la referencia al cerrar
-            detalleAbierto.Show(); // Abrimos no modal
+
+            detalleAbierto.FormClosed += (s, args) =>
+            {
+                detalleAbierto = null;
+                UsuarioActualizado?.Invoke(this, EventArgs.Empty);
+            };
+
+            detalleAbierto.Show();
         }
 
         private void btnBorrar_Click(object sender, EventArgs e)
         {
             if (_usuario == null) return;
             UsuarioBorrado?.Invoke(this, _usuario);
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            // opcional
         }
     }
 }

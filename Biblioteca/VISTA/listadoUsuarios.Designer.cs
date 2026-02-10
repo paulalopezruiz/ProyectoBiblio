@@ -82,7 +82,7 @@
             this.tableLayoutPanel3.Controls.Add(this.tbNombre, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(20, 20);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(20, 20, 20, 20);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(20);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());

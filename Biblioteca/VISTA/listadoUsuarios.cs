@@ -14,7 +14,6 @@ namespace Biblioteca.VISTA
         {
             InitializeComponent();
             this.controlador = controlador;
-            this.AutoScroll = true;
             Load += listadoUsuarios_Load;
         }
 
@@ -25,16 +24,19 @@ namespace Biblioteca.VISTA
 
         private void CargarTarjetas(List<Usuario> usuarios)
         {
+            // Limpiar tarjetas anteriores
             foreach (Control c in flowLayoutPanel1.Controls)
             {
                 if (c is TarjetaUsuario tu)
                 {
                     tu.UsuarioBorrado -= Tarjeta_UsuarioBorrado;
+                    tu.UsuarioActualizado -= Tarjeta_UsuarioActualizado;
                     tu.Dispose();
                 }
             }
             flowLayoutPanel1.Controls.Clear();
 
+            // Crear nuevas tarjetas
             foreach (var u in usuarios)
             {
                 TarjetaUsuario tarjeta = new TarjetaUsuario
@@ -44,8 +46,16 @@ namespace Biblioteca.VISTA
                 };
 
                 tarjeta.UsuarioBorrado += Tarjeta_UsuarioBorrado;
+                tarjeta.UsuarioActualizado += Tarjeta_UsuarioActualizado;
+
                 flowLayoutPanel1.Controls.Add(tarjeta);
             }
+        }
+
+        private void Tarjeta_UsuarioActualizado(object sender, EventArgs e)
+        {
+            // Recargar desde BD al cerrar detalle
+            CargarTarjetas(controlador.ObtenerUsuarios());
         }
 
         private void Tarjeta_UsuarioBorrado(object sender, Usuario usuario)
@@ -68,7 +78,8 @@ namespace Biblioteca.VISTA
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error borrando usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error borrando usuario",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -84,6 +95,7 @@ namespace Biblioteca.VISTA
         private void tbNombre_TextChanged(object sender, EventArgs e)
         {
             string texto = tbNombre.Text.Trim();
+
             if (string.IsNullOrEmpty(texto))
             {
                 CargarTarjetas(controlador.ObtenerUsuarios());
@@ -96,11 +108,9 @@ namespace Biblioteca.VISTA
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error buscando", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error buscando",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }

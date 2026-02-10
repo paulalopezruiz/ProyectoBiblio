@@ -47,22 +47,21 @@
             this.tableLayoutPanel1.Controls.Add(this.btnBorrar, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 96F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(436, 96);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(654, 150);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // userPhoto
             // 
             this.userPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.userPhoto.Image = global::Biblioteca.Properties.Resources.usuario;
-            this.userPhoto.Location = new System.Drawing.Point(27, 26);
-            this.userPhoto.Margin = new System.Windows.Forms.Padding(27, 26, 27, 26);
+            this.userPhoto.Location = new System.Drawing.Point(40, 41);
+            this.userPhoto.Margin = new System.Windows.Forms.Padding(40, 41, 40, 41);
             this.userPhoto.Name = "userPhoto";
-            this.userPhoto.Size = new System.Drawing.Size(91, 44);
+            this.userPhoto.Size = new System.Drawing.Size(138, 68);
             this.userPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.userPhoto.TabIndex = 0;
             this.userPhoto.TabStop = false;
@@ -71,10 +70,9 @@
             // 
             this.lName.AutoSize = true;
             this.lName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lName.Location = new System.Drawing.Point(147, 0);
-            this.lName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lName.Location = new System.Drawing.Point(221, 0);
             this.lName.Name = "lName";
-            this.lName.Size = new System.Drawing.Size(141, 96);
+            this.lName.Size = new System.Drawing.Size(212, 150);
             this.lName.TabIndex = 1;
             this.lName.Text = "Nombre y Apellidos";
             this.lName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -83,22 +81,21 @@
             // btnBorrar
             // 
             this.btnBorrar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnBorrar.Location = new System.Drawing.Point(310, 32);
-            this.btnBorrar.Margin = new System.Windows.Forms.Padding(20, 32, 20, 32);
+            this.btnBorrar.Location = new System.Drawing.Point(466, 50);
+            this.btnBorrar.Margin = new System.Windows.Forms.Padding(30, 50, 30, 50);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(106, 32);
+            this.btnBorrar.Size = new System.Drawing.Size(158, 50);
             this.btnBorrar.TabIndex = 2;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
             // 
             // TarjetaUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TarjetaUsuario";
-            this.Size = new System.Drawing.Size(436, 96);
+            this.Size = new System.Drawing.Size(654, 150);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPhoto)).EndInit();

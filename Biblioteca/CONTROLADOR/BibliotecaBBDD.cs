@@ -151,6 +151,41 @@ namespace Biblioteca.CONTROLADOR
             return libros;
         }
 
+        // =========================
+        // UPDATE USUARIOS
+        // =========================
+
+        public static void UpdateUsuarioNombre(string idUsuario, string nuevoNombre)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Usuarios SET Nombre = @nombre WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@nombre", nuevoNombre);
+            cmd.Parameters.AddWithValue("@id", idUsuario);
+            Ejecuta(cmd);
+        }
+
+        public static void UpdateUsuarioTelefono(string idUsuario, string nuevoTelefono)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Usuarios SET Telefono = @telefono WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@telefono", nuevoTelefono);
+            cmd.Parameters.AddWithValue("@id", idUsuario);
+            Ejecuta(cmd);
+        }
+
+        public static void UpdateUsuarioDNI(string idUsuario, string nuevoDNI)
+        {
+            SQLiteCommand cmd = new SQLiteCommand(
+                "UPDATE Usuarios SET DNI = @dni WHERE ID = @id;"
+            );
+            cmd.Parameters.AddWithValue("@dni", nuevoDNI);
+            cmd.Parameters.AddWithValue("@id", idUsuario);
+            Ejecuta(cmd);
+        }
+
+
 
     }
 }
