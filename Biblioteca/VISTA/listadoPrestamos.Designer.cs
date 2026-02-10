@@ -57,13 +57,12 @@
             this.tlpPrincipal.Controls.Add(this.tlpUserFliter, 0, 0);
             this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tlpPrincipal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tlpPrincipal.MinimumSize = new System.Drawing.Size(855, 431);
+            this.tlpPrincipal.MinimumSize = new System.Drawing.Size(570, 276);
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 37.31884F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62.68116F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(855, 431);
+            this.tlpPrincipal.Size = new System.Drawing.Size(570, 288);
             this.tlpPrincipal.TabIndex = 1;
             this.tlpPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -75,25 +74,23 @@
             this.tlpLibro.Controls.Add(this.lLibro, 0, 1);
             this.tlpLibro.Controls.Add(this.cbLibro, 0, 2);
             this.tlpLibro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpLibro.Location = new System.Drawing.Point(301, 5);
-            this.tlpLibro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tlpLibro.Location = new System.Drawing.Point(203, 3);
             this.tlpLibro.Name = "tlpLibro";
             this.tlpLibro.RowCount = 4;
             this.tlpLibro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpLibro.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpLibro.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpLibro.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpLibro.Size = new System.Drawing.Size(278, 150);
+            this.tlpLibro.Size = new System.Drawing.Size(187, 101);
             this.tlpLibro.TabIndex = 9;
             // 
             // lLibro
             // 
             this.lLibro.AutoSize = true;
             this.lLibro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lLibro.Location = new System.Drawing.Point(4, 41);
-            this.lLibro.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lLibro.Location = new System.Drawing.Point(3, 27);
             this.lLibro.Name = "lLibro";
-            this.lLibro.Size = new System.Drawing.Size(270, 25);
+            this.lLibro.Size = new System.Drawing.Size(181, 16);
             this.lLibro.TabIndex = 0;
             this.lLibro.Text = "Libro";
             this.lLibro.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -102,20 +99,19 @@
             // 
             this.cbLibro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbLibro.FormattingEnabled = true;
-            this.cbLibro.Location = new System.Drawing.Point(4, 71);
-            this.cbLibro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbLibro.Location = new System.Drawing.Point(3, 46);
             this.cbLibro.Name = "cbLibro";
-            this.cbLibro.Size = new System.Drawing.Size(270, 33);
+            this.cbLibro.Size = new System.Drawing.Size(181, 24);
             this.cbLibro.TabIndex = 1;
             // 
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnNuevo.Location = new System.Drawing.Point(606, 47);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(45, 47, 60, 47);
+            this.btnNuevo.Location = new System.Drawing.Point(404, 32);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 30, 40, 30);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(189, 66);
+            this.btnNuevo.Size = new System.Drawing.Size(126, 42);
             this.btnNuevo.TabIndex = 7;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;
@@ -126,9 +122,10 @@
             this.tlpPrincipal.SetColumnSpan(this.flowListado, 4);
             this.flowListado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowListado.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowListado.Location = new System.Drawing.Point(3, 163);
+            this.flowListado.Location = new System.Drawing.Point(2, 109);
+            this.flowListado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.flowListado.Name = "flowListado";
-            this.flowListado.Size = new System.Drawing.Size(849, 265);
+            this.flowListado.Size = new System.Drawing.Size(566, 177);
             this.flowListado.TabIndex = 4;
             this.flowListado.WrapContents = false;
             this.flowListado.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
@@ -141,25 +138,24 @@
             this.tlpUserFliter.Controls.Add(this.lUsuario, 0, 1);
             this.tlpUserFliter.Controls.Add(this.cbUsuario, 0, 2);
             this.tlpUserFliter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpUserFliter.Location = new System.Drawing.Point(15, 5);
-            this.tlpUserFliter.Margin = new System.Windows.Forms.Padding(15, 5, 4, 5);
+            this.tlpUserFliter.Location = new System.Drawing.Point(10, 3);
+            this.tlpUserFliter.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.tlpUserFliter.Name = "tlpUserFliter";
             this.tlpUserFliter.RowCount = 4;
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpUserFliter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpUserFliter.Size = new System.Drawing.Size(278, 150);
+            this.tlpUserFliter.Size = new System.Drawing.Size(187, 101);
             this.tlpUserFliter.TabIndex = 8;
             // 
             // lUsuario
             // 
             this.lUsuario.AutoSize = true;
             this.lUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lUsuario.Location = new System.Drawing.Point(4, 41);
-            this.lUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lUsuario.Location = new System.Drawing.Point(3, 27);
             this.lUsuario.Name = "lUsuario";
-            this.lUsuario.Size = new System.Drawing.Size(270, 25);
+            this.lUsuario.Size = new System.Drawing.Size(181, 16);
             this.lUsuario.TabIndex = 0;
             this.lUsuario.Text = "Usuario";
             this.lUsuario.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -168,20 +164,19 @@
             // 
             this.cbUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbUsuario.FormattingEnabled = true;
-            this.cbUsuario.Location = new System.Drawing.Point(4, 71);
-            this.cbUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbUsuario.Location = new System.Drawing.Point(3, 46);
             this.cbUsuario.Name = "cbUsuario";
-            this.cbUsuario.Size = new System.Drawing.Size(270, 33);
+            this.cbUsuario.Size = new System.Drawing.Size(181, 24);
             this.cbUsuario.TabIndex = 1;
             // 
             // listadoPrestamos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 431);
+            this.ClientSize = new System.Drawing.Size(533, 288);
             this.Controls.Add(this.tlpPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.MinimumSize = new System.Drawing.Size(533, 288);
             this.Name = "listadoPrestamos";
             this.Load += new System.EventHandler(this.listadoPrestamos_Load);
             this.tlpPrincipal.ResumeLayout(false);
