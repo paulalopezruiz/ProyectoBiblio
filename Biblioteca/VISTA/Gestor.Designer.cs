@@ -71,6 +71,7 @@
             // 
             // bCerrarSesion
             // 
+            this.bCerrarSesion.BackColor = System.Drawing.Color.White;
             this.bCerrarSesion.Dock = System.Windows.Forms.DockStyle.Right;
             this.bCerrarSesion.Location = new System.Drawing.Point(755, 20);
             this.bCerrarSesion.Margin = new System.Windows.Forms.Padding(20);
@@ -78,7 +79,7 @@
             this.bCerrarSesion.Size = new System.Drawing.Size(188, 60);
             this.bCerrarSesion.TabIndex = 1;
             this.bCerrarSesion.Text = "Cerrar sesion";
-            this.bCerrarSesion.UseVisualStyleBackColor = true;
+            this.bCerrarSesion.UseVisualStyleBackColor = false;
             // 
             // tbMenu
             // 

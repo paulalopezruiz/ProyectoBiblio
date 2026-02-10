@@ -17,8 +17,8 @@
 
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpInfo = new System.Windows.Forms.TableLayoutPanel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblAutor = new System.Windows.Forms.Label();
             this.lblISBN = new System.Windows.Forms.Label();
@@ -26,60 +26,59 @@
             this.tbAutor = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.numericEjemplares = new System.Windows.Forms.NumericUpDown();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpImagen = new System.Windows.Forms.TableLayoutPanel();
             this.btnSubirImagen = new System.Windows.Forms.Button();
             this.pictureBoxImagen = new System.Windows.Forms.PictureBox();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tlpPrincipal.SuspendLayout();
+            this.tlpInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericEjemplares)).BeginInit();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.tlpImagen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpPrincipal
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(988, 602);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.2219F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.10526F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.530583F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(988, 703);
-            this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.tlpPrincipal.ColumnCount = 3;
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.Controls.Add(this.tlpInfo, 1, 1);
+            this.tlpPrincipal.Controls.Add(this.tlpImagen, 1, 0);
+            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.tlpPrincipal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tlpPrincipal.MinimumSize = new System.Drawing.Size(988, 602);
+            this.tlpPrincipal.Name = "tlpPrincipal";
+            this.tlpPrincipal.RowCount = 3;
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.2219F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.10526F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.530583F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(988, 703);
+            this.tlpPrincipal.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // tlpInfo
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.lblTitulo, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblAutor, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblISBN, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.tbTitulo, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tbAutor, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.numericEjemplares, 1, 2);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(251, 344);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(486, 286);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tlpInfo.ColumnCount = 2;
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpInfo.Controls.Add(this.lblTitulo, 0, 0);
+            this.tlpInfo.Controls.Add(this.lblAutor, 0, 1);
+            this.tlpInfo.Controls.Add(this.lblISBN, 0, 2);
+            this.tlpInfo.Controls.Add(this.tbTitulo, 1, 0);
+            this.tlpInfo.Controls.Add(this.tbAutor, 1, 1);
+            this.tlpInfo.Controls.Add(this.btnGuardar, 0, 3);
+            this.tlpInfo.Controls.Add(this.numericEjemplares, 1, 2);
+            this.tlpInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpInfo.Location = new System.Drawing.Point(251, 344);
+            this.tlpInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tlpInfo.Name = "tlpInfo";
+            this.tlpInfo.RowCount = 4;
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.Size = new System.Drawing.Size(486, 286);
+            this.tlpInfo.TabIndex = 0;
             // 
             // lblTitulo
             // 
@@ -131,7 +130,8 @@
             // 
             // btnGuardar
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
+            this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.tlpInfo.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGuardar.Location = new System.Drawing.Point(150, 218);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
@@ -139,7 +139,7 @@
             this.btnGuardar.Size = new System.Drawing.Size(186, 63);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             // 
             // numericEjemplares
             // 
@@ -149,20 +149,20 @@
             this.numericEjemplares.Size = new System.Drawing.Size(324, 31);
             this.numericEjemplares.TabIndex = 7;
             // 
-            // tableLayoutPanel3
+            // tlpImagen
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.btnSubirImagen, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.pictureBoxImagen, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(250, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.96997F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.03003F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(488, 333);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.tlpImagen.ColumnCount = 1;
+            this.tlpImagen.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpImagen.Controls.Add(this.btnSubirImagen, 0, 1);
+            this.tlpImagen.Controls.Add(this.pictureBoxImagen, 0, 0);
+            this.tlpImagen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpImagen.Location = new System.Drawing.Point(250, 3);
+            this.tlpImagen.Name = "tlpImagen";
+            this.tlpImagen.RowCount = 2;
+            this.tlpImagen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.96997F));
+            this.tlpImagen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.03003F));
+            this.tlpImagen.Size = new System.Drawing.Size(488, 333);
+            this.tlpImagen.TabIndex = 1;
             // 
             // btnSubirImagen
             // 
@@ -190,16 +190,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 703);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpPrincipal);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(958, 515);
             this.Name = "NuevoLibro";
             this.Text = "NuevoLibro";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tlpPrincipal.ResumeLayout(false);
+            this.tlpInfo.ResumeLayout(false);
+            this.tlpInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericEjemplares)).EndInit();
-            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tlpImagen.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).EndInit();
             this.ResumeLayout(false);
 
@@ -207,8 +207,8 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
+        private System.Windows.Forms.TableLayoutPanel tlpInfo;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblAutor;
         private System.Windows.Forms.Label lblISBN;
@@ -216,7 +216,7 @@
         private System.Windows.Forms.TextBox tbAutor;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.NumericUpDown numericEjemplares;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel tlpImagen;
         private System.Windows.Forms.Button btnSubirImagen;
         private System.Windows.Forms.PictureBox pictureBoxImagen;
     }

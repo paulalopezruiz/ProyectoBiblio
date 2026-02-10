@@ -17,7 +17,7 @@ namespace Biblioteca.VISTA
             Load += NuevoPrestamo_Load;
             cmbLibro.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
-            btnGuardar.Click += btnGuardar_Click;  // asegúrate de no duplicar eventos en Designer
+            btnGuardar.Click += btnGuardar_Click;  
         }
 
         private void NuevoPrestamo_Load(object sender, EventArgs e)
@@ -86,5 +86,6 @@ namespace Biblioteca.VISTA
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

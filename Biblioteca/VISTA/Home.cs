@@ -22,7 +22,7 @@ namespace Biblioteca.VISTA
 
         private void panelTarjeta_Paint(object sender, PaintEventArgs e)
         {
-            int grosor = 3; // grosor del borde
+            int grosor = 3;
             Color colorBorde = Color.Black;
 
             Control c = (Control)sender;
@@ -41,19 +41,16 @@ namespace Biblioteca.VISTA
 
         private void pLibros_Click(object sender, EventArgs e)
         {
-            // Pasamos el controlador al listado
+            
             CambiarFormulario?.Invoke(new listadoLibros(controlador));
         }
 
         private void pPrestamos_Click(object sender, EventArgs e)
         {
-            // Pasamos el controlador al listado
+          
             CambiarFormulario?.Invoke(new listadoPrestamos(controlador));
         }
 
-        private void tlpHome_Paint(object sender, PaintEventArgs e)
-        {
-            // opcional
-        }
+     
     }
 }

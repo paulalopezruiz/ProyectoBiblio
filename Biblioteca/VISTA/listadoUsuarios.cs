@@ -25,7 +25,7 @@ namespace Biblioteca.VISTA
         private void CargarTarjetas(List<Usuario> usuarios)
         {
             // Limpiar tarjetas anteriores
-            foreach (Control c in flowLayoutPanel1.Controls)
+            foreach (Control c in flowListado.Controls)
             {
                 if (c is TarjetaUsuario tu)
                 {
@@ -34,7 +34,7 @@ namespace Biblioteca.VISTA
                     tu.Dispose();
                 }
             }
-            flowLayoutPanel1.Controls.Clear();
+            flowListado.Controls.Clear();
 
             // Crear nuevas tarjetas
             foreach (var u in usuarios)
@@ -42,13 +42,13 @@ namespace Biblioteca.VISTA
                 TarjetaUsuario tarjeta = new TarjetaUsuario
                 {
                     Usuario = u,
-                    Width = flowLayoutPanel1.ClientSize.Width - 20
+                    Width = flowListado.ClientSize.Width - 20
                 };
 
                 tarjeta.UsuarioBorrado += Tarjeta_UsuarioBorrado;
                 tarjeta.UsuarioActualizado += Tarjeta_UsuarioActualizado;
 
-                flowLayoutPanel1.Controls.Add(tarjeta);
+                flowListado.Controls.Add(tarjeta);
             }
         }
 
@@ -112,5 +112,6 @@ namespace Biblioteca.VISTA
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

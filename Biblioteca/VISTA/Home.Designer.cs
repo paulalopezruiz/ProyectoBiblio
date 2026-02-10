@@ -76,7 +76,6 @@
             this.tlpHome.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tlpHome.Size = new System.Drawing.Size(800, 450);
             this.tlpHome.TabIndex = 0;
-            this.tlpHome.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpHome_Paint);
             // 
             // pPrest
             // 

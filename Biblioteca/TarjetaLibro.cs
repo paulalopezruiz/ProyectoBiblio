@@ -8,7 +8,7 @@ namespace Biblioteca.VISTA
     {
         private Panel indicadorDisponibilidad;
 
-        // ✅ Evento público para click en portada
+        //Evento público para click en portada
         public event EventHandler PortadaClick;
 
         public TarjetaLibro()
@@ -16,7 +16,7 @@ namespace Biblioteca.VISTA
             InitializeComponent();
             CrearIndicadorDisponibilidad();
 
-            // opcional (mejor UX)
+            // mejora de UX
             pictureBoxPortada.Cursor = Cursors.Hand;
         }
 
@@ -72,7 +72,7 @@ namespace Biblioteca.VISTA
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
 
-        // ✅ Disparar evento al hacer click
+        //Disparar evento al hacer click
         private void pictureBoxPortada_Click(object sender, EventArgs e)
         {
             PortadaClick?.Invoke(this, EventArgs.Empty);

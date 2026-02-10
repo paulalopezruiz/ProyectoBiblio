@@ -9,7 +9,6 @@ namespace Biblioteca
     {
         private Usuario _usuario;
 
-        // EVENTOS
         public event EventHandler<Usuario> UsuarioBorrado;
         public event EventHandler UsuarioActualizado;
 

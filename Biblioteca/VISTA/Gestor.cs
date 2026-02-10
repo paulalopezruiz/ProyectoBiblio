@@ -12,7 +12,7 @@ namespace Biblioteca
         public Controlador Controlador { get; set; }
 
         private Label[] menuItems;
-        private Form formularioActual; // el formulario actualmente cargado
+        private Form formularioActual; 
 
         public Gestor()
         {
@@ -119,10 +119,10 @@ namespace Biblioteca
             else if (form is listadoPrestamos) return lPrestamos;
             else if (form is listadoLibros) return lLibros;
 
-            return null; // ningún menú asociado
+            return null; 
         }
 
-        // Click en logo -> volver a Home
+        // Click en logo: volver a Home
         private void Logo_Click(object sender, EventArgs e)
         {
             var home = new Home();
@@ -130,7 +130,7 @@ namespace Biblioteca
             CambiarFormulario(home);
         }
 
-        // Click cerrar sesión -> volver a Home
+        // Click cerrar sesión: volver a Home
         private void BtnCerrarSesion_Click(object sender, EventArgs e)
         {
             var home = new Home();
@@ -143,9 +143,6 @@ namespace Biblioteca
             CambiarFormulario(formulario, DetectarMenuActivo(formulario));
         }
 
-        private void lLibros_Click(object sender, EventArgs e)
-        {
-            // Mantengo tu código tal cual
-        }
+        
     }
 }

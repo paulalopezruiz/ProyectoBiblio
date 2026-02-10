@@ -28,31 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.userPhoto = new System.Windows.Forms.PictureBox();
             this.lName = new System.Windows.Forms.Label();
             this.btnBorrar = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPhoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpPrincipal
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.userPhoto, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnBorrar, 2, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(654, 150);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tlpPrincipal.ColumnCount = 3;
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tlpPrincipal.Controls.Add(this.userPhoto, 0, 0);
+            this.tlpPrincipal.Controls.Add(this.lName, 1, 0);
+            this.tlpPrincipal.Controls.Add(this.btnBorrar, 2, 0);
+            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.tlpPrincipal.Name = "tlpPrincipal";
+            this.tlpPrincipal.RowCount = 1;
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(654, 150);
+            this.tlpPrincipal.TabIndex = 0;
             // 
             // userPhoto
             // 
@@ -93,11 +93,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpPrincipal);
             this.Name = "TarjetaUsuario";
             this.Size = new System.Drawing.Size(654, 150);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlpPrincipal.ResumeLayout(false);
+            this.tlpPrincipal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userPhoto)).EndInit();
             this.ResumeLayout(false);
 
@@ -105,7 +105,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
         private System.Windows.Forms.PictureBox userPhoto;
         private System.Windows.Forms.Label lName;
         private System.Windows.Forms.Button btnBorrar;

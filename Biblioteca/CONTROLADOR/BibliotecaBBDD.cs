@@ -151,9 +151,9 @@ namespace Biblioteca.CONTROLADOR
             return libros;
         }
 
-        // =========================
+    
         // UPDATE USUARIOS
-        // =========================
+       
 
         public static void UpdateUsuarioNombre(string idUsuario, string nuevoNombre)
         {
@@ -185,9 +185,8 @@ namespace Biblioteca.CONTROLADOR
             Ejecuta(cmd);
         }
 
-        // ==================================
         // ACTUALIZAR LIBRO
-        // ==================================
+        
 
         public static void ActualizarTituloLibro(int idLibro, string nuevoTitulo)
         {

@@ -34,7 +34,7 @@ namespace Biblioteca.VISTA
 
             try
             {
-                // Llamamos al controlador, que hace TODA la validación
+                // Llamamos al controlador, que hace la validación
                 controlador.InsertarUsuario(nombre, telefono, dni);
 
                 UsuarioCreado = new Usuario(nombre, telefono, dni);
@@ -48,8 +48,6 @@ namespace Biblioteca.VISTA
             }
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-        private void tableLayoutPanel1_Paint_1(object sender, PaintEventArgs e) { }
-        private void NuevoUsuario_Load(object sender, EventArgs e) { }
+     
     }
 }

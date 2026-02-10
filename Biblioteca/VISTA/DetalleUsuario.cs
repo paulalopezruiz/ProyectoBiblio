@@ -37,17 +37,16 @@ namespace Biblioteca.VISTA
             tbTelefono.Visible = false;
             tbDni.Visible = false;
 
-            // Click en labels → activar edición
+            // Click en labels: activar edición
             lNombre.Click += (s, args) => ActivarEdicion(tbNombre, lNombre.Text);
             lTlf.Click += (s, args) => ActivarEdicion(tbTelefono, lTlf.Text);
             lDni.Click += (s, args) => ActivarEdicion(tbDni, lDni.Text);
 
-            // Enter en textbox → guardar
+            // Enter en textbox: guardar
             tbNombre.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Nombre);
             tbTelefono.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Telefono);
             tbDni.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Dni);
 
-            // Botón Ver Préstamos
             btnVerPrestamos.Click += BtnVerPrestamos_Click;
         }
 
@@ -115,9 +114,6 @@ namespace Biblioteca.VISTA
             Close();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-            // opcional
-        }
+       
     }
 }

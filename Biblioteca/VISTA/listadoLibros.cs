@@ -80,10 +80,8 @@ namespace Biblioteca.VISTA
                     Disponible = libro.Disponible
                 };
 
-                // Borrar
                 tarjeta.BotonBorrar.Click += (s, e) => BorrarLibro(libro);
 
-                // Imagen: cargar en memoria
                 try
                 {
                     if (!string.IsNullOrEmpty(libro.Portada))
@@ -100,7 +98,6 @@ namespace Biblioteca.VISTA
                 }
                 catch { tarjeta.Portada = null; }
 
-                // Click en portada -> detalle
                 tarjeta.PortadaClick += (s, e) =>
                 {
                     AbrirDetalleLibro(libro, tarjeta);
@@ -116,12 +113,10 @@ namespace Biblioteca.VISTA
 
             DetalleLibros detalle = new DetalleLibros(libro);
 
-            // Suscribir evento de actualización
             detalle.LibroActualizado += (s, ev) =>
             {
                 tarjeta.Disponible = libro.Disponible;
 
-                // Actualizar portada
                 try
                 {
                     if (!string.IsNullOrEmpty(libro.Portada))
@@ -137,7 +132,6 @@ namespace Biblioteca.VISTA
                 catch { tarjeta.Portada = null; }
             };
 
-            // Al cerrar, recargar toda la lista
             detalle.FormClosed += (s, ev) =>
             {
                 listaLibros = controlador.ObtenerLibros();
@@ -195,25 +189,13 @@ namespace Biblioteca.VISTA
         {
             NuevoLibro nuevoLibro = new NuevoLibro(controlador);
 
-            // Cuando se cierre, recargamos la lista y los filtros
             nuevoLibro.FormClosed += (s, ev) =>
             {
                 listaLibros = controlador.ObtenerLibros();
                 FiltrarLibros(null, null);
             };
 
-            nuevoLibro.Show(); // <-- se abre como ventana independiente
-        }
-
-
-        private void flpLibros_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            nuevoLibro.Show(); 
         }
     }
 }

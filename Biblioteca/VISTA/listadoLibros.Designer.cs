@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.flpLibros = new System.Windows.Forms.FlowLayoutPanel();
             this.tlpAutor = new System.Windows.Forms.TableLayoutPanel();
@@ -38,34 +38,33 @@
             this.lTitulo = new System.Windows.Forms.Label();
             this.cbTitulos = new System.Windows.Forms.ComboBox();
             this.cbDisponible = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tlpPrincipal.SuspendLayout();
             this.tlpAutor.SuspendLayout();
             this.tliTiutlo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpPrincipal
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.btnNuevo, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.flpLibros, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.tlpAutor, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tliTiutlo, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cbDisponible, 2, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.MinimumSize = new System.Drawing.Size(855, 431);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.28306F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.71694F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(855, 431);
-            this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.tlpPrincipal.ColumnCount = 4;
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpPrincipal.Controls.Add(this.btnNuevo, 3, 0);
+            this.tlpPrincipal.Controls.Add(this.flpLibros, 0, 1);
+            this.tlpPrincipal.Controls.Add(this.tlpAutor, 1, 0);
+            this.tlpPrincipal.Controls.Add(this.tliTiutlo, 0, 0);
+            this.tlpPrincipal.Controls.Add(this.cbDisponible, 2, 0);
+            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.tlpPrincipal.MinimumSize = new System.Drawing.Size(855, 431);
+            this.tlpPrincipal.Name = "tlpPrincipal";
+            this.tlpPrincipal.RowCount = 2;
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38.28306F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 61.71694F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(855, 431);
+            this.tlpPrincipal.TabIndex = 0;
             // 
             // btnNuevo
             // 
@@ -83,7 +82,7 @@
             // flpLibros
             // 
             this.flpLibros.AutoScroll = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.flpLibros, 4);
+            this.tlpPrincipal.SetColumnSpan(this.flpLibros, 4);
             this.flpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpLibros.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpLibros.Location = new System.Drawing.Point(3, 167);
@@ -91,7 +90,6 @@
             this.flpLibros.Size = new System.Drawing.Size(849, 261);
             this.flpLibros.TabIndex = 9;
             this.flpLibros.WrapContents = false;
-            this.flpLibros.Paint += new System.Windows.Forms.PaintEventHandler(this.flpLibros_Paint);
             // 
             // tlpAutor
             // 
@@ -180,12 +178,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(855, 431);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "listadoLibros";
             this.Text = "listadoLibros";
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tlpPrincipal.ResumeLayout(false);
+            this.tlpPrincipal.PerformLayout();
             this.tlpAutor.ResumeLayout(false);
             this.tlpAutor.PerformLayout();
             this.tliTiutlo.ResumeLayout(false);
@@ -196,7 +194,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
         private System.Windows.Forms.TableLayoutPanel tlpAutor;
         private System.Windows.Forms.Label lAutor;
         private System.Windows.Forms.TableLayoutPanel tliTiutlo;

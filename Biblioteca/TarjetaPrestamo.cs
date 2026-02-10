@@ -26,9 +26,8 @@ namespace Biblioteca
                 c.Click += Tarjeta_Click; // Para que cualquier parte de la tarjeta responda
         }
 
-        // =========================
         // PINTAR ESTADO
-        // =========================
+     
         private void pEstado_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -43,15 +42,15 @@ namespace Biblioteca
                 e.Graphics.DrawEllipse(pen, r);
         }
 
-        // =========================
+     
         // PONER DATOS
-        // =========================
+  
         public void PonerDatos(Prestamo prestamo)
         {
             _prestamo = prestamo;
 
-            string nombreUsuario = BibliotecaBBDD.GetNombreUsuario(prestamo.ID_Usuario); // Obtener nombre al vuelo
-            string nombreLibro = BibliotecaBBDD.GetTituloLibro(prestamo.ID_Libro);      // Obtener título al vuelo
+            string nombreUsuario = BibliotecaBBDD.GetNombreUsuario(prestamo.ID_Usuario); 
+            string nombreLibro = BibliotecaBBDD.GetTituloLibro(prestamo.ID_Libro);      
 
             lPrestamo.Text = $"{nombreUsuario} - {nombreLibro}";
             lFecha.Text = prestamo.Fecha_Inicio.ToString("dd/MM/yyyy");
@@ -68,9 +67,9 @@ namespace Biblioteca
             pEstado.Invalidate();
         }
 
-        // =========================
+   
         // CLICK EN LA TARJETA
-        // =========================
+     
         private void Tarjeta_Click(object sender, EventArgs e)
         {
             if (_prestamo == null) return;
@@ -84,11 +83,5 @@ namespace Biblioteca
             }
         }
 
-        // =========================
-        // EVENTOS VACÍOS GENERADOS POR EL DISEÑADOR
-        // =========================
-        private void lFecha_Click(object sender, EventArgs e) { }
-        private void lPrestamo_Click(object sender, EventArgs e) { }
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
     }
 }

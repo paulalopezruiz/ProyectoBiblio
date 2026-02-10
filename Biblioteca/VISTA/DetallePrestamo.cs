@@ -20,16 +20,12 @@ namespace Biblioteca.VISTA
             btnDevolver.Click += btnDevolver_Click;
         }
 
-        // =========================
-        // LOAD
-        // =========================
+
         private void DetallePrestamo_Load(object sender, EventArgs e)
         {
-            // Obtener nombres desde IDs
             string nombreLibro = BibliotecaBBDD.GetTituloLibro(_prestamo.ID_Libro);
             string nombreUsuario = BibliotecaBBDD.GetNombreUsuario(_prestamo.ID_Usuario);
 
-            // Asignar valores a los labels correctos
             lblUsuarioValor.Text = nombreUsuario;
             lblLibroValor.Text = nombreLibro;
             lblFechaInicioValor.Text = _prestamo.Fecha_Inicio.ToShortDateString();
@@ -37,16 +33,14 @@ namespace Biblioteca.VISTA
             ConfigurarEstado();
         }
 
-        // =========================
+
         // CONFIGURAR SEGÚN ESTADO
-        // =========================
+    
         private void ConfigurarEstado()
         {
             if (_prestamo.Devuelto)
             {
-                // -------------------------
                 // Caso: Prestamo devuelto
-                // -------------------------
                 lblFechaFinTitulo.Visible = true;
                 lblFechaFinValor.Visible = true;
                 lblFechaFinTitulo.Text = "Fecha fin:";
@@ -60,9 +54,9 @@ namespace Biblioteca.VISTA
             }
             else
             {
-                // -------------------------
+
                 // Caso: Prestamo NO devuelto
-                // -------------------------
+
                 // Ocultar fecha fin
                 lblFechaFinTitulo.Visible = false;
                 lblFechaFinValor.Visible = false;
@@ -81,16 +75,16 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // =========================
+ 
         // DEVOLVER PRÉSTAMO
-        // =========================
+  
         private void btnDevolver_Click(object sender, EventArgs e)
         {
-            if (_prestamo.Devuelto) return; // seguridad
+            if (_prestamo.Devuelto) return; 
 
             bool vencido = _prestamo.Fecha_Fin < DateTime.Today;
 
-            // Actualizar BD
+           
             SQLiteCommand cmd = new SQLiteCommand(@"
                 UPDATE Prestamos
                 SET Devuelto = 1
@@ -99,7 +93,7 @@ namespace Biblioteca.VISTA
             cmd.Parameters.AddWithValue("@id", _prestamo.ID);
             BibliotecaBBDD.Ejecuta(cmd);
 
-            // Actualizar estado en memoria
+          
             _prestamo.Devuelto = true;
 
             // Mensaje de devolución
@@ -117,16 +111,6 @@ namespace Biblioteca.VISTA
             // Cerrar formulario y actualizar tarjeta si es necesario
             DialogResult = DialogResult.OK;
             Close();
-        }
-
-        // =========================
-        // EVENTOS VACÍOS DEL DISEÑADOR
-        // =========================
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-
-        private void DetallePrestamo_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

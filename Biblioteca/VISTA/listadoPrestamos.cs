@@ -83,7 +83,7 @@ namespace Biblioteca.VISTA
 
         private void listadoPrestamos_Load(object sender, EventArgs e)
         {
-            if (flowLayoutPanel1.Controls.Count > 0) return;
+            if (flowListado.Controls.Count > 0) return;
             if (!string.IsNullOrWhiteSpace(_usuarioID)) return;
             CargarTarjetas(ObtenerPrestamos());
         }
@@ -102,7 +102,7 @@ namespace Biblioteca.VISTA
             string usuarioID = "";
             if (cbUsuario.SelectedItem != null && cbUsuario.SelectedItem is ComboBoxItem itemUsuario && itemUsuario.Value != "--Todos--")
             {
-                usuarioID = itemUsuario.Value; // Ya tenemos el ID
+                usuarioID = itemUsuario.Value;
             }
 
             int idLibro = 0;
@@ -167,15 +167,15 @@ namespace Biblioteca.VISTA
 
         private void CargarTarjetas(List<Prestamo> prestamos)
         {
-            flowLayoutPanel1.Controls.Clear();
+            flowListado.Controls.Clear();
             foreach (var p in prestamos)
             {
                 var tarjeta = new TarjetaPrestamo
                 {
-                    Width = flowLayoutPanel1.ClientSize.Width - 20
+                    Width = flowListado.ClientSize.Width - 20
                 };
                 tarjeta.PonerDatos(p);
-                flowLayoutPanel1.Controls.Add(tarjeta);
+                flowListado.Controls.Add(tarjeta);
             }
         }
 

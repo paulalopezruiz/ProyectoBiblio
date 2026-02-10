@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpPrincipal = new System.Windows.Forms.TableLayoutPanel();
+            this.tlpInfo = new System.Windows.Forms.TableLayoutPanel();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.lblDNI = new System.Windows.Forms.Label();
@@ -37,52 +37,51 @@
             this.tbTelefono = new System.Windows.Forms.TextBox();
             this.tbDNI = new System.Windows.Forms.TextBox();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.tlpPrincipal.SuspendLayout();
+            this.tlpInfo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tableLayoutPanel1
+            // tlpPrincipal
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 1);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 555);
-            this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint_1);
+            this.tlpPrincipal.ColumnCount = 3;
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpPrincipal.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.Controls.Add(this.tlpInfo, 1, 1);
+            this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.tlpPrincipal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tlpPrincipal.Name = "tlpPrincipal";
+            this.tlpPrincipal.RowCount = 3;
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpPrincipal.Size = new System.Drawing.Size(970, 555);
+            this.tlpPrincipal.TabIndex = 0;
             // 
-            // tableLayoutPanel2
+            // tlpInfo
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.lblNombre, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.lblTelefono, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.lblDNI, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.tbNombre, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.tbTelefono, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.tbDNI, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnGuardar, 0, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(246, 143);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(477, 267);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.tlpInfo.ColumnCount = 2;
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tlpInfo.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlpInfo.Controls.Add(this.lblNombre, 0, 0);
+            this.tlpInfo.Controls.Add(this.lblTelefono, 0, 1);
+            this.tlpInfo.Controls.Add(this.lblDNI, 0, 2);
+            this.tlpInfo.Controls.Add(this.tbNombre, 1, 0);
+            this.tlpInfo.Controls.Add(this.tbTelefono, 1, 1);
+            this.tlpInfo.Controls.Add(this.tbDNI, 1, 2);
+            this.tlpInfo.Controls.Add(this.btnGuardar, 0, 3);
+            this.tlpInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlpInfo.Location = new System.Drawing.Point(246, 143);
+            this.tlpInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tlpInfo.Name = "tlpInfo";
+            this.tlpInfo.RowCount = 4;
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tlpInfo.Size = new System.Drawing.Size(477, 267);
+            this.tlpInfo.TabIndex = 0;
             // 
             // lblNombre
             // 
@@ -143,7 +142,8 @@
             // 
             // btnGuardar
             // 
-            this.tableLayoutPanel2.SetColumnSpan(this.btnGuardar, 2);
+            this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.tlpInfo.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnGuardar.Location = new System.Drawing.Point(150, 203);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
@@ -151,30 +151,29 @@
             this.btnGuardar.Size = new System.Drawing.Size(177, 59);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             // 
             // NuevoUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 555);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tlpPrincipal);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MinimumSize = new System.Drawing.Size(984, 588);
             this.Name = "NuevoUsuario";
             this.Text = "NuevoUsuario";
-            this.Load += new System.EventHandler(this.NuevoUsuario_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
+            this.tlpPrincipal.ResumeLayout(false);
+            this.tlpInfo.ResumeLayout(false);
+            this.tlpInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tlpPrincipal;
+        private System.Windows.Forms.TableLayoutPanel tlpInfo;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.Label lblDNI;

@@ -9,10 +9,9 @@ namespace Biblioteca.CONTROLADOR
 {
     public class Controlador
     {
-        // =========================
+    
         // USUARIOS
-        // =========================
-
+   
         public List<Usuario> ObtenerUsuarios()
         {
             var dt = BibliotecaBBDD.GetDataTable(new SQLiteCommand(
@@ -34,9 +33,9 @@ namespace Biblioteca.CONTROLADOR
 
         public void InsertarUsuario(string nombre, string telefono, string dni)
         {
-            // =========================
+
             // VALIDACIONES
-            // =========================
+
             if (string.IsNullOrWhiteSpace(nombre))
                 throw new Exception("El nombre no puede estar vacío.");
 
@@ -52,9 +51,8 @@ namespace Biblioteca.CONTROLADOR
             if (!EsDNIValido(dni))
                 throw new Exception("El DNI no tiene un formato válido.");
 
-            // =========================
             // INSERTAR EN BBDD
-            // =========================
+      
             SQLiteCommand cmd = new SQLiteCommand(
                 "INSERT INTO Usuarios (Nombre, Telefono, DNI) VALUES (@nombre, @telefono, @dni);"
             );
@@ -114,9 +112,9 @@ namespace Biblioteca.CONTROLADOR
         public string ObtenerDNIUsuario(string nombreUsuario) => BibliotecaBBDD.GetDNIUsuario(nombreUsuario);
         public string ObtenerIDUsuario(string dniUsuario) => BibliotecaBBDD.GetIDUsuario(dniUsuario);
 
-        // =========================
+       
         // LIBROS
-        // =========================
+    
 
         public List<Libro> ObtenerLibros() => BibliotecaBBDD.GetLibros();
         public string ObtenerTituloLibro(int idLibro) => BibliotecaBBDD.GetTituloLibro(idLibro);
@@ -143,9 +141,9 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.Ejecuta(cmd);
         }
 
-        // =========================
+    
         // PRÉSTAMOS
-        // =========================
+     
 
         // Comprueba si hay ejemplares disponibles
         public bool LibroDisponible(int idLibro)
@@ -177,16 +175,15 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.Ejecuta(cmd);
         }
 
-        // =========================
         // MÉTODOS GENERALES
-        // =========================
+       
 
         public void EjecutarComando(SQLiteCommand cmd) => BibliotecaBBDD.Ejecuta(cmd);
         public DataTable GetDataTable(SQLiteCommand cmd) => BibliotecaBBDD.GetDataTable(cmd);
 
-        // =========================
+     
         // EDICIÓN DE USUARIOS
-        // =========================
+    
 
         public void ActualizarNombreUsuario(string idUsuario, string nuevoNombre)
         {
@@ -203,9 +200,8 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.UpdateUsuarioDNI(idUsuario, nuevoDNI);
         }
 
-        // =========================
         // ACTUALIZAR LIBRO
-        // =========================
+       
         public void ActualizarTituloLibro(int idLibro, string nuevoTitulo)
         {
             BibliotecaBBDD.ActualizarTituloLibro(idLibro, nuevoTitulo);
