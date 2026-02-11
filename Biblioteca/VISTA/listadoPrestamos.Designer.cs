@@ -106,13 +106,13 @@
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNuevo.AutoSize = true;
             this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnNuevo.Location = new System.Drawing.Point(404, 32);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 30, 40, 30);
+            this.btnNuevo.Location = new System.Drawing.Point(404, 40);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 40, 40, 30);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(126, 42);
+            this.btnNuevo.Size = new System.Drawing.Size(126, 37);
             this.btnNuevo.TabIndex = 7;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = false;

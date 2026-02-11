@@ -20,15 +20,20 @@ namespace Biblioteca.VISTA
         // Cabecera (fila 0)
         private const int HEADER_BASE_HEIGHT = 110;
         private const int HEADER_MIN = 95;
-        private const int HEADER_MAX = 170;
+        private const int HEADER_MAX = 240;
 
-        // Botón Nuevo (igual que listadoUsuarios)
+        // Botón Nuevo (base del diseñador)
         private const int BTN_W_BASE = 127;
         private const int BTN_H_BASE = 29;
 
-        // ✅ Tarjetas: alto base (ajústalo si tu TarjetaPrestamo es más alta/ baja)
+        // Tarjetas
         private const int TARJETA_H_BASE = 110;
         private const float SUAVIZADO_TARJETA = 0.60f;
+
+        // ✅ Espacios entre filtros y margen derecha (base)
+        private const int GAP_FILTROS_BASE = 18;      // separación entre Usuario y Libro
+        private const int RIGHT_PAD_BASE = 18;        // margen derecho del botón
+        private const int LEFT_PAD_BTN_BASE = 16;     // margen izquierdo del botón
 
         public listadoPrestamos(Controlador controlador)
         {
@@ -40,19 +45,19 @@ namespace Biblioteca.VISTA
             _usuarioID = null;
             _inicializando = true;
 
-            // ✅ estabilidad del layout (evita desapariciones)
+            // ✅ estabilidad del layout
             tlpPrincipal.AutoSize = false;
             tlpPrincipal.AutoSizeMode = AutoSizeMode.GrowOnly;
 
-            // ✅ botón controlable
+            // ✅ botón: NO AutoSize y NO estirar en la celda
             btnNuevo.AutoSize = false;
             btnNuevo.Dock = DockStyle.None;
-            btnNuevo.Anchor = AnchorStyles.None;
-            btnNuevo.Margin = new Padding(10);
 
-            // (opcional) mismo “aspecto” que otros botones
-            btnNuevo.FlatStyle = FlatStyle.Standard;
-            btnNuevo.UseVisualStyleBackColor = false;
+            // ✅ pegado a la derecha
+            btnNuevo.Anchor = AnchorStyles.Right;
+
+            // margen base (luego lo recalculamos en escalado)
+            btnNuevo.Margin = new Padding(LEFT_PAD_BTN_BASE, 10, RIGHT_PAD_BASE, 10);
 
             // combos: estilo lista
             cbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -95,33 +100,83 @@ namespace Biblioteca.VISTA
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
-            // Fuentes
+            // 1) Fuentes
             cambiarFuentes(tlpPrincipal, proporcionAlto);
 
-            // ✅ Fila 0 absoluta
-            int headerH = (int)(HEADER_BASE_HEIGHT * proporcionAlto);
-            if (headerH < HEADER_MIN) headerH = HEADER_MIN;
-            if (headerH > HEADER_MAX) headerH = HEADER_MAX;
+            // 2) Separación entre filtros (Usuario vs Libro)
+            int separacionFiltros = (int)(GAP_FILTROS_BASE * proporcionAncho);
+            if (separacionFiltros < GAP_FILTROS_BASE) separacionFiltros = GAP_FILTROS_BASE;
+            if (separacionFiltros > 60) separacionFiltros = 60;
+
+            // Empuja tlpLibro hacia la derecha para dejar aire con Usuario
+            tlpLibro.Margin = new Padding(separacionFiltros, tlpLibro.Margin.Top, tlpLibro.Margin.Right, tlpLibro.Margin.Bottom);
+
+            // 3) Botón: altura sí escala, pero el ancho NO (para que no quede gigante)
+            int altoBoton = (int)(BTN_H_BASE * proporcionAlto);
+            if (altoBoton < BTN_H_BASE) altoBoton = BTN_H_BASE;
+            if (altoBoton > 70) altoBoton = 70;
+
+            // ✅ Ancho según texto + padding (evita “espacio sobrante” dentro del botón)
+            int anchoTexto = TextRenderer.MeasureText(btnNuevo.Text, btnNuevo.Font).Width;
+
+            int paddingHorizontal = (int)(28 * proporcionAncho);
+            if (paddingHorizontal < 28) paddingHorizontal = 28;
+            if (paddingHorizontal > 60) paddingHorizontal = 60;
+
+            int anchoBoton = anchoTexto + paddingHorizontal;
+
+            if (anchoBoton < BTN_W_BASE) anchoBoton = BTN_W_BASE;
+            if (anchoBoton > 170) anchoBoton = 170;
+
+            btnNuevo.Size = new Size(anchoBoton, altoBoton);
+
+            // 4) Márgenes del botón (externos)
+            int margenDerecho = (int)(RIGHT_PAD_BASE * proporcionAncho);
+            if (margenDerecho < RIGHT_PAD_BASE) margenDerecho = RIGHT_PAD_BASE;
+            if (margenDerecho > 60) margenDerecho = 60;
+
+            int margenIzquierdo = (int)(LEFT_PAD_BTN_BASE * proporcionAncho);
+            if (margenIzquierdo < LEFT_PAD_BTN_BASE) margenIzquierdo = LEFT_PAD_BTN_BASE;
+            if (margenIzquierdo > 20) margenIzquierdo = 20;
+
+            btnNuevo.Margin = new Padding(margenIzquierdo, 10, margenDerecho, 10);
+
+            btnNuevo.Visible = true;
+            btnNuevo.BringToFront();
+
+            // 5) Fila 0: altura base
+            int alturaCabecera = (int)(HEADER_BASE_HEIGHT * proporcionAlto);
+            if (alturaCabecera < HEADER_MIN) alturaCabecera = HEADER_MIN;
+            if (alturaCabecera > HEADER_MAX) alturaCabecera = HEADER_MAX;
 
             if (tlpPrincipal.RowStyles.Count > 0)
             {
                 tlpPrincipal.RowStyles[0].SizeType = SizeType.Absolute;
-                tlpPrincipal.RowStyles[0].Height = headerH;
+                tlpPrincipal.RowStyles[0].Height = alturaCabecera;
             }
 
-            // ✅ Botón
-            int btnW = (int)(BTN_W_BASE * proporcionAncho);
-            int btnH = (int)(BTN_H_BASE * proporcionAlto);
+            // 6) Evitar solapes: medir cuánto “ocupa” realmente la fila 0
+            tlpPrincipal.PerformLayout();
 
-            if (btnW < BTN_W_BASE) btnW = BTN_W_BASE;
-            if (btnH < BTN_H_BASE) btnH = BTN_H_BASE;
+            int alturaNecesaria = 0;
+            foreach (Control c in tlpPrincipal.Controls)
+            {
+                if (tlpPrincipal.GetRow(c) != 0) continue;
 
-            if (btnW > 260) btnW = 260;
-            if (btnH > 70) btnH = 70;
+                int abajo = c.Bottom + c.Margin.Bottom;
+                if (abajo > alturaNecesaria) alturaNecesaria = abajo;
+            }
 
-            btnNuevo.Size = new Size(btnW, btnH);
-            btnNuevo.Visible = true;
-            btnNuevo.BringToFront();
+            alturaNecesaria += 6; // aire extra
+
+            if (alturaNecesaria > alturaCabecera) alturaCabecera = alturaNecesaria;
+            if (alturaCabecera > HEADER_MAX) alturaCabecera = HEADER_MAX;
+
+            if (tlpPrincipal.RowStyles.Count > 0)
+            {
+                tlpPrincipal.RowStyles[0].SizeType = SizeType.Absolute;
+                tlpPrincipal.RowStyles[0].Height = alturaCabecera;
+            }
 
             tlpPrincipal.PerformLayout();
         }
@@ -140,7 +195,6 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // ✅ Ajuste de tarjetas (ancho + alto estable)
         private void AjustarTarjetas()
         {
             int ancho = flowListado.ClientSize.Width - 20;
@@ -161,7 +215,7 @@ namespace Biblioteca.VISTA
                 if (c is TarjetaPrestamo tp)
                 {
                     tp.Width = ancho;
-                    tp.Height = altoTarjeta; // ✅ esto suele evitar que se “pierdan” elementos internos
+                    tp.Height = altoTarjeta;
                 }
             }
         }
@@ -308,7 +362,6 @@ namespace Biblioteca.VISTA
             int ancho = flowListado.ClientSize.Width - 20;
             if (ancho < 220) ancho = 220;
 
-            // ✅ Alto estable también al crear
             float proporcionAlto = (float)this.Height / this.MinimumSize.Height;
             float proporcionAncho = (float)this.Width / this.MinimumSize.Width;
 

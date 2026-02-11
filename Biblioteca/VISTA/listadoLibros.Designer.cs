@@ -58,7 +58,7 @@
             this.tlpPrincipal.Controls.Add(this.cbDisponible, 2, 0);
             this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tlpPrincipal.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpPrincipal.Margin = new System.Windows.Forms.Padding(2);
             this.tlpPrincipal.MinimumSize = new System.Drawing.Size(570, 276);
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 2;
@@ -87,7 +87,7 @@
             this.flpLibros.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpLibros.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpLibros.Location = new System.Drawing.Point(2, 107);
-            this.flpLibros.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flpLibros.Margin = new System.Windows.Forms.Padding(2);
             this.flpLibros.MinimumSize = new System.Drawing.Size(533, 288);
             this.flpLibros.Name = "flpLibros";
             this.flpLibros.Size = new System.Drawing.Size(566, 288);
@@ -102,7 +102,7 @@
             this.tlpAutor.Controls.Add(this.lAutor, 0, 0);
             this.tlpAutor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpAutor.Location = new System.Drawing.Point(144, 2);
-            this.tlpAutor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tlpAutor.Margin = new System.Windows.Forms.Padding(2);
             this.tlpAutor.Name = "tlpAutor";
             this.tlpAutor.RowCount = 2;
             this.tlpAutor.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -115,7 +115,7 @@
             this.cbAutores.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbAutores.FormattingEnabled = true;
             this.cbAutores.Location = new System.Drawing.Point(2, 52);
-            this.cbAutores.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbAutores.Margin = new System.Windows.Forms.Padding(2);
             this.cbAutores.Name = "cbAutores";
             this.cbAutores.Size = new System.Drawing.Size(134, 24);
             this.cbAutores.TabIndex = 2;
@@ -140,7 +140,7 @@
             this.tliTiutlo.Controls.Add(this.cbTitulos, 0, 1);
             this.tliTiutlo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tliTiutlo.Location = new System.Drawing.Point(2, 2);
-            this.tliTiutlo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tliTiutlo.Margin = new System.Windows.Forms.Padding(2);
             this.tliTiutlo.Name = "tliTiutlo";
             this.tliTiutlo.RowCount = 2;
             this.tliTiutlo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -165,7 +165,7 @@
             this.cbTitulos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbTitulos.FormattingEnabled = true;
             this.cbTitulos.Location = new System.Drawing.Point(2, 52);
-            this.cbTitulos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbTitulos.Margin = new System.Windows.Forms.Padding(2);
             this.cbTitulos.Name = "cbTitulos";
             this.cbTitulos.Size = new System.Drawing.Size(134, 24);
             this.cbTitulos.TabIndex = 1;
@@ -189,7 +189,7 @@
             this.ClientSize = new System.Drawing.Size(570, 276);
             this.Controls.Add(this.tlpPrincipal);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "listadoLibros";
             this.Text = "listadoLibros";
             this.tlpPrincipal.ResumeLayout(false);

@@ -44,7 +44,7 @@ namespace Biblioteca.VISTA
             btnNuevo.Anchor = AnchorStyles.None;     // centrado en su celda
             btnNuevo.Dock = DockStyle.None;
 
-            // ✅ NO usar margen gigante (se come el ancho y lo corta)
+            // ✅ margen base normal (el margen "bonito" lo ajustamos en Escalado)
             btnNuevo.Margin = new Padding(10);
 
             this.Activated += listadoUsuarios_Activated;
@@ -90,7 +90,7 @@ namespace Biblioteca.VISTA
                 tlpPrincipal.RowStyles[0].Height = headerH;
             }
 
-            // 3) Tamaño del botón (sin márgenes enormes)
+            // 3) Tamaño del botón
             int btnW = (int)(BTN_W_BASE * proporcionAncho);
             int btnH = (int)(BTN_H_BASE * proporcionAlto);
 
@@ -102,12 +102,16 @@ namespace Biblioteca.VISTA
             if (btnH > 70) btnH = 70;
 
             btnNuevo.Size = new Size(btnW, btnH);
+
+            // margen derecho extra para que no se pegue al borde al crecer
+            int padDerecha = (int)(30 * proporcionAncho);  // ajusta 30 si quieres más/menos aire
+            if (padDerecha < 30) padDerecha = 30;
+            if (padDerecha > 120) padDerecha = 120;
+
+            btnNuevo.Margin = new Padding(10, 10, padDerecha, 10);
+
             btnNuevo.Visible = true;
             btnNuevo.BringToFront();
-
-            // TextBox: no se puede hacer mucho más alto (WinForms), pero el tamaño “percibido”
-            // se consigue con la fuente (ya la estamos cambiando).
-            // Si quieres que sea realmente más alto, hay que poner Multiline=true.
 
             tlpPrincipal.PerformLayout();
         }

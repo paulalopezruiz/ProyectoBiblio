@@ -14,6 +14,26 @@ namespace Biblioteca.VISTA
         private List<Libro> listaLibros;
         private Controlador controlador;
 
+        // --- ESCALADO ---
+        private bool mostrado = false;
+
+        // Base del diseñador (tu MinimumSize)
+        private const int BASE_W = 570;
+        private const int BASE_H = 276;
+
+        // Tarjetas base (las tuyas)
+        private const int TARJETA_W_BASE = 150;
+        private const int TARJETA_H_BASE = 200;
+        private const int TARJETA_MARGIN_BASE = 10;
+
+        // Limites para que no se desmadre
+        private const int TARJETA_W_MAX = 260;
+        private const int TARJETA_H_MAX = 320;
+        private const int TARJETA_MARGIN_MAX = 25;
+
+        // Suavizado (como usas en otros)
+        private const float SUAVIZADO = 0.60f;
+
         public listadoLibros(Controlador controlador)
         {
             InitializeComponent();
@@ -23,6 +43,10 @@ namespace Biblioteca.VISTA
             cbTitulos.SelectedIndexChanged += FiltrarLibros;
             cbAutores.SelectedIndexChanged += FiltrarLibros;
             cbDisponible.CheckedChanged += FiltrarLibros;
+
+            // Escalado
+            this.Activated += listadoLibros_Activated;
+            this.Resize += listadoLibros_Resize;
         }
 
         private void listadoLibros_Load(object sender, EventArgs e)
@@ -33,6 +57,84 @@ namespace Biblioteca.VISTA
             RellenarComboAutores();
             ConfigurarFlowPanel();
             CargarTarjetas(listaLibros);
+
+            mostrado = true;
+            Escalar();
+            AjustarTarjetas();
+        }
+
+        private void listadoLibros_Activated(object sender, EventArgs e)
+        {
+            mostrado = true;
+            Escalar();
+            AjustarTarjetas();
+        }
+
+        private void listadoLibros_Resize(object sender, EventArgs e)
+        {
+            if (!mostrado) return;
+            Escalar();
+            AjustarTarjetas();
+        }
+
+        // ✅ NO acumulativo (guarda base en Tag) y ✅ NO entra en TarjetaLibro
+        private void CambiarFuentesNoAcumulativo(Control root, float escala)
+        {
+            foreach (Control c in root.Controls)
+            {
+                // NO escalar dentro de las tarjetas para que portada/boton "Borrar" arranquen como ahora
+                if (c is TarjetaLibro) continue;
+
+                if (c.Tag == null)
+                    c.Tag = c.Font.Size;
+
+                float baseSize = (float)c.Tag;
+                c.Font = new Font(c.Font.FontFamily, baseSize * escala, c.Font.Style);
+
+                CambiarFuentesNoAcumulativo(c, escala);
+            }
+        }
+
+        private void Escalar()
+        {
+            float proporcionAlto = (float)this.Height / BASE_H;
+            float proporcionAncho = (float)this.Width / BASE_W;
+
+            if (proporcionAlto > 3f) proporcionAlto = 3f;
+            if (proporcionAncho > 3f) proporcionAncho = 3f;
+
+            float escala = Math.Min(proporcionAlto, proporcionAncho);
+
+            // ✅ En tamaño base: NO cambia nada
+            if (escala < 1f) escala = 1f;
+
+            float escalaSuave = 1f + (escala - 1f) * SUAVIZADO;
+
+            // Solo crece lo de arriba (no las tarjetas por dentro)
+            CambiarFuentesNoAcumulativo(tlpPrincipal, escalaSuave);
+
+            tlpPrincipal.PerformLayout();
+        }
+
+        // ✅ Portadas: carga segura (evita que desaparezcan)
+        private Image CargarImagenSeguro(string ruta)
+        {
+            if (string.IsNullOrWhiteSpace(ruta) || !File.Exists(ruta))
+                return null;
+
+            try
+            {
+                byte[] bytes = File.ReadAllBytes(ruta);
+                using (var ms = new MemoryStream(bytes))
+                using (var img = Image.FromStream(ms))
+                {
+                    return new Bitmap(img); // clon en memoria
+                }
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         private void RellenarComboTitulos()
@@ -65,38 +167,70 @@ namespace Biblioteca.VISTA
             flpLibros.Margin = new Padding(0);
         }
 
+        // ✅ Solo cambia el tamaño EXTERNO de la tarjeta (por fuera)
+        private void AjustarTarjetas()
+        {
+            float proporcionAlto = (float)this.Height / BASE_H;
+            float proporcionAncho = (float)this.Width / BASE_W;
+
+            if (proporcionAlto > 3f) proporcionAlto = 3f;
+            if (proporcionAncho > 3f) proporcionAncho = 3f;
+
+            float escala = Math.Min(proporcionAlto, proporcionAncho);
+            if (escala < 1f) escala = 1f;
+
+            float escalaSuave = 1f + (escala - 1f) * SUAVIZADO;
+
+            int w = (int)(TARJETA_W_BASE * proporcionAncho);
+            int h = (int)(TARJETA_H_BASE * escalaSuave);
+            int m = (int)(TARJETA_MARGIN_BASE * escalaSuave);
+
+            if (w < TARJETA_W_BASE) w = TARJETA_W_BASE;
+            if (h < TARJETA_H_BASE) h = TARJETA_H_BASE;
+            if (m < TARJETA_MARGIN_BASE) m = TARJETA_MARGIN_BASE;
+
+            if (w > TARJETA_W_MAX) w = TARJETA_W_MAX;
+            if (h > TARJETA_H_MAX) h = TARJETA_H_MAX;
+            if (m > TARJETA_MARGIN_MAX) m = TARJETA_MARGIN_MAX;
+
+            foreach (Control c in flpLibros.Controls)
+            {
+                if (c is TarjetaLibro tl)
+                {
+                    tl.Width = w;
+                    tl.Height = h;
+                    tl.Margin = new Padding(m);
+                }
+            }
+        }
+
         private void CargarTarjetas(List<Libro> librosFiltrados)
         {
             flpLibros.Controls.Clear();
-            int margen = 10;
+            int margen = TARJETA_MARGIN_BASE;
 
             foreach (Libro libro in librosFiltrados)
             {
                 TarjetaLibro tarjeta = new TarjetaLibro
                 {
-                    Width = 150,
-                    Height = 200,
+                    Width = TARJETA_W_BASE,
+                    Height = TARJETA_H_BASE,
                     Margin = new Padding(margen),
                     Disponible = libro.Disponible
                 };
 
                 tarjeta.BotonBorrar.Click += (s, e) => BorrarLibro(libro);
 
-                try
+                // ✅ Portada segura + compatible con rutas absolutas
+                string rutaImagen = null;
+                if (!string.IsNullOrEmpty(libro.Portada))
                 {
-                    if (!string.IsNullOrEmpty(libro.Portada))
-                    {
-                        string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
-                        if (File.Exists(rutaImagen))
-                        {
-                            using (var fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
-                                tarjeta.Portada = new Bitmap(fs);
-                        }
-                        else tarjeta.Portada = null;
-                    }
-                    else tarjeta.Portada = null;
+                    rutaImagen = Path.IsPathRooted(libro.Portada)
+                        ? libro.Portada
+                        : Path.Combine(Application.StartupPath, libro.Portada);
                 }
-                catch { tarjeta.Portada = null; }
+
+                tarjeta.Portada = CargarImagenSeguro(rutaImagen);
 
                 tarjeta.PortadaClick += (s, e) =>
                 {
@@ -105,6 +239,8 @@ namespace Biblioteca.VISTA
 
                 flpLibros.Controls.Add(tarjeta);
             }
+
+            AjustarTarjetas();
         }
 
         private void AbrirDetalleLibro(Libro libro, TarjetaLibro tarjeta)
@@ -117,19 +253,15 @@ namespace Biblioteca.VISTA
             {
                 tarjeta.Disponible = libro.Disponible;
 
-                try
+                string rutaImagen = null;
+                if (!string.IsNullOrEmpty(libro.Portada))
                 {
-                    if (!string.IsNullOrEmpty(libro.Portada))
-                    {
-                        string rutaImagen = Path.Combine(Application.StartupPath, libro.Portada);
-                        if (File.Exists(rutaImagen))
-                        {
-                            using (var fs = new FileStream(rutaImagen, FileMode.Open, FileAccess.Read))
-                                tarjeta.Portada = new Bitmap(fs);
-                        }
-                    }
+                    rutaImagen = Path.IsPathRooted(libro.Portada)
+                        ? libro.Portada
+                        : Path.Combine(Application.StartupPath, libro.Portada);
                 }
-                catch { tarjeta.Portada = null; }
+
+                tarjeta.Portada = CargarImagenSeguro(rutaImagen);
             };
 
             detalle.FormClosed += (s, ev) =>
@@ -195,7 +327,7 @@ namespace Biblioteca.VISTA
                 FiltrarLibros(null, null);
             };
 
-            nuevoLibro.Show(); 
+            nuevoLibro.Show();
         }
     }
 }

@@ -71,6 +71,7 @@
             this.btnNuevo.Size = new System.Drawing.Size(127, 29);
             this.btnNuevo.TabIndex = 7;
             this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNuevo.UseVisualStyleBackColor = false;
             this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
@@ -82,13 +83,13 @@
             this.tlpFiltro.Controls.Add(this.lBuscar, 0, 0);
             this.tlpFiltro.Controls.Add(this.tbNombre, 0, 1);
             this.tlpFiltro.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpFiltro.Location = new System.Drawing.Point(13, 13);
-            this.tlpFiltro.Margin = new System.Windows.Forms.Padding(13);
+            this.tlpFiltro.Location = new System.Drawing.Point(23, 23);
+            this.tlpFiltro.Margin = new System.Windows.Forms.Padding(23);
             this.tlpFiltro.Name = "tlpFiltro";
             this.tlpFiltro.RowCount = 2;
             this.tlpFiltro.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpFiltro.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpFiltro.Size = new System.Drawing.Size(164, 63);
+            this.tlpFiltro.Size = new System.Drawing.Size(164, 43);
             this.tlpFiltro.TabIndex = 1;
             // 
             // lBuscar

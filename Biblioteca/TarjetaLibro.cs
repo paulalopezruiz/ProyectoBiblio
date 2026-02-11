@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Biblioteca.VISTA
@@ -8,7 +9,6 @@ namespace Biblioteca.VISTA
     {
         private Panel indicadorDisponibilidad;
 
-        //Evento público para click en portada
         public event EventHandler PortadaClick;
 
         public TarjetaLibro()
@@ -16,11 +16,10 @@ namespace Biblioteca.VISTA
             InitializeComponent();
             CrearIndicadorDisponibilidad();
 
-            // mejora de UX
             pictureBoxPortada.Cursor = Cursors.Hand;
+            this.Layout += (s, e) => indicadorDisponibilidad?.BringToFront();
         }
 
-        // Propiedad para actualizar el círculo según disponibilidad
         private bool disponible;
         public bool Disponible
         {
@@ -32,23 +31,24 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // Crear el panel circular
         private void CrearIndicadorDisponibilidad()
         {
             indicadorDisponibilidad = new Panel
             {
-                Size = new Size(20, 20),
+                Size = new Size(20, 20),  
                 BackColor = Color.Gray,
                 Location = new Point(5, 5),
                 Anchor = AnchorStyles.Top | AnchorStyles.Left
             };
 
-            // Redondear el panel
             indicadorDisponibilidad.Paint += (s, e) =>
             {
-                System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-                gp.AddEllipse(0, 0, indicadorDisponibilidad.Width - 1, indicadorDisponibilidad.Height - 1);
-                indicadorDisponibilidad.Region = new Region(gp);
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+                using (GraphicsPath gp = new GraphicsPath())
+                {
+                    gp.AddEllipse(0, 0, indicadorDisponibilidad.Width - 1, indicadorDisponibilidad.Height - 1);
+                    indicadorDisponibilidad.Region = new Region(gp);
+                }
             };
 
             this.Controls.Add(indicadorDisponibilidad);
@@ -58,21 +58,17 @@ namespace Biblioteca.VISTA
         private void ActualizarIndicador()
         {
             indicadorDisponibilidad.BackColor = disponible ? Color.Green : Color.Red;
+            indicadorDisponibilidad.Invalidate();
         }
 
-        // Propiedad para la portada
         public Image Portada
         {
             get => pictureBoxPortada.Image;
             set => pictureBoxPortada.Image = value;
         }
 
-        // Botón borrar público
         public Button BotonBorrar => btnBorrar;
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) { }
-
-        //Disparar evento al hacer click
         private void pictureBoxPortada_Click(object sender, EventArgs e)
         {
             PortadaClick?.Invoke(this, EventArgs.Empty);
