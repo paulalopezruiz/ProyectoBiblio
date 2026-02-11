@@ -11,6 +11,21 @@ namespace Biblioteca.VISTA
         private readonly Controlador controlador;
         private string rutaImagenBD = "";
 
+        // --- ESCALADO ---
+        private bool mostrado = false;
+
+        private const float FONT_SIZE = 8.0f;
+
+        // Márgenes base del diseñador
+        private const int BTN_GUARDAR_MARGIN_LR = 150;
+        private const int BTN_GUARDAR_MARGIN_TB = 5;
+
+        private const int BTN_SUBIR_MARGIN_LR = 100;
+        private const int BTN_SUBIR_MARGIN_TB = 25;
+
+        // (Opcional) padding base si quieres añadir luego
+        // private const int PRINCIPAL_PADDING = 0;
+
         public NuevoLibro(Controlador controlador)
         {
             InitializeComponent();
@@ -25,8 +40,74 @@ namespace Biblioteca.VISTA
             btnGuardar.Click += btnGuardar_Click;
             btnSubirImagen.Click += btnSubirImagen_Click;
 
+            this.Activated += NuevoLibro_Activated;
+            this.Resize += NuevoLibro_Resize;
+
             // Inicializar datos
             CargarDatos();
+        }
+
+        private void NuevoLibro_Activated(object sender, EventArgs e)
+        {
+            mostrado = true;
+            AplicarEscalado();
+            CrearImagenGrisSiToca();
+        }
+
+        private void NuevoLibro_Resize(object sender, EventArgs e)
+        {
+            if (!mostrado) return;
+
+            AplicarEscalado();
+
+            // Si aún no hay imagen subida (ruta vacía), regeneramos la gris con el nuevo tamaño
+            if (string.IsNullOrEmpty(rutaImagenBD))
+                CrearImagenGrisSiToca();
+        }
+
+        private void AplicarEscalado()
+        {
+            if (this.MinimumSize.Width <= 0 || this.MinimumSize.Height <= 0) return;
+
+            float proporcionAlto = (float)this.Height / this.MinimumSize.Height;
+            float proporcionAncho = (float)this.Width / this.MinimumSize.Width;
+
+            if (proporcionAlto > 3f) proporcionAlto = 3f;
+            if (proporcionAncho > 3f) proporcionAncho = 3f;
+
+            // Fuentes (uso alto como en tus ejemplos)
+            cambiarFuentes(tlpPrincipal, proporcionAlto);
+
+            // Márgenes de botones (para que “respiren” con el tamaño)
+            btnGuardar.Margin = new Padding(
+                (int)(BTN_GUARDAR_MARGIN_LR * proporcionAncho),
+                (int)(BTN_GUARDAR_MARGIN_TB * proporcionAlto),
+                (int)(BTN_GUARDAR_MARGIN_LR * proporcionAncho),
+                (int)(BTN_GUARDAR_MARGIN_TB * proporcionAlto)
+            );
+
+            btnSubirImagen.Margin = new Padding(
+                (int)(BTN_SUBIR_MARGIN_LR * proporcionAncho),
+                (int)(BTN_SUBIR_MARGIN_TB * proporcionAlto),
+                (int)(BTN_SUBIR_MARGIN_LR * proporcionAncho),
+                (int)(BTN_SUBIR_MARGIN_TB * proporcionAlto)
+            );
+
+            tlpPrincipal.PerformLayout();
+        }
+
+        private void cambiarFuentes(Control c, float proporcionAlto)
+        {
+            foreach (Control control in c.Controls)
+            {
+                control.Font = new Font(
+                    control.Font.FontFamily,
+                    FONT_SIZE * proporcionAlto,
+                    control.Font.Style
+                );
+
+                cambiarFuentes(control, proporcionAlto);
+            }
         }
 
         public void CargarDatos()
@@ -35,16 +116,30 @@ namespace Biblioteca.VISTA
             tbAutor.Text = "";
             numericEjemplares.Value = 1;
 
-            // Imagen gris por defecto
-            Bitmap gris = new Bitmap(pictureBoxImagen.Width, pictureBoxImagen.Height);
+            rutaImagenBD = ""; // indica que no hay imagen subida
+
+            CrearImagenGrisSiToca();
+        }
+
+        private void CrearImagenGrisSiToca()
+        {
+            // Si el picturebox aún no tiene tamaño válido, no hacemos nada
+            int w = Math.Max(1, pictureBoxImagen.ClientSize.Width);
+            int h = Math.Max(1, pictureBoxImagen.ClientSize.Height);
+
+            // Si ya hay imagen y NO es la gris (usuario subió una), no la tocamos
+            // Aquí usamos rutaImagenBD como señal: si está vacía, es “gris”
+            if (!string.IsNullOrEmpty(rutaImagenBD)) return;
+
+            // Reemplazar imagen por una gris adaptada al tamaño actual
+            Bitmap gris = new Bitmap(w, h);
             using (Graphics g = Graphics.FromImage(gris))
             {
                 g.Clear(Color.LightGray);
             }
+
             pictureBoxImagen.Image?.Dispose();
             pictureBoxImagen.Image = gris;
-
-            rutaImagenBD = ""; // indica que no hay imagen subida
         }
 
         private void btnSubirImagen_Click(object sender, EventArgs e)
@@ -77,6 +172,7 @@ namespace Biblioteca.VISTA
 
                     File.Copy(rutaOrigen, rutaDestino, true);
                     rutaImagenBD = "imagenes/" + nombreArchivo;
+
                     MessageBox.Show("Imagen subida correctamente.");
                 }
                 catch (Exception ex)
@@ -114,14 +210,19 @@ namespace Biblioteca.VISTA
 
                 if (!File.Exists(rutaDefecto))
                 {
-                    Bitmap gris = new Bitmap(pictureBoxImagen.Width, pictureBoxImagen.Height);
+                    // generamos un png gris (tamaño actual del picturebox)
+                    int w = Math.Max(1, pictureBoxImagen.ClientSize.Width);
+                    int h = Math.Max(1, pictureBoxImagen.ClientSize.Height);
+
+                    Bitmap gris = new Bitmap(w, h);
                     using (Graphics g = Graphics.FromImage(gris))
                         g.Clear(Color.LightGray);
+
                     gris.Save(rutaDefecto);
                     gris.Dispose();
                 }
 
-                rutaImagenBD = "imagenes/default.png"; // ruta que se guarda en BBDD
+                rutaImagenBD = "imagenes/default.png";
             }
 
             try
@@ -135,7 +236,5 @@ namespace Biblioteca.VISTA
                 MessageBox.Show("Error al guardar el libro: " + ex.Message);
             }
         }
-
-       
     }
 }

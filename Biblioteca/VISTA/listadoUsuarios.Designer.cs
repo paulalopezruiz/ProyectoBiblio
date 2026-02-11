@@ -63,9 +63,10 @@
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.AutoSize = true;
             this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnNuevo.Location = new System.Drawing.Point(376, 30);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 30, 30, 30);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(30);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(127, 29);
             this.btnNuevo.TabIndex = 7;
@@ -82,7 +83,7 @@
             this.tlpFiltro.Controls.Add(this.tbNombre, 0, 1);
             this.tlpFiltro.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpFiltro.Location = new System.Drawing.Point(13, 13);
-            this.tlpFiltro.Margin = new System.Windows.Forms.Padding(13, 13, 13, 13);
+            this.tlpFiltro.Margin = new System.Windows.Forms.Padding(13);
             this.tlpFiltro.Name = "tlpFiltro";
             this.tlpFiltro.RowCount = 2;
             this.tlpFiltro.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -116,7 +117,7 @@
             this.flowListado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowListado.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowListado.Location = new System.Drawing.Point(2, 91);
-            this.flowListado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowListado.Margin = new System.Windows.Forms.Padding(2);
             this.flowListado.Name = "flowListado";
             this.flowListado.Size = new System.Drawing.Size(529, 195);
             this.flowListado.TabIndex = 4;

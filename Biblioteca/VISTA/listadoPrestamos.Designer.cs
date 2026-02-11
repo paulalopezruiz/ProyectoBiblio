@@ -107,6 +107,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNuevo.AutoSize = true;
             this.btnNuevo.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnNuevo.Location = new System.Drawing.Point(404, 32);
             this.btnNuevo.Margin = new System.Windows.Forms.Padding(30, 30, 40, 30);
@@ -123,7 +124,7 @@
             this.flowListado.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowListado.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowListado.Location = new System.Drawing.Point(2, 109);
-            this.flowListado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowListado.Margin = new System.Windows.Forms.Padding(2);
             this.flowListado.Name = "flowListado";
             this.flowListado.Size = new System.Drawing.Size(566, 177);
             this.flowListado.TabIndex = 4;

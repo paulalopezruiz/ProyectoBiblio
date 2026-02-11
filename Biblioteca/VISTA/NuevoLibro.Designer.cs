@@ -46,14 +46,13 @@
             this.tlpPrincipal.Controls.Add(this.tlpImagen, 1, 0);
             this.tlpPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpPrincipal.Location = new System.Drawing.Point(0, 0);
-            this.tlpPrincipal.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tlpPrincipal.MinimumSize = new System.Drawing.Size(988, 602);
+            this.tlpPrincipal.MinimumSize = new System.Drawing.Size(659, 385);
             this.tlpPrincipal.Name = "tlpPrincipal";
             this.tlpPrincipal.RowCount = 3;
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.2219F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 42.10526F));
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.530583F));
-            this.tlpPrincipal.Size = new System.Drawing.Size(988, 703);
+            this.tlpPrincipal.Size = new System.Drawing.Size(659, 450);
             this.tlpPrincipal.TabIndex = 0;
             // 
             // tlpInfo
@@ -69,63 +68,57 @@
             this.tlpInfo.Controls.Add(this.btnGuardar, 0, 3);
             this.tlpInfo.Controls.Add(this.numericEjemplares, 1, 2);
             this.tlpInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpInfo.Location = new System.Drawing.Point(251, 344);
-            this.tlpInfo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tlpInfo.Location = new System.Drawing.Point(167, 220);
             this.tlpInfo.Name = "tlpInfo";
             this.tlpInfo.RowCount = 4;
             this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpInfo.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlpInfo.Size = new System.Drawing.Size(486, 286);
+            this.tlpInfo.Size = new System.Drawing.Size(323, 183);
             this.tlpInfo.TabIndex = 0;
             // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Location = new System.Drawing.Point(4, 0);
-            this.lblTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitulo.Location = new System.Drawing.Point(3, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(65, 25);
+            this.lblTitulo.Size = new System.Drawing.Size(40, 16);
             this.lblTitulo.TabIndex = 0;
             this.lblTitulo.Text = "Título";
             // 
             // lblAutor
             // 
             this.lblAutor.AutoSize = true;
-            this.lblAutor.Location = new System.Drawing.Point(4, 71);
-            this.lblAutor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAutor.Location = new System.Drawing.Point(3, 45);
             this.lblAutor.Name = "lblAutor";
-            this.lblAutor.Size = new System.Drawing.Size(63, 25);
+            this.lblAutor.Size = new System.Drawing.Size(38, 16);
             this.lblAutor.TabIndex = 1;
             this.lblAutor.Text = "Autor";
             // 
             // lblISBN
             // 
             this.lblISBN.AutoSize = true;
-            this.lblISBN.Location = new System.Drawing.Point(4, 142);
-            this.lblISBN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblISBN.Location = new System.Drawing.Point(3, 90);
             this.lblISBN.Name = "lblISBN";
-            this.lblISBN.Size = new System.Drawing.Size(148, 25);
+            this.lblISBN.Size = new System.Drawing.Size(94, 16);
             this.lblISBN.TabIndex = 2;
             this.lblISBN.Text = "Nº Ejemplares";
             // 
             // tbTitulo
             // 
             this.tbTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbTitulo.Location = new System.Drawing.Point(160, 5);
-            this.tbTitulo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbTitulo.Location = new System.Drawing.Point(103, 3);
             this.tbTitulo.Name = "tbTitulo";
-            this.tbTitulo.Size = new System.Drawing.Size(322, 31);
+            this.tbTitulo.Size = new System.Drawing.Size(217, 22);
             this.tbTitulo.TabIndex = 3;
             // 
             // tbAutor
             // 
             this.tbAutor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbAutor.Location = new System.Drawing.Point(160, 76);
-            this.tbAutor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbAutor.Location = new System.Drawing.Point(103, 48);
             this.tbAutor.Name = "tbAutor";
-            this.tbAutor.Size = new System.Drawing.Size(322, 31);
+            this.tbAutor.Size = new System.Drawing.Size(217, 22);
             this.tbAutor.TabIndex = 4;
             // 
             // btnGuardar
@@ -133,10 +126,10 @@
             this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.tlpInfo.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGuardar.Location = new System.Drawing.Point(150, 218);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(150, 5, 150, 5);
+            this.btnGuardar.Location = new System.Drawing.Point(100, 138);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(100, 3, 100, 3);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(186, 63);
+            this.btnGuardar.Size = new System.Drawing.Size(123, 42);
             this.btnGuardar.TabIndex = 6;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
@@ -144,9 +137,10 @@
             // numericEjemplares
             // 
             this.numericEjemplares.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericEjemplares.Location = new System.Drawing.Point(159, 145);
+            this.numericEjemplares.Location = new System.Drawing.Point(102, 92);
+            this.numericEjemplares.Margin = new System.Windows.Forms.Padding(2);
             this.numericEjemplares.Name = "numericEjemplares";
-            this.numericEjemplares.Size = new System.Drawing.Size(324, 31);
+            this.numericEjemplares.Size = new System.Drawing.Size(219, 22);
             this.numericEjemplares.TabIndex = 7;
             // 
             // tlpImagen
@@ -156,21 +150,22 @@
             this.tlpImagen.Controls.Add(this.btnSubirImagen, 0, 1);
             this.tlpImagen.Controls.Add(this.pictureBoxImagen, 0, 0);
             this.tlpImagen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlpImagen.Location = new System.Drawing.Point(250, 3);
+            this.tlpImagen.Location = new System.Drawing.Point(166, 2);
+            this.tlpImagen.Margin = new System.Windows.Forms.Padding(2);
             this.tlpImagen.Name = "tlpImagen";
             this.tlpImagen.RowCount = 2;
             this.tlpImagen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 69.96997F));
             this.tlpImagen.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30.03003F));
-            this.tlpImagen.Size = new System.Drawing.Size(488, 333);
+            this.tlpImagen.Size = new System.Drawing.Size(325, 213);
             this.tlpImagen.TabIndex = 1;
             // 
             // btnSubirImagen
             // 
             this.btnSubirImagen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnSubirImagen.Location = new System.Drawing.Point(100, 258);
-            this.btnSubirImagen.Margin = new System.Windows.Forms.Padding(100, 25, 100, 25);
+            this.btnSubirImagen.Location = new System.Drawing.Point(67, 165);
+            this.btnSubirImagen.Margin = new System.Windows.Forms.Padding(67, 16, 67, 16);
             this.btnSubirImagen.Name = "btnSubirImagen";
-            this.btnSubirImagen.Size = new System.Drawing.Size(288, 50);
+            this.btnSubirImagen.Size = new System.Drawing.Size(191, 32);
             this.btnSubirImagen.TabIndex = 0;
             this.btnSubirImagen.Text = "SUBIR IMAGEN";
             this.btnSubirImagen.UseVisualStyleBackColor = true;
@@ -178,21 +173,21 @@
             // pictureBoxImagen
             // 
             this.pictureBoxImagen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBoxImagen.Location = new System.Drawing.Point(3, 3);
+            this.pictureBoxImagen.Location = new System.Drawing.Point(2, 2);
+            this.pictureBoxImagen.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBoxImagen.Name = "pictureBoxImagen";
-            this.pictureBoxImagen.Size = new System.Drawing.Size(482, 227);
+            this.pictureBoxImagen.Size = new System.Drawing.Size(321, 145);
             this.pictureBoxImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxImagen.TabIndex = 1;
             this.pictureBoxImagen.TabStop = false;
             // 
             // NuevoLibro
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 703);
+            this.ClientSize = new System.Drawing.Size(655, 450);
             this.Controls.Add(this.tlpPrincipal);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MinimumSize = new System.Drawing.Size(958, 515);
+            this.MinimumSize = new System.Drawing.Size(645, 347);
             this.Name = "NuevoLibro";
             this.Text = "NuevoLibro";
             this.tlpPrincipal.ResumeLayout(false);
