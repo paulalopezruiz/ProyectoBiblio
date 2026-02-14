@@ -2,6 +2,7 @@
 using Biblioteca.MODELO;
 using Biblioteca.VISTA;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -15,30 +16,25 @@ namespace Biblioteca
 
         private bool mostrado = false;
 
-        // --- BASES DEL DISEÑADOR (IMPORTANTE: no dependemos de MinimumSize) ---
-        private const int TARJETA_BASE_W = 654;
-        private const int TARJETA_BASE_H = 150;
-
-        private const float FONT_SIZE = 9.0f;
-
-        // Panel del estado (base)
+        // Panel del estado
         private const int ESTADO_BASE = 30;
-
-        // suavizado para que no suba “a lo bruto”
-        private const float SUAVIZADO = 0.60f;
-
-        // límites para que nunca se haga enorme ni desaparezca
         private const int ESTADO_MIN = 22;
         private const int ESTADO_MAX = 60;
-
         private const int BORDE = 1;
+
+        // suavizado
+        private const float SUAVIZADO = 0.60f;
+
+        // Guardamos tamaños base reales de cada control
+        private readonly Dictionary<Control, float> _fontBase = new Dictionary<Control, float>();
 
         public TarjetaPrestamo()
         {
             InitializeComponent();
 
-            // ✅ Forzamos layout correcto aunque el Designer tenga Dock=Fill y Margin grande
             PrepararLayout();
+
+            GuardarFuentesBase(this);
 
             pEstado.Paint += pEstado_Paint;
 
@@ -49,6 +45,14 @@ namespace Biblioteca
             this.HandleCreated += (s, e) =>
             {
                 mostrado = true;
+                HookResizeDelFormPadre();
+                AplicarEscalado();
+            };
+
+            this.ParentChanged += (s, e) =>
+            {
+                if (!mostrado) return;
+                HookResizeDelFormPadre();
                 AplicarEscalado();
             };
 
@@ -61,59 +65,92 @@ namespace Biblioteca
 
         private void PrepararLayout()
         {
-            // Panel del círculo: NO Fill, centrado, margen pequeño fijo
             pEstado.Dock = DockStyle.None;
             pEstado.Anchor = AnchorStyles.None;
             pEstado.Margin = new Padding(10);
             pEstado.BackColor = Color.Transparent;
-
-            // arrancamos con un tamaño base
             pEstado.Size = new Size(ESTADO_BASE, ESTADO_BASE);
 
-            // (opcional) que el texto no se pegue
             lPrestamo.AutoSize = true;
             lFecha.AutoSize = true;
         }
 
+        private void GuardarFuentesBase(Control parent)
+        {
+            foreach (Control c in parent.Controls)
+            {
+                if (!_fontBase.ContainsKey(c))
+                    _fontBase[c] = c.Font.Size;
+
+                GuardarFuentesBase(c);
+            }
+        }
+
+        private void HookResizeDelFormPadre()
+        {
+            Form f = this.FindForm();
+            if (f == null) return;
+
+            f.Resize -= FormPadre_Resize;
+            f.Resize += FormPadre_Resize;
+        }
+
+        private void FormPadre_Resize(object sender, EventArgs e)
+        {
+            if (!mostrado) return;
+            AplicarEscalado();
+        }
+
         private void AplicarEscalado()
         {
-            // ✅ Escalamos contra base del diseñador (NO MinimumSize)
-            float proporcionAlto = (float)this.Height / TARJETA_BASE_H;
-            float proporcionAncho = (float)this.Width / TARJETA_BASE_W;
+            Form f = this.FindForm();
+            if (f == null) return;
+
+            // ✅ Proporción respecto al tamaño mínimo del form (como tu listadoPrestamos)
+            float baseW = f.MinimumSize.Width;
+            float baseH = f.MinimumSize.Height;
+
+            if (baseW <= 0 || baseH <= 0) return;
+
+            float proporcionAncho = (float)f.ClientSize.Width / baseW;
+            float proporcionAlto = (float)f.ClientSize.Height / baseH;
 
             // límites razonables
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
-            float escala = Math.Min(proporcionAlto, proporcionAncho);
+            if (proporcionAlto < 0.6f) proporcionAlto = 0.6f;
+            if (proporcionAncho < 0.6f) proporcionAncho = 0.6f;
+
+            // ✅ Escala proporcional al alto/ancho (promedio, no min)
+            float escala = (proporcionAlto + proporcionAncho) / 2f;
+
+            // suavizado (para que suba suave)
             float escalaSuave = 1f + (escala - 1f) * SUAVIZADO;
 
-            // Fuente suave
-            CambiarFuentes(tlpPrincipal, escalaSuave);
+            CambiarFuentesDesdeBase(this, escalaSuave);
 
-            // Tamaño del panel del círculo
             int lado = (int)(ESTADO_BASE * escalaSuave);
             if (lado < ESTADO_MIN) lado = ESTADO_MIN;
             if (lado > ESTADO_MAX) lado = ESTADO_MAX;
 
             pEstado.Size = new Size(lado, lado);
 
-            // Redibujo
             pEstado.Invalidate();
             tlpPrincipal.PerformLayout();
         }
 
-        private void CambiarFuentes(Control c, float escala)
+        private void CambiarFuentesDesdeBase(Control parent, float escala)
         {
-            foreach (Control control in c.Controls)
+            foreach (Control c in parent.Controls)
             {
-                control.Font = new Font(
-                    control.Font.FontFamily,
-                    FONT_SIZE * escala,
-                    control.Font.Style
-                );
+                if (_fontBase.ContainsKey(c))
+                {
+                    float baseSize = _fontBase[c];
+                    c.Font = new Font(c.Font.FontFamily, baseSize * escala, c.Font.Style);
+                }
 
-                CambiarFuentes(control, escala);
+                CambiarFuentesDesdeBase(c, escala);
             }
         }
 

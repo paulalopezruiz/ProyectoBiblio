@@ -123,6 +123,7 @@
             // 
             // btnGuardar
             // 
+            this.btnGuardar.AutoSize = true;
             this.btnGuardar.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.tlpInfo.SetColumnSpan(this.btnGuardar, 2);
             this.btnGuardar.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -161,6 +162,7 @@
             // 
             // btnSubirImagen
             // 
+            this.btnSubirImagen.AutoSize = true;
             this.btnSubirImagen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSubirImagen.Location = new System.Drawing.Point(67, 165);
             this.btnSubirImagen.Margin = new System.Windows.Forms.Padding(67, 16, 67, 16);
@@ -195,6 +197,7 @@
             this.tlpInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericEjemplares)).EndInit();
             this.tlpImagen.ResumeLayout(false);
+            this.tlpImagen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImagen)).EndInit();
             this.ResumeLayout(false);
 

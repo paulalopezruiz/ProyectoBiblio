@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Windows.Forms;
 using Biblioteca.CONTROLADOR;
@@ -18,18 +20,18 @@ namespace Biblioteca.VISTA
             InitializeComponent();
             this.controlador = controlador;
 
-            // Si el Load ya está enlazado en el diseñador, NO lo dupliques aquí
-            // Load += NuevoPrestamo_Load;
+            // ✅ ENLAZAMOS LOAD AQUÍ para asegurarnos de que se cargan los combos
+            this.Load += NuevoPrestamo_Load;
 
             cmbLibro.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
+
             btnGuardar.Click += btnGuardar_Click;
 
             this.Activated += NuevoPrestamo_Activated;
             this.Resize += NuevoPrestamo_Resize;
 
-            // ✅ Dejar el margen del botón fijo (para que no se corte)
-            // Puedes ajustar estos valores si quieres más/menos separación
+            // Margen fijo para que no se corte
             btnGuardar.Margin = new Padding(60, 3, 60, 3);
         }
 
@@ -52,13 +54,11 @@ namespace Biblioteca.VISTA
             float proporcionAlto = (float)this.Height / this.MinimumSize.Height;
             if (proporcionAlto > 3f) proporcionAlto = 3f;
 
-            // ✅ Solo escalamos fuentes (como en tus ejemplos)
-            cambiarFuentes(tlpPrincipal, proporcionAlto);
-
+            CambiarFuentes(tlpPrincipal, proporcionAlto);
             tlpPrincipal.PerformLayout();
         }
 
-        private void cambiarFuentes(Control c, float proporcionAlto)
+        private void CambiarFuentes(Control c, float proporcionAlto)
         {
             foreach (Control control in c.Controls)
             {
@@ -68,11 +68,11 @@ namespace Biblioteca.VISTA
                     control.Font.Style
                 );
 
-                cambiarFuentes(control, proporcionAlto);
+                CambiarFuentes(control, proporcionAlto);
             }
         }
 
-        // Este Load debería estar enlazado desde el diseñador:
+        // ✅ AQUÍ se cargan los datos
         private void NuevoPrestamo_Load(object sender, EventArgs e)
         {
             dtpFechaInicio.Value = DateTime.Today;
@@ -85,7 +85,7 @@ namespace Biblioteca.VISTA
 
         private void CargarLibros()
         {
-            var dt = controlador.GetDataTable(new System.Data.SQLite.SQLiteCommand(
+            DataTable dt = controlador.GetDataTable(new SQLiteCommand(
                 "SELECT ID, Titulo FROM Libros ORDER BY Titulo;"
             ));
 
@@ -96,7 +96,7 @@ namespace Biblioteca.VISTA
 
         private void CargarUsuarios()
         {
-            var dt = controlador.GetDataTable(new System.Data.SQLite.SQLiteCommand(
+            DataTable dt = controlador.GetDataTable(new SQLiteCommand(
                 "SELECT ID, Nombre FROM Usuarios ORDER BY Nombre;"
             ));
 
@@ -117,6 +117,7 @@ namespace Biblioteca.VISTA
 
             int idLibro = Convert.ToInt32(cmbLibro.SelectedValue);
             int idUsuario = Convert.ToInt32(cmbUsuario.SelectedValue);
+
             DateTime fechaInicio = dtpFechaInicio.Value.Date;
             DateTime fechaFin = fechaInicio.AddDays(15);
 
