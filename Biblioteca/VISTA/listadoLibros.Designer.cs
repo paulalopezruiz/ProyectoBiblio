@@ -93,6 +93,7 @@
             this.flpLibros.Size = new System.Drawing.Size(566, 288);
             this.flpLibros.TabIndex = 9;
             this.flpLibros.WrapContents = false;
+            this.flpLibros.Paint += new System.Windows.Forms.PaintEventHandler(this.flpLibros_Paint);
             // 
             // tlpAutor
             // 

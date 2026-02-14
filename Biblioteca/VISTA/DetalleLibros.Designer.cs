@@ -67,6 +67,7 @@
             this.tlpPrincipal.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.649717F));
             this.tlpPrincipal.Size = new System.Drawing.Size(644, 348);
             this.tlpPrincipal.TabIndex = 1;
+            this.tlpPrincipal.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpPrincipal_Paint);
             // 
             // tlpEdit
             // 
@@ -91,7 +92,7 @@
             // 
             this.tbEditAutor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbEditAutor.Location = new System.Drawing.Point(2, 43);
-            this.tbEditAutor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbEditAutor.Margin = new System.Windows.Forms.Padding(2);
             this.tbEditAutor.Name = "tbEditAutor";
             this.tbEditAutor.Size = new System.Drawing.Size(152, 22);
             this.tbEditAutor.TabIndex = 1;
@@ -101,7 +102,7 @@
             // 
             this.tbEditTitulo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbEditTitulo.Location = new System.Drawing.Point(2, 2);
-            this.tbEditTitulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbEditTitulo.Margin = new System.Windows.Forms.Padding(2);
             this.tbEditTitulo.Name = "tbEditTitulo";
             this.tbEditTitulo.Size = new System.Drawing.Size(152, 22);
             this.tbEditTitulo.TabIndex = 0;
@@ -111,7 +112,7 @@
             // 
             this.nudEditEjemplares.Dock = System.Windows.Forms.DockStyle.Fill;
             this.nudEditEjemplares.Location = new System.Drawing.Point(2, 84);
-            this.nudEditEjemplares.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nudEditEjemplares.Margin = new System.Windows.Forms.Padding(2);
             this.nudEditEjemplares.Name = "nudEditEjemplares";
             this.nudEditEjemplares.Size = new System.Drawing.Size(152, 22);
             this.nudEditEjemplares.TabIndex = 2;
@@ -233,7 +234,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 348);
             this.Controls.Add(this.tlpPrincipal);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(662, 393);
             this.Name = "DetalleLibros";
             this.Text = "DetalleLibros";

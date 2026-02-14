@@ -101,9 +101,7 @@ namespace Biblioteca.VISTA
                     break;
             }
 
-            // Avisar al listado de libros que hubo cambios
             LibroActualizado?.Invoke(this, EventArgs.Empty);
-
             ke.SuppressKeyPress = true;
         }
 
@@ -114,9 +112,12 @@ namespace Biblioteca.VISTA
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
                 string carpeta = Path.Combine(Application.StartupPath, "imagenes");
-                if (!Directory.Exists(carpeta)) Directory.CreateDirectory(carpeta);
+                if (!Directory.Exists(carpeta))
+                    Directory.CreateDirectory(carpeta);
 
-                string nombreArchivo = $"{libro.IdLibro}{Path.GetExtension(dlg.FileName)}";
+               
+                string nombreArchivo = Path.GetFileName(dlg.FileName);
+
                 string destino = Path.Combine(carpeta, nombreArchivo);
 
                 try
@@ -129,8 +130,14 @@ namespace Biblioteca.VISTA
                     return;
                 }
 
-                string rutaRelativa = Path.Combine("imagenes", nombreArchivo);
+                // Guardar como imagenes/nombredelaimagen.jpg
+                string rutaRelativa = Path.Combine("imagenes", nombreArchivo)
+                                        .Replace("\\", "/");
+
                 controlador.ActualizarPortadaLibro(libro.IdLibro, rutaRelativa);
+
+                // Actualizar también el objeto en memoria
+                libro.Portada = rutaRelativa;
 
                 CargarPortada();
             }
@@ -157,21 +164,21 @@ namespace Biblioteca.VISTA
             }
         }
 
-     
-        // VER PRÉSTAMOS DEL LIBRO
-
-        // Dentro de DetalleLibros
         private void btnVerPrestamos_Click(object sender, EventArgs e)
         {
             listadoPrestamos listado = new listadoPrestamos(controlador, libro.IdLibro);
 
-            // Pedir al Gestor que navegue a este formulario
             Gestor gestor = this.MdiParent as Gestor
                              ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
             if (gestor != null)
             {
                 gestor.NavegarA(listado);
             }
+        }
+
+        private void tlpPrincipal_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

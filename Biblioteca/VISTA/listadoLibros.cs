@@ -77,7 +77,6 @@ namespace Biblioteca.VISTA
             AjustarTarjetas();
         }
 
-        // ✅ NO acumulativo (guarda base en Tag) y ✅ NO entra en TarjetaLibro
         private void CambiarFuentesNoAcumulativo(Control root, float escala)
         {
             foreach (Control c in root.Controls)
@@ -105,7 +104,6 @@ namespace Biblioteca.VISTA
 
             float escala = Math.Min(proporcionAlto, proporcionAncho);
 
-            // ✅ En tamaño base: NO cambia nada
             if (escala < 1f) escala = 1f;
 
             float escalaSuave = 1f + (escala - 1f) * SUAVIZADO;
@@ -116,7 +114,6 @@ namespace Biblioteca.VISTA
             tlpPrincipal.PerformLayout();
         }
 
-        // ✅ Portadas: carga segura (evita que desaparezcan)
         private Image CargarImagenSeguro(string ruta)
         {
             if (string.IsNullOrWhiteSpace(ruta) || !File.Exists(ruta))
@@ -167,7 +164,6 @@ namespace Biblioteca.VISTA
             flpLibros.Margin = new Padding(0);
         }
 
-        // ✅ Solo cambia el tamaño EXTERNO de la tarjeta (por fuera)
         private void AjustarTarjetas()
         {
             float proporcionAlto = (float)this.Height / BASE_H;
@@ -221,7 +217,6 @@ namespace Biblioteca.VISTA
 
                 tarjeta.BotonBorrar.Click += (s, e) => BorrarLibro(libro);
 
-                // ✅ Portada segura + compatible con rutas absolutas
                 string rutaImagen = null;
                 if (!string.IsNullOrEmpty(libro.Portada))
                 {
@@ -328,6 +323,11 @@ namespace Biblioteca.VISTA
             };
 
             nuevoLibro.Show();
+        }
+
+        private void flpLibros_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
