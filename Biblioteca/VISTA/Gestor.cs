@@ -13,10 +13,8 @@ namespace Biblioteca
         private Label[] menuItems;
         private Form formularioActual;
 
-        // --- ESCALADO ---
         private bool mostrado = false;
 
-        // tamaños base del diseñador
         private const int NAVBAR_H_BASE = 64;
 
         private const int BTN_W_BASE = 125;
@@ -26,11 +24,10 @@ namespace Biblioteca
         private const int LOGO_W_BASE = 173;
         private const int LOGO_H_BASE = 60;
 
-        // Un poco MÁS GRANDE que antes (antes era 0.80f)
-        private const float MENU_FACTOR = 0.88f; // sube/baja (0.85 - 0.95)
+        private const float MENU_FACTOR = 0.88f; 
         private const float BTN_FACTOR = 0.88f;
 
-        // fuentes base (del diseñador)
+        
         private float baseFontMenu;
         private float baseFontBtn;
 
@@ -51,23 +48,20 @@ namespace Biblioteca
             logo.Click += Logo_Click;
             bCerrarSesion.Click += BtnCerrarSesion_Click;
 
-            // Escalado al redimensionar (sin tocar el diseñador)
             this.Resize += Gestor_Resize;
         }
 
         private void Gestor_Load(object sender, EventArgs e)
         {
-            // Capturar fuentes base tal cual están en el diseñador
             baseFontMenu = lUsuario.Font.Size;
             baseFontBtn = bCerrarSesion.Font.Size;
 
-            // Cargar Home al inicio
             var home = new Home();
             home.CambiarFormulario += (form) => CambiarFormulario(form, DetectarMenuActivo(form));
             CambiarFormulario(home);
 
             mostrado = true;
-            EscalarGestor(); // primera vez
+            EscalarGestor(); 
         }
 
         private void Gestor_Resize(object sender, EventArgs e)
@@ -78,27 +72,21 @@ namespace Biblioteca
 
         private void EscalarGestor()
         {
-            // Proporción basada en MinimumSize del FORM (como tus ejemplos)
             float proporcionAlto = (float)this.Height / this.MinimumSize.Height;
             float proporcionAncho = (float)this.Width / this.MinimumSize.Width;
 
-            // (opcional) límites
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
-            // Usamos la mínima para que no se dispare en pantallas muy anchas/altas
             float escala = Math.Min(proporcionAlto, proporcionAncho);
 
-            // 1) Altura del NavBar
             NavBar.Height = (int)(NAVBAR_H_BASE * proporcionAlto);
 
-            // 2) Logo
             logo.Size = new Size(
                 (int)(LOGO_W_BASE * proporcionAncho),
                 (int)(LOGO_H_BASE * proporcionAlto)
             );
 
-            // 3) Botón cerrar sesión
             bCerrarSesion.Size = new Size(
                 (int)(BTN_W_BASE * proporcionAncho),
                 (int)(BTN_H_BASE * proporcionAlto)
@@ -111,7 +99,6 @@ namespace Biblioteca
                 (int)(BTN_MARGIN_BASE * proporcionAlto)
             );
 
-            // 4) Fuentes (un poco más grandes)
             float newMenuSize = baseFontMenu * escala * MENU_FACTOR;
             float newBtnSize = baseFontBtn * escala * BTN_FACTOR;
 
@@ -125,7 +112,6 @@ namespace Biblioteca
             tbMenu.PerformLayout();
         }
 
-        // Método centralizado para cambiar formularios
         private void CambiarFormulario(Form formulario, Label menuActivo = null)
         {
             if (formularioActual != null)
@@ -139,7 +125,6 @@ namespace Biblioteca
             ActualizarMenuVisual(menuActivo);
         }
 
-        // Manejador genérico para clicks del menú
         private void Menu_Click(object sender, EventArgs e)
         {
             if (sender is Label clicked)
@@ -158,7 +143,6 @@ namespace Biblioteca
             }
         }
 
-        // Método para actualizar el estilo del menú
         private void ActualizarMenuVisual(Label activo)
         {
             foreach (var item in menuItems)
@@ -176,7 +160,6 @@ namespace Biblioteca
             }
         }
 
-        // Detecta qué label del menú corresponde a un formulario
         private Label DetectarMenuActivo(Form form)
         {
             if (form is listadoUsuarios) return lUsuario;
@@ -185,7 +168,6 @@ namespace Biblioteca
             return null;
         }
 
-        // Click en logo: volver a Home
         private void Logo_Click(object sender, EventArgs e)
         {
             var home = new Home();
@@ -193,7 +175,6 @@ namespace Biblioteca
             CambiarFormulario(home);
         }
 
-        // Click cerrar sesión: volver a Home
         private void BtnCerrarSesion_Click(object sender, EventArgs e)
         {
             var home = new Home();

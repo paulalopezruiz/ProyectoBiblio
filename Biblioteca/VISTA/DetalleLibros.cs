@@ -25,32 +25,26 @@ namespace Biblioteca.VISTA
             Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
             controlador = gestor?.Controlador;
 
-            // Labels iniciales
             lTitulo.Text = libro.Titulo;
             lAutor.Text = libro.Escritor;
             lEjemplares.Text = libro.NEjemplares.ToString();
 
-            // TextBox/NumericUpDown ocultos al inicio
             tbEditTitulo.Visible = false;
             tbEditAutor.Visible = false;
             nudEditEjemplares.Visible = false;
 
-            // Click en labels -> activar edición
             lTitulo.Click += (s, e) => ActivarEdicion(tbEditTitulo, lTitulo.Text);
             lAutor.Click += (s, e) => ActivarEdicion(tbEditAutor, lAutor.Text);
             lEjemplares.Click += (s, e) => ActivarEdicionNumeric(nudEditEjemplares, libro.NEjemplares);
 
-            // ENTER para guardar cambios
             tbEditTitulo.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Titulo);
             tbEditAutor.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Autor);
             nudEditEjemplares.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.NEjemplares);
 
-            // Portada
             CargarPortada();
             pictureBoxPortada.Cursor = Cursors.Hand;
             pictureBoxPortada.Click += PictureBoxPortada_Click;
 
-            // Botón Ver Prestamos
             btnVerPrestamos.Click += btnVerPrestamos_Click;
         }
 
@@ -130,13 +124,11 @@ namespace Biblioteca.VISTA
                     return;
                 }
 
-                // Guardar como imagenes/nombredelaimagen.jpg
                 string rutaRelativa = Path.Combine("imagenes", nombreArchivo)
                                         .Replace("\\", "/");
 
                 controlador.ActualizarPortadaLibro(libro.IdLibro, rutaRelativa);
 
-                // Actualizar también el objeto en memoria
                 libro.Portada = rutaRelativa;
 
                 CargarPortada();

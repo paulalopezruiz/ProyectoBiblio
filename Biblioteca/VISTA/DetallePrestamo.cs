@@ -34,7 +34,6 @@ namespace Biblioteca.VISTA
         }
 
 
-        // CONFIGURAR SEGÚN ESTADO
     
         private void ConfigurarEstado()
         {
@@ -75,9 +74,7 @@ namespace Biblioteca.VISTA
             }
         }
 
- 
-        // DEVOLVER PRÉSTAMO
-  
+   
         private void btnDevolver_Click(object sender, EventArgs e)
         {
             if (_prestamo.Devuelto) return; 
@@ -96,7 +93,6 @@ namespace Biblioteca.VISTA
           
             _prestamo.Devuelto = true;
 
-            // Mensaje de devolución
             string mensaje = vencido
                 ? "⚠️ Libro devuelto fuera de plazo. Se aplicará penalización."
                 : "Libro devuelto correctamente.";

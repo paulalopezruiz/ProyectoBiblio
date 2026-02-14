@@ -27,22 +27,18 @@ namespace Biblioteca.VISTA
             Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
             controlador = gestor?.Controlador;
 
-            // Mostrar datos
             lNombre.Text = _usuario.Nombre;
             lTlf.Text = _usuario.Telefono;
             lDni.Text = _usuario.DNI;
 
-            // Ocultar textboxes
             tbNombre.Visible = false;
             tbTelefono.Visible = false;
             tbDni.Visible = false;
 
-            // Click en labels: activar edición
             lNombre.Click += (s, args) => ActivarEdicion(tbNombre, lNombre.Text);
             lTlf.Click += (s, args) => ActivarEdicion(tbTelefono, lTlf.Text);
             lDni.Click += (s, args) => ActivarEdicion(tbDni, lDni.Text);
 
-            // Enter en textbox: guardar
             tbNombre.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Nombre);
             tbTelefono.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Telefono);
             tbDni.KeyDown += (s, ke) => GuardarConEnter(ke, Campo.Dni);
@@ -99,13 +95,13 @@ namespace Biblioteca.VISTA
 
         private void BtnVerPrestamos_Click(object sender, EventArgs e)
         {
-            // Abrir listado de préstamos filtrado por este usuario
+            
             listadoPrestamos listado = new listadoPrestamos(controlador, _usuario.DNI);
 
             Gestor gestor = this.MdiParent as Gestor ?? Application.OpenForms.OfType<Gestor>().FirstOrDefault();
             if (gestor != null)
             {
-                gestor.NavegarA(listado); // Se incrusta en MDI sin duplicados
+                gestor.NavegarA(listado); 
             }
         }
 

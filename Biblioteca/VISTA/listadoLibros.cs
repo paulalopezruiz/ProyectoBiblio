@@ -14,24 +14,19 @@ namespace Biblioteca.VISTA
         private List<Libro> listaLibros;
         private Controlador controlador;
 
-        // --- ESCALADO ---
         private bool mostrado = false;
 
-        // Base del diseñador (tu MinimumSize)
         private const int BASE_W = 570;
         private const int BASE_H = 276;
 
-        // Tarjetas base (las tuyas)
         private const int TARJETA_W_BASE = 150;
         private const int TARJETA_H_BASE = 200;
         private const int TARJETA_MARGIN_BASE = 10;
 
-        // Limites para que no se desmadre
         private const int TARJETA_W_MAX = 260;
         private const int TARJETA_H_MAX = 320;
         private const int TARJETA_MARGIN_MAX = 25;
 
-        // Suavizado (como usas en otros)
         private const float SUAVIZADO = 0.60f;
 
         public listadoLibros(Controlador controlador)
@@ -44,7 +39,7 @@ namespace Biblioteca.VISTA
             cbAutores.SelectedIndexChanged += FiltrarLibros;
             cbDisponible.CheckedChanged += FiltrarLibros;
 
-            // Escalado
+            
             this.Activated += listadoLibros_Activated;
             this.Resize += listadoLibros_Resize;
         }
@@ -81,7 +76,6 @@ namespace Biblioteca.VISTA
         {
             foreach (Control c in root.Controls)
             {
-                // NO escalar dentro de las tarjetas para que portada/boton "Borrar" arranquen como ahora
                 if (c is TarjetaLibro) continue;
 
                 if (c.Tag == null)
@@ -108,7 +102,6 @@ namespace Biblioteca.VISTA
 
             float escalaSuave = 1f + (escala - 1f) * SUAVIZADO;
 
-            // Solo crece lo de arriba (no las tarjetas por dentro)
             CambiarFuentesNoAcumulativo(tlpPrincipal, escalaSuave);
 
             tlpPrincipal.PerformLayout();
@@ -125,7 +118,7 @@ namespace Biblioteca.VISTA
                 using (var ms = new MemoryStream(bytes))
                 using (var img = Image.FromStream(ms))
                 {
-                    return new Bitmap(img); // clon en memoria
+                    return new Bitmap(img); 
                 }
             }
             catch

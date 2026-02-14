@@ -10,7 +10,6 @@ namespace Biblioteca.CONTROLADOR
     // Clase de acceso a la base de datos
     public static class BibliotecaBBDD
     {
-        // Obtiene la ruta de la base de datos
         private static string ObtenerRutaBBDD()
         {
             string rutaBin = AppDomain.CurrentDomain.BaseDirectory;
@@ -47,7 +46,7 @@ namespace Biblioteca.CONTROLADOR
             }
         }
 
-        // Ejecuta un comando sin devolver datos (INSERT, UPDATE, DELETE)
+       
         public static void Ejecuta(SQLiteCommand cmd)
         {
             try
@@ -152,7 +151,7 @@ namespace Biblioteca.CONTROLADOR
         }
 
     
-        // UPDATE USUARIOS
+        // Actualizar usuarios
        
 
         public static void UpdateUsuarioNombre(string idUsuario, string nuevoNombre)
@@ -185,7 +184,7 @@ namespace Biblioteca.CONTROLADOR
             Ejecuta(cmd);
         }
 
-        // ACTUALIZAR LIBRO
+        // Actualizar libro
         
 
         public static void ActualizarTituloLibro(int idLibro, string nuevoTitulo)

@@ -11,7 +11,6 @@ namespace Biblioteca.VISTA
     {
         private readonly Controlador controlador;
 
-        // --- ESCALADO ---
         private bool mostrado = false;
         private const float FONT_SIZE = 8.0f;
 
@@ -20,7 +19,6 @@ namespace Biblioteca.VISTA
             InitializeComponent();
             this.controlador = controlador;
 
-            // ✅ ENLAZAMOS LOAD AQUÍ para asegurarnos de que se cargan los combos
             this.Load += NuevoPrestamo_Load;
 
             cmbLibro.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -31,7 +29,6 @@ namespace Biblioteca.VISTA
             this.Activated += NuevoPrestamo_Activated;
             this.Resize += NuevoPrestamo_Resize;
 
-            // Margen fijo para que no se corte
             btnGuardar.Margin = new Padding(60, 3, 60, 3);
         }
 
@@ -72,7 +69,6 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // ✅ AQUÍ se cargan los datos
         private void NuevoPrestamo_Load(object sender, EventArgs e)
         {
             dtpFechaInicio.Value = DateTime.Today;

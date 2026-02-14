@@ -53,10 +53,8 @@ namespace Biblioteca.VISTA
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
-            // Fuente (altura de letra)
             cambiarFuentes(tlpHome, proporcionAlto);
 
-            // Padding tarjetas
             Padding paddingTarjeta = new Padding(
                 (int)(PADDING_LR * proporcionAncho),
                 (int)(PADDING_TB * proporcionAlto),
@@ -68,7 +66,6 @@ namespace Biblioteca.VISTA
             pLibros.Padding = paddingTarjeta;
             pPrest.Padding = paddingTarjeta;
 
-            // Margen tarjetas
             Padding marginTarjeta = new Padding(
                 (int)(MARGIN_LR * proporcionAncho),
                 (int)(MARGIN_TB * proporcionAlto),
@@ -80,7 +77,6 @@ namespace Biblioteca.VISTA
             pLibros.Margin = marginTarjeta;
             pPrest.Margin = marginTarjeta;
 
-            // Iconos
             userIcon.Size = new Size((int)(ICON_W * proporcionAncho), (int)(ICON_H * proporcionAlto));
             bookIcon.Size = new Size((int)(ICON_W * proporcionAncho), (int)(ICON_H * proporcionAlto));
             PrestIcon.Size = new Size((int)(ICON_W * proporcionAncho), (int)(ICON_H * proporcionAlto));

@@ -12,7 +12,7 @@ namespace Biblioteca.VISTA
 
         public Usuario UsuarioCreado { get; private set; }
 
-        // --- ESCALADO ---
+        
         private bool mostrado = false;
         private const float FONT_SIZE = 9.0f;
 
@@ -23,12 +23,11 @@ namespace Biblioteca.VISTA
 
             btnGuardar.Click += btnGuardar_Click;
 
-            // Escalado
+            
             this.Activated += NuevoUsuario_Activated;
             this.Resize += NuevoUsuario_Resize;
 
-            // ✅ Dejar margen fijo para que no se recorte el texto del botón
-            // (tu diseñador tenía 100,3,100,3 y a veces se come el ancho)
+            
             btnGuardar.Margin = new Padding(60, 3, 60, 3);
         }
 
@@ -51,7 +50,7 @@ namespace Biblioteca.VISTA
             float proporcionAlto = (float)this.Height / this.MinimumSize.Height;
             if (proporcionAlto > 3f) proporcionAlto = 3f;
 
-            // ✅ Solo fuentes (lo más estable en estos forms pequeños)
+           
             cambiarFuentes(tlpPrincipal, proporcionAlto);
 
             tlpPrincipal.PerformLayout();

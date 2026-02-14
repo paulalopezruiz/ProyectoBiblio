@@ -10,7 +10,7 @@ namespace Biblioteca.CONTROLADOR
     public class Controlador
     {
     
-        // USUARIOS
+        // Usuarios
    
         public List<Usuario> ObtenerUsuarios()
         {
@@ -34,7 +34,7 @@ namespace Biblioteca.CONTROLADOR
         public void InsertarUsuario(string nombre, string telefono, string dni)
         {
 
-            // VALIDACIONES
+            // Validaciones
 
             if (string.IsNullOrWhiteSpace(nombre))
                 throw new Exception("El nombre no puede estar vacío.");
@@ -51,7 +51,7 @@ namespace Biblioteca.CONTROLADOR
             if (!EsDNIValido(dni))
                 throw new Exception("El DNI no tiene un formato válido.");
 
-            // INSERTAR EN BBDD
+            // Insertar en la bd
       
             SQLiteCommand cmd = new SQLiteCommand(
                 "INSERT INTO Usuarios (Nombre, Telefono, DNI) VALUES (@nombre, @telefono, @dni);"
@@ -112,10 +112,6 @@ namespace Biblioteca.CONTROLADOR
         public string ObtenerDNIUsuario(string nombreUsuario) => BibliotecaBBDD.GetDNIUsuario(nombreUsuario);
         public string ObtenerIDUsuario(string dniUsuario) => BibliotecaBBDD.GetIDUsuario(dniUsuario);
 
-       
-        // LIBROS
-    
-
         public List<Libro> ObtenerLibros() => BibliotecaBBDD.GetLibros();
         public string ObtenerTituloLibro(int idLibro) => BibliotecaBBDD.GetTituloLibro(idLibro);
         public int ObtenerIDLibro(string titulo) => BibliotecaBBDD.GetIDLibro(titulo);
@@ -142,7 +138,7 @@ namespace Biblioteca.CONTROLADOR
         }
 
     
-        // PRÉSTAMOS
+      
      
 
         // Comprueba si hay ejemplares disponibles
@@ -175,15 +171,11 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.Ejecuta(cmd);
         }
 
-        // MÉTODOS GENERALES
-       
 
         public void EjecutarComando(SQLiteCommand cmd) => BibliotecaBBDD.Ejecuta(cmd);
         public DataTable GetDataTable(SQLiteCommand cmd) => BibliotecaBBDD.GetDataTable(cmd);
 
-     
-        // EDICIÓN DE USUARIOS
-    
+
 
         public void ActualizarNombreUsuario(string idUsuario, string nuevoNombre)
         {
@@ -200,8 +192,7 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.UpdateUsuarioDNI(idUsuario, nuevoDNI);
         }
 
-        // ACTUALIZAR LIBRO
-       
+
         public void ActualizarTituloLibro(int idLibro, string nuevoTitulo)
         {
             BibliotecaBBDD.ActualizarTituloLibro(idLibro, nuevoTitulo);
@@ -222,8 +213,6 @@ namespace Biblioteca.CONTROLADOR
             BibliotecaBBDD.ActualizarPortada(idLibro, rutaPortada);
         }
 
-
-        // BORRAR LIBRO
         public void BorrarLibro(int idLibro)
         {
             BibliotecaBBDD.BorrarLibro(idLibro);

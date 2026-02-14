@@ -15,16 +15,13 @@ namespace Biblioteca.VISTA
 
         private const float FONT_SIZE = 9.0f;
 
-        // Tarjetas
         private const int TARJETA_H_BASE = 96;
         private const float SUAVIZADO = 0.60f;
 
-        // Cabecera (fila 0)
-        private const int HEADER_BASE_HEIGHT = 90;  // base en tu MinimumSize
+        private const int HEADER_BASE_HEIGHT = 90;  
         private const int HEADER_MIN = 80;
         private const int HEADER_MAX = 160;
 
-        // Botón Nuevo (tamaño base del diseñador: 127x29)
         private const int BTN_W_BASE = 127;
         private const int BTN_H_BASE = 29;
 
@@ -33,18 +30,14 @@ namespace Biblioteca.VISTA
             InitializeComponent();
             this.controlador = controlador;
 
-            // ✅ CLAVE 1: el AutoSize del tlpPrincipal es lo que rompe el layout
             tlpPrincipal.AutoSize = false;
             tlpPrincipal.AutoSizeMode = AutoSizeMode.GrowOnly;
 
-            // ✅ CLAVE 2: el botón no debe AutoSize si quieres controlarlo
             btnNuevo.AutoSize = false;
 
-            // ✅ Mejor comportamiento visual
-            btnNuevo.Anchor = AnchorStyles.None;     // centrado en su celda
+            btnNuevo.Anchor = AnchorStyles.None;    
             btnNuevo.Dock = DockStyle.None;
 
-            // ✅ margen base normal (el margen "bonito" lo ajustamos en Escalado)
             btnNuevo.Margin = new Padding(10);
 
             this.Activated += listadoUsuarios_Activated;
@@ -76,10 +69,8 @@ namespace Biblioteca.VISTA
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
-            // 1) Fuentes (por alto)
             cambiarFuentes(tlpPrincipal, proporcionAlto);
 
-            // 2) Fijar fila 0 (cabecera) a ABSOLUTE escalable => evita que se corte/desaparezca
             int headerH = (int)(HEADER_BASE_HEIGHT * proporcionAlto);
             if (headerH < HEADER_MIN) headerH = HEADER_MIN;
             if (headerH > HEADER_MAX) headerH = HEADER_MAX;
@@ -90,21 +81,19 @@ namespace Biblioteca.VISTA
                 tlpPrincipal.RowStyles[0].Height = headerH;
             }
 
-            // 3) Tamaño del botón
             int btnW = (int)(BTN_W_BASE * proporcionAncho);
             int btnH = (int)(BTN_H_BASE * proporcionAlto);
 
             if (btnW < BTN_W_BASE) btnW = BTN_W_BASE;
             if (btnH < BTN_H_BASE) btnH = BTN_H_BASE;
 
-            // límites para que no quede ridículo
             if (btnW > 260) btnW = 260;
             if (btnH > 70) btnH = 70;
 
             btnNuevo.Size = new Size(btnW, btnH);
 
-            // margen derecho extra para que no se pegue al borde al crecer
-            int padDerecha = (int)(30 * proporcionAncho);  // ajusta 30 si quieres más/menos aire
+            
+            int padDerecha = (int)(30 * proporcionAncho); 
             if (padDerecha < 30) padDerecha = 30;
             if (padDerecha > 120) padDerecha = 120;
 

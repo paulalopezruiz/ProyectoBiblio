@@ -11,7 +11,6 @@ namespace Biblioteca.MODELO
         public int NEjemplares { get; set; }
         public int PrestamosActivos { get; set; } 
 
-        // Disponibilidad calculada
         public bool Disponible => NEjemplares - PrestamosActivos > 0;
 
         public Libro(int idLibro, string titulo, string escritor, string portada, int nEjemplares, int prestamosActivos)

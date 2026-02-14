@@ -10,9 +10,7 @@ namespace Biblioteca.MODELO
         public string Telefono { get; set; }
         public string DNI { get; set; }
 
-        // CONSTRUCTORES
 
-        // Constructor completo con ID
         public Usuario(string id, string nombre, string telefono, string dni)
         {
             ID = id;
@@ -21,7 +19,6 @@ namespace Biblioteca.MODELO
             DNI = dni;
         }
 
-        // Constructor sin ID (se puede asignar después)
         public Usuario(string nombre, string telefono, string dni)
         {
             ID = null;
@@ -30,7 +27,6 @@ namespace Biblioteca.MODELO
             DNI = dni;
         }
 
-        // Constructor con nombre y DNI
         public Usuario(string nombre, string dni)
         {
             ID = null;
@@ -39,8 +35,6 @@ namespace Biblioteca.MODELO
             Telefono = null;
         }
 
-
-        // MÉTODOS
  
         public override string ToString()
         {

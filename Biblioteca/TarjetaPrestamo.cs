@@ -16,16 +16,13 @@ namespace Biblioteca
 
         private bool mostrado = false;
 
-        // Panel del estado
         private const int ESTADO_BASE = 30;
         private const int ESTADO_MIN = 22;
         private const int ESTADO_MAX = 60;
         private const int BORDE = 1;
 
-        // suavizado
         private const float SUAVIZADO = 0.60f;
 
-        // Guardamos tamaños base reales de cada control
         private readonly Dictionary<Control, float> _fontBase = new Dictionary<Control, float>();
 
         public TarjetaPrestamo()
@@ -106,7 +103,6 @@ namespace Biblioteca
             Form f = this.FindForm();
             if (f == null) return;
 
-            // ✅ Proporción respecto al tamaño mínimo del form (como tu listadoPrestamos)
             float baseW = f.MinimumSize.Width;
             float baseH = f.MinimumSize.Height;
 
@@ -115,17 +111,14 @@ namespace Biblioteca
             float proporcionAncho = (float)f.ClientSize.Width / baseW;
             float proporcionAlto = (float)f.ClientSize.Height / baseH;
 
-            // límites razonables
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
             if (proporcionAlto < 0.6f) proporcionAlto = 0.6f;
             if (proporcionAncho < 0.6f) proporcionAncho = 0.6f;
 
-            // ✅ Escala proporcional al alto/ancho (promedio, no min)
             float escala = (proporcionAlto + proporcionAncho) / 2f;
 
-            // suavizado (para que suba suave)
             float escalaSuave = 1f + (escala - 1f) * SUAVIZADO;
 
             CambiarFuentesDesdeBase(this, escalaSuave);

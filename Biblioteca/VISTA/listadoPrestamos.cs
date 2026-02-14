@@ -13,27 +13,27 @@ namespace Biblioteca.VISTA
         private bool _inicializando;
         private Controlador controlador;
 
-        // --- ESCALADO ---
+        
         private bool mostrado = false;
         private const float FONT_SIZE = 9.0f;
 
-        // Cabecera (fila 0)
+        
         private const int HEADER_BASE_HEIGHT = 110;
         private const int HEADER_MIN = 95;
         private const int HEADER_MAX = 240;
 
-        // Botón Nuevo (base del diseñador)
+        
         private const int BTN_W_BASE = 127;
         private const int BTN_H_BASE = 29;
 
-        // Tarjetas
+        
         private const int TARJETA_H_BASE = 110;
         private const float SUAVIZADO_TARJETA = 0.60f;
 
-        // ✅ Espacios entre filtros y margen derecha (base)
-        private const int GAP_FILTROS_BASE = 18;      // separación entre Usuario y Libro
-        private const int RIGHT_PAD_BASE = 18;        // margen derecho del botón
-        private const int LEFT_PAD_BTN_BASE = 16;     // margen izquierdo del botón
+        
+        private const int GAP_FILTROS_BASE = 18;      
+        private const int RIGHT_PAD_BASE = 18;        
+        private const int LEFT_PAD_BTN_BASE = 16;     
 
         public listadoPrestamos(Controlador controlador)
         {
@@ -45,21 +45,20 @@ namespace Biblioteca.VISTA
             _usuarioID = null;
             _inicializando = true;
 
-            // ✅ estabilidad del layout
+            
             tlpPrincipal.AutoSize = false;
             tlpPrincipal.AutoSizeMode = AutoSizeMode.GrowOnly;
 
-            // ✅ botón: NO AutoSize y NO estirar en la celda
+            
             btnNuevo.AutoSize = false;
             btnNuevo.Dock = DockStyle.None;
 
-            // ✅ pegado a la derecha
+            
             btnNuevo.Anchor = AnchorStyles.Right;
 
-            // margen base (luego lo recalculamos en escalado)
+            
             btnNuevo.Margin = new Padding(LEFT_PAD_BTN_BASE, 10, RIGHT_PAD_BASE, 10);
 
-            // combos: estilo lista
             cbUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
             cbLibro.DropDownStyle = ComboBoxStyle.DropDownList;
 
@@ -100,23 +99,18 @@ namespace Biblioteca.VISTA
             if (proporcionAlto > 3f) proporcionAlto = 3f;
             if (proporcionAncho > 3f) proporcionAncho = 3f;
 
-            // 1) Fuentes
             cambiarFuentes(tlpPrincipal, proporcionAlto);
 
-            // 2) Separación entre filtros (Usuario vs Libro)
             int separacionFiltros = (int)(GAP_FILTROS_BASE * proporcionAncho);
             if (separacionFiltros < GAP_FILTROS_BASE) separacionFiltros = GAP_FILTROS_BASE;
             if (separacionFiltros > 60) separacionFiltros = 60;
 
-            // Empuja tlpLibro hacia la derecha para dejar aire con Usuario
             tlpLibro.Margin = new Padding(separacionFiltros, tlpLibro.Margin.Top, tlpLibro.Margin.Right, tlpLibro.Margin.Bottom);
 
-            // 3) Botón: altura sí escala, pero el ancho NO (para que no quede gigante)
             int altoBoton = (int)(BTN_H_BASE * proporcionAlto);
             if (altoBoton < BTN_H_BASE) altoBoton = BTN_H_BASE;
             if (altoBoton > 70) altoBoton = 70;
 
-            // ✅ Ancho según texto + padding (evita “espacio sobrante” dentro del botón)
             int anchoTexto = TextRenderer.MeasureText(btnNuevo.Text, btnNuevo.Font).Width;
 
             int paddingHorizontal = (int)(28 * proporcionAncho);
@@ -130,7 +124,6 @@ namespace Biblioteca.VISTA
 
             btnNuevo.Size = new Size(anchoBoton, altoBoton);
 
-            // 4) Márgenes del botón (externos)
             int margenDerecho = (int)(RIGHT_PAD_BASE * proporcionAncho);
             if (margenDerecho < RIGHT_PAD_BASE) margenDerecho = RIGHT_PAD_BASE;
             if (margenDerecho > 60) margenDerecho = 60;
@@ -144,7 +137,6 @@ namespace Biblioteca.VISTA
             btnNuevo.Visible = true;
             btnNuevo.BringToFront();
 
-            // 5) Fila 0: altura base
             int alturaCabecera = (int)(HEADER_BASE_HEIGHT * proporcionAlto);
             if (alturaCabecera < HEADER_MIN) alturaCabecera = HEADER_MIN;
             if (alturaCabecera > HEADER_MAX) alturaCabecera = HEADER_MAX;
@@ -155,7 +147,7 @@ namespace Biblioteca.VISTA
                 tlpPrincipal.RowStyles[0].Height = alturaCabecera;
             }
 
-            // 6) Evitar solapes: medir cuánto “ocupa” realmente la fila 0
+            
             tlpPrincipal.PerformLayout();
 
             int alturaNecesaria = 0;
@@ -167,7 +159,7 @@ namespace Biblioteca.VISTA
                 if (abajo > alturaNecesaria) alturaNecesaria = abajo;
             }
 
-            alturaNecesaria += 6; // aire extra
+            alturaNecesaria += 6;
 
             if (alturaNecesaria > alturaCabecera) alturaCabecera = alturaNecesaria;
             if (alturaCabecera > HEADER_MAX) alturaCabecera = HEADER_MAX;
@@ -220,7 +212,7 @@ namespace Biblioteca.VISTA
             }
         }
 
-        // --------------------------- LÓGICA ORIGINAL ---------------------------
+        
 
         public listadoPrestamos(Controlador controlador, string dniUsuario) : this(controlador)
         {
